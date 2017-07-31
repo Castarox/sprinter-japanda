@@ -5,12 +5,12 @@ deploy:
  provider: heroku
  api-key:
   secure: 9afda0ab-1fa2-4e93-bf82-3b73ae87921c
- app: test-first-heroku-app
+ app: sprinter-japanda
  on:
   branch: master
  provider: heroku
  api-key:
    secure: 9afda0ab-1fa2-4e93-bf82-3b73ae87921c
- app: dev-test-travis
+ app: sprinter-japanda-dev
  on:
   branch: dev
