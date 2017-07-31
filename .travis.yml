@@ -1,0 +1,16 @@
+language: java
+jdk:
+ - oraclejdk8
+deploy:
+ provider: heroku
+ api-key:
+  secure: 9afda0ab-1fa2-4e93-bf82-3b73ae87921c
+ app: test-first-heroku-app
+ on:
+  branch: master
+ provider: heroku
+ api-key:
+   secure: 9afda0ab-1fa2-4e93-bf82-3b73ae87921c
+ app: dev-test-travis
+ on:
+  branch: dev
