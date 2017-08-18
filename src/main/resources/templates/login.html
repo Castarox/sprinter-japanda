@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Japanda" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sprinter Japanda</title>
+    <link href="webjars/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/login.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" th:href="@{~/index}">Sprinter</a>
+        </div>
+        <form th:action="@{~/login}" method="POST" class="navbar-form navbar-right">
+          <div class="form-group">
+            <input type="text" class="form-control" name="login" placeholder="Login" th:required="required"/>
+            <input type="password" class="form-control" name="password" placeholder="Password" th:required="required"/>
+          </div>
+          <button type="submit" class="btn btn-success">Login</button>
+        </form>
+      </div>
+    </nav>
+    <div class="container">
+        <h1>Some content</h1>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <h1>Footer</h1>
+        </div>
+    </footer>
+    <script src="webjars/jquery/1.9.1/jquery.min.js"></script>
+    <script src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</body>
+</html>
