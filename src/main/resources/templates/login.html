@@ -24,6 +24,7 @@
       </div>
     </nav>
     <div class="container">
+        <div th:if="${error != null}" th:text="${error}" class="alert alert-danger">ERROR</div>
         <h1>Some content</h1>
     </div>
 
