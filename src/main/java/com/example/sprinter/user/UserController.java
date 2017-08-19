@@ -30,4 +30,22 @@ public class UserController {
         }
         return "redirect:/index";
     }
+
+    @PostMapping("/login")
+    String setUserSessionAndMoveToIndex(ModelMap model, @RequestParam String login, @RequestParam String password){
+        User user = userService.getByLogin(login);
+        Boolean err = false;
+        String errMsg = "Wrong login or password";
+        if (user == null) {
+            err = true;
+        } else if(!Objects.equals(user.getPassword(), password)) {
+            err = true;
+        }
+        if (err) {
+            model.put("error", errMsg);
+            return "login";
+        }
+        model.put("user", user);
+        return "index";
+    }
 }
