@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class User {
@@ -13,10 +15,22 @@ public class User {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
+    @NotNull
+    @Size(min=3, message="Name is too short")
     private String name;
-    private String email;
-    private String password;
+
+    @NotNull
+    @Size(min=3, message="Surname is too short")
     private String surname;
+
+    @NotNull
+    @Size(min=3, message="Email is too short")
+    private String email;
+
+    @NotNull
+    @Size(min=6, message="Password is too short")
+    private String password;
+
 
     public User(){}
 
