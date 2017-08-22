@@ -25,6 +25,11 @@ public class UserController {
         return "redirect:/index";
     }
 
+    @GetMapping("/index")
+    String showMainPage(ModelMap model){
+        return "index";
+    }
+
     @PostMapping("/login")
     String setUserSessionAndMoveToIndex(ModelMap model, @RequestParam String login, @RequestParam String password){
         User user = userService.getByLogin(login);
