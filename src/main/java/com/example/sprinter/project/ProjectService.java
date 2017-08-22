@@ -6,7 +6,9 @@ import org.springframework.stereotype.Service;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class ProjectService {
@@ -21,6 +23,11 @@ public class ProjectService {
         return projectRepository.findOne(id);
     }
 
+    public List<Project> findAll() {
+        List<Project> projects = new ArrayList<>();
+        projectRepository.findAll().forEach(projects::add);
+        return projects;
+    }
 
     public void add(Project project) {
         projectRepository.save(project);
