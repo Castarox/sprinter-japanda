@@ -23,14 +23,12 @@ import java.util.Objects;
 @SessionAttributes("user")
 public class UserController {
 
-    private final UserService userService;
-    private final ProjectService projectService;
+    @Autowired
+    private UserService userService;
 
     @Autowired
-    public UserController(UserService userService, ProjectService projectService) {
-        this.userService = userService;
-        this.projectService = projectService;
-    }
+    private ProjectService projectService;
+
 
     @GetMapping("")
     String getAll(Model model, ModelMap modelMap) {

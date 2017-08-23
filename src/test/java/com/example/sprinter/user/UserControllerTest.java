@@ -1,5 +1,6 @@
 package com.example.sprinter.user;
 
+import com.example.sprinter.project.ProjectService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,11 +30,15 @@ public class UserControllerTest {
     @MockBean
     private UserService userService;
 
+    @MockBean
+    private ProjectService projectService;
+
     private User user;
 
     @Before
     public void setUp(){
         user = new User("Name", "Email", "Password", "Surname");
+        user.setId(1L);
 
         when(userService.getByLogin(anyString(), anyString())).thenReturn(user);
     }
