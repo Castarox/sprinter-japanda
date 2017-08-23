@@ -32,7 +32,7 @@ public class UserController {
         if (model.get("user") == null) {
             return "login";
         }
-        return "redirect:/user";
+        return "redirect:/index";
     }
 
     @GetMapping("/index")
