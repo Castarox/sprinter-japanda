@@ -25,7 +25,7 @@ public class ProjectService {
 
     public List<Project> findAll(long ownerId) {
         List<Project> projects = new ArrayList<>();
-        projectRepository.findAllByOwnerId(ownerId).forEach(projects::add);
+        projectRepository.findAllByOwnerIdOrderByEndDateDesc(ownerId).forEach(projects::add);
         return projects;
     }
 

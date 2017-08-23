@@ -5,5 +5,5 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface ProjectRepository extends CrudRepository<Project, Long> {
-    List<Project> findAllByOwnerId(long ownerId);
+    List<Project> findAllByOwnerIdOrderByEndDateDesc(long ownerId);
 }
