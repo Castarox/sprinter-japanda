@@ -22,17 +22,14 @@
 .sidenav {
     padding-top: 20px;
     background-color: #f1f1f1;
-    height: 100%;
-    position: absolute;
+    position: static;
+    height: 100rem;
     float: left;
+    margin-bottom: 0;
 }
 
 .card-title {
     padding-top: 10px;
-}
-
-.btn btn-default{
-    padding-bottom: 10px;
 }
 
 #site-content {
@@ -42,7 +39,8 @@
 footer {
     background-color: #555;
     color: white;
-    position: absolute;
+    position: static;
+    height: 4rem;
     right: 0;
     bottom: 0;
     left: 0;
@@ -61,3 +59,8 @@ footer {
 img {
     width: 100px;
 }
+
+.btn-default {
+    margin-bottom: 10px;
+}
+
