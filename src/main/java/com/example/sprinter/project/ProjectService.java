@@ -41,12 +41,15 @@ public class ProjectService {
         projectRepository.delete(id);
     }
 
-    public Date parseDate(String stringDate) {
-        DateFormat format = new SimpleDateFormat("yyyy-mm-dd");
-        try {
-            return format.parse(stringDate);
-        } catch (ParseException ex) {
-            return null;
-        }
-    }
+//    public String parseDate(String stringDate) {
+//        System.out.println(stringDate);
+//        DateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss.SSS");
+//        try {
+//            Date date = format.parse(stringDate);
+//            DateFormat outputFormat = new SimpleDateFormat("dd/mm/yyyy");
+//            return outputFormat.format(date);
+//        } catch (ParseException ex) {
+//            return null;
+//        }
+//    }
 }

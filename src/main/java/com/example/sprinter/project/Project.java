@@ -5,7 +5,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
 
 @Entity
 public class Project {
@@ -13,13 +12,13 @@ public class Project {
     private Long ownerId;
     @NotNull
     private String name;
-    private Date startDate;
-    private Date endDate;
+    private String startDate;
+    private String endDate;
     private Boolean copy;
 
     public Project() {}
 
-    public Project(String name, Long ownerId, Date startDate, Date endDate, Boolean copy) {
+    public Project(String name, Long ownerId, String startDate, String endDate, Boolean copy) {
         this.name = name;
         this.ownerId = ownerId;
         this.startDate = startDate;
@@ -53,19 +52,19 @@ public class Project {
         this.name = name;
     }
 
-    public Date getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 
