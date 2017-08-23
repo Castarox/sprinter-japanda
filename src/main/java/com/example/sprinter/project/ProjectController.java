@@ -7,16 +7,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.util.Date;
-
 
 @Controller
 @SessionAttributes("user")
 @RequestMapping("/projects")
 public class ProjectController {
-    private ProjectService projectService;
+    private final ProjectService projectService;
 
     @Autowired
     public ProjectController(ProjectService projectService) {
@@ -31,16 +30,19 @@ public class ProjectController {
     }
 
     @PostMapping("/new")
-    String add(@Valid @ModelAttribute("form") ProjectForm projectForm, ModelMap model) {
+    String add(@Valid @ModelAttribute("form") ProjectForm projectForm, ModelMap model,
+               RedirectAttributes redirectAttributes) {
         User user = (User)model.get("user");
-        Date startDate = projectService.parseDate(projectForm.getStartDate());
-        Date endDate = projectService.parseDate(projectForm.getEndDate());
-        if (startDate != null && endDate != null) {
-            Project project = new Project(projectForm.getProjectName(), user.getId(), startDate, endDate, false);
+        String startDate = projectForm.getStartDate();
+        String endDate = projectForm.getEndDate();
+        String projectName = projectForm.getProjectName();
+        if (startDate != null && endDate != null && projectName != null) {
+            Project project = new Project(projectName, user.getId(), startDate, endDate, false);
             projectService.add(project);
+            redirectAttributes.addFlashAttribute("message", "Project created!");
             return "redirect:/projects/" + project.getId();
         }
-
-        return "redirect:/index";
+        redirectAttributes.addFlashAttribute("message", "Fill out all fields");
+        return "redirect:/";
     }
 }

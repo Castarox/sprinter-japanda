@@ -1,6 +1,8 @@
 package com.example.sprinter.user;
 
 import com.example.sprinter.form.EditPasswordForm;
+import com.example.sprinter.project.Project;
+import com.example.sprinter.project.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Objects;
 
 @Controller
@@ -21,10 +24,20 @@ import java.util.Objects;
 public class UserController {
 
     private final UserService userService;
+    private final ProjectService projectService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, ProjectService projectService) {
         this.userService = userService;
+        this.projectService = projectService;
+    }
+
+    @GetMapping("")
+    String getAll(Model model, ModelMap modelMap) {
+        User user = (User)modelMap.get("user");
+        List<Project> projectList = projectService.findAll(user.getId());
+        model.addAttribute("projects", projectList);
+        return "index";
     }
 
     @GetMapping("/login")
@@ -33,11 +46,6 @@ public class UserController {
             return "login";
         }
         return "redirect:/index";
-    }
-
-    @GetMapping("/index")
-    String showMainPage(ModelMap model){
-        return "index";
     }
 
     @PostMapping("/login")
@@ -55,7 +63,7 @@ public class UserController {
             return "login";
         }
         model.put("user", user);
-        return "index";
+        return "redirect:/";
     }
 
     @GetMapping("/user")

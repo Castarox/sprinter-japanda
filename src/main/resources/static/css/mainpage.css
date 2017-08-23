@@ -3,18 +3,49 @@
     border-radius: 0;
 }
 
-.row.content {height: 450px}
+.row.content {height: 100%;}
+
+.card-block {
+    border-radius: 10px;
+    background-color: #F5F5F5;
+}
+
+#welcome-text {
+    text-align: justify;
+}
+
+#special-card {
+    background-color: #9BD2D2;
+    border-radius: 10px;
+}
 
 .sidenav {
     padding-top: 20px;
     background-color: #f1f1f1;
-    height: 100%;
+    position: absolute;
+    height: 100rem;
+    float: left;
+    margin-bottom: 0;
+}
+
+.card-title {
+    padding-top: 10px;
+}
+
+#site-content {
+    float: right;
 }
 
 footer {
     background-color: #555;
     color: white;
-    padding: 15px;
+    position: fixed;
+    height: 4rem;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    text-align: center;
 }
 
 @media screen and (max-width: 767px) {
@@ -22,5 +53,15 @@ footer {
         height: auto;
         padding: 15px;
     }
-    .row.content {height:auto;}
+    .row.content {height:100%;}
 }
+
+img {
+    width: 100px;
+}
+
+.btn-default {
+    margin-bottom: 10px;
+}
+
+
