@@ -22,7 +22,7 @@
 .sidenav {
     padding-top: 20px;
     background-color: #f1f1f1;
-    position: static;
+    position: absolute;
     height: 100rem;
     float: left;
     margin-bottom: 0;
