@@ -39,7 +39,7 @@
 footer {
     background-color: #555;
     color: white;
-    position: static;
+    position: fixed;
     height: 4rem;
     right: 0;
     bottom: 0;
@@ -63,4 +63,5 @@ img {
 .btn-default {
     margin-bottom: 10px;
 }
+
 
