@@ -33,7 +33,7 @@ public class UserControllerTest {
 
     @Before
     public void setUp(){
-        user = new User(1L, "Name", "Email", "Password", "Surname");
+        user = new User("Name", "Email", "Password", "Surname");
 
         when(userService.getByLogin(anyString(), anyString())).thenReturn(user);
     }
