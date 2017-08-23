@@ -59,5 +59,16 @@ public class UserController {
         return "user-edit-profile";
     }
 
-
+    @PostMapping("/user/password")
+    String editPassword(ModelMap model,
+                        @ModelAttribute("form") @Valid EditPasswordForm form,
+                        BindingResult result,
+                        RedirectAttributes redirectAttributes){
+        if (!form.getConfirm().equals(form.getPassword()) || result.hasErrors()){
+            model.put("error", "Wrong password");
+            return "user-edit-profile";
+        }
+        redirectAttributes.addAttribute("success", "success");
+        return "redirect:/user";
+    }
 }
