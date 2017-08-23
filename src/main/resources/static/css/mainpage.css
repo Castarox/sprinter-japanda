@@ -5,12 +5,34 @@
 
 .row.content {height: 100%;}
 
+.card-block {
+    border-radius: 10px;
+    background-color: #F5F5F5;
+}
+
+#welcome-text {
+    text-align: justify;
+}
+
+#special-card {
+    background-color: #9BD2D2;
+    border-radius: 10px;
+}
+
 .sidenav {
     padding-top: 20px;
     background-color: #f1f1f1;
     height: 100%;
     position: absolute;
     float: left;
+}
+
+.card-title {
+    padding-top: 10px;
+}
+
+.btn btn-default{
+    padding-bottom: 10px;
 }
 
 #site-content {
@@ -34,4 +56,8 @@ footer {
         padding: 15px;
     }
     .row.content {height:100%;}
+}
+
+img {
+    width: 100px;
 }
