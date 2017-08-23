@@ -32,7 +32,7 @@ public class UserController {
         this.projectService = projectService;
     }
 
-    @GetMapping("/index")
+    @GetMapping("")
     String getAll(Model model, ModelMap modelMap) {
         User user = (User)modelMap.get("user");
         List<Project> projectList = projectService.findAll(user.getId());
@@ -63,7 +63,7 @@ public class UserController {
             return "login";
         }
         model.put("user", user);
-        return "redirect:/index";
+        return "redirect:/";
     }
 
     @GetMapping("/user")
