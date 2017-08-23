@@ -43,7 +43,7 @@ public class UserController {
         if (model.get("user") == null) {
             return "login";
         }
-        return "redirect:/index";
+        return "redirect:/";
     }
 
     @PostMapping("/login")
