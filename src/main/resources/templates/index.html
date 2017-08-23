@@ -46,12 +46,16 @@
             <h1>Welcome</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
             <hr/>
+            <div th:if="${message}" class="alert alert-danger alert-dismissable">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Error!</strong><p th:text="${message}"></p>
+            </div>
+
             <div class="row">
                 <div class="col-sm-4">
                     <div class="card">
                         <div class="card-block">
                             <h3 class="card-title">Create new project</h3>
-                            <p class="card-text">Sprinter</p>
                             <a href="#" class="btn btn-default" data-toggle="modal" data-target="#addProject"><span class="glyphicon glyphicon-plus"></span></a>
 
                             <!-- Modal -->
@@ -90,19 +94,10 @@
                     </div>
                 </div>
                 <div class="col-sm-4">
-                    <div class="card">
+                    <div th:each="project: ${projects}" class="card">
                         <div class="card-block">
                             <h3 class="card-title">Project</h3>
-                            <p class="card-text">Sprinter</p>
-                            <a href="#" class="btn btn-default">Go</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="card">
-                        <div class="card-block">
-                            <h3 class="card-title">Project</h3>
-                            <p class="card-text">Japanda</p>
+                            <p class="card-text" th:text="${project.getName()}"></p>
                             <a href="#" class="btn btn-default">Go</a>
                         </div>
                     </div>
