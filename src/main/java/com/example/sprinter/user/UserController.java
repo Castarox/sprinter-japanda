@@ -54,5 +54,10 @@ public class UserController {
         return "user-profile";
     }
 
+    @GetMapping("/user/password")
+    String indexEdit(){
+        return "user-edit-profile";
     }
+
+
 }
