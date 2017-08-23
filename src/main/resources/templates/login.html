@@ -19,19 +19,20 @@
             <input th:type="text" class="form-control" name="login" th:placeholder="Login" th:required="required" th:autofocus="login"/>
             <input th:type="password" class="form-control" name="password" th:placeholder="Password" th:required="required"/>
           </div>
-          <button type="submit" class="btn btn-success">Login</button>
+          <button type="submit" class="btn btn-default">Login</button>
         </form>
       </div>
     </nav>
-    <div class="container">
+    <div class="container text-center">
         <div th:if="${error != null}" th:text="${error}" class="alert alert-danger">ERROR</div>
-        <h1>Some content</h1>
+        <h1>Sprinter - Codecool Management App</h1>
+        <div id="logo">
+            <img th:src="@{~/images/japanda.png}"/>
+        </div>
     </div>
 
-    <footer class="footer">
-        <div class="container">
-            <h1>Footer</h1>
-        </div>
+    <footer class="container-fluid text-center">
+            <p>Copyright by jaPanda, 2017</p>
     </footer>
     <script th:src="@{~/webjars/jquery/1.9.1/jquery.min.js}" src="webjars/jquery/1.9.1/jquery.min.js"></script>
     <script th:src="@{~/webjars/bootstrap/3.3.6/js/bootstrap.min.js}" src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
