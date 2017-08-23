@@ -84,13 +84,6 @@ public class UserControllerTest {
         verifyNoMoreInteractions(userService);
     }
 
-
-}
-    @Before
-    public void setUp() {
-        user = new User(1L, "Name", "Email", "Pass", "Surname");
-    }
-
     @Test
     public void testResponseLoginPageIfNotLogged() throws Exception {
         RequestBuilder requestBuilder = get(
