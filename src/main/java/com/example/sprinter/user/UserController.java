@@ -20,8 +20,12 @@ import java.util.Objects;
 @SessionAttributes("user")
 public class UserController {
 
+    private final UserService userService;
+
     @Autowired
-    private UserService userService;
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping("/login")
     String logInToTheSiteViewPage(ModelMap model){
@@ -73,6 +77,8 @@ public class UserController {
             model.put("error", "Wrong password");
             return "user-edit-profile";
         }
+        User user = (User) model.get("user");
+        userService.saveUser(user);
         redirectAttributes.addAttribute("success", "success");
         return "redirect:/user";
     }
