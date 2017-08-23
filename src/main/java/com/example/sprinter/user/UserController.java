@@ -1,13 +1,19 @@
 package com.example.sprinter.user;
 
+import com.example.sprinter.form.EditPasswordForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.util.Objects;
 
 @Controller
@@ -22,7 +28,7 @@ public class UserController {
         if (model.get("user") == null) {
             return "login";
         }
-        return "redirect:/index";
+        return "redirect:/user";
     }
 
     @PostMapping("/login")
@@ -41,5 +47,12 @@ public class UserController {
         }
         model.put("user", user);
         return "index";
+    }
+
+    @GetMapping("/user")
+    String indexUser() {
+        return "user-profile";
+    }
+
     }
 }
