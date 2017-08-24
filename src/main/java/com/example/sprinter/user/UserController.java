@@ -33,6 +33,9 @@ public class UserController {
     @GetMapping("")
     String getAll(Model model, ModelMap modelMap) {
         User user = (User)modelMap.get("user");
+        if (user == null){
+            return "redirect:/login";
+        }
         List<Project> projectList = projectService.findAll(user.getId());
         model.addAttribute("projects", projectList);
         return "index";
