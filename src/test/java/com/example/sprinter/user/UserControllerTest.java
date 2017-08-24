@@ -103,7 +103,7 @@ public class UserControllerTest {
                 "/login").sessionAttr("user", user);
 
         mockMvc.perform(requestBuilder)
-                .andExpect(view().name("redirect:/index"))
+                .andExpect(view().name("redirect:/"))
                 .andExpect(status().is(302));
     }
 }
