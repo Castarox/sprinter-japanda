@@ -52,19 +52,15 @@ public class UserController {
     @PostMapping("/login")
     String setUserSessionAndMoveToIndex(ModelMap model, @RequestParam String login, @RequestParam String password){
         User user = userService.getByLogin(login, password);
-        Boolean err = false;
         String errMsg = "Wrong login or password";
-        if (user == null) {
-            err = true;
-        } else if(!Objects.equals(user.getPassword(), password)) {
-            err = true;
+        if (user != null) {
+            if(Objects.equals(user.getPassword(), password)) {
+                model.put("user", user);
+                return "redirect:/";
+            }
         }
-        if (err) {
-            model.put("error", errMsg);
-            return "login";
-        }
-        model.put("user", user);
-        return "redirect:/";
+        model.put("error", errMsg);
+        return "login";
     }
 
     @GetMapping("/user")
