@@ -1,15 +1,22 @@
 package com.example.sprinter.project;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.example.sprinter.user.User;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 @Entity
 public class Project {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="project_id")
     private Long id;
-    private Long ownerId;
+
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "projects")
+    private Set<User> owners;
+
     @NotNull
     private String name;
     private String startDate;
@@ -18,16 +25,15 @@ public class Project {
 
     public Project() {}
 
-    public Project(String name, Long ownerId, String startDate, String endDate, Boolean copy) {
+    public Project(String name, Set<User> owners, String startDate, String endDate, Boolean copy) {
         this.name = name;
-        this.ownerId = ownerId;
+        this.owners = owners;
         this.startDate = startDate;
         this.endDate = endDate;
         this.copy = copy;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+
     public Long getId() {
         return id;
     }
@@ -36,12 +42,12 @@ public class Project {
         this.id = id;
     }
 
-    public Long getOwnerId() {
-        return ownerId;
+    public Set<User> getOwners() {
+        return owners;
     }
 
-    public void setOwnerId(Long ownerId) {
-        this.ownerId = ownerId;
+    public void setOwners(Set<User> owners) {
+        this.owners = owners;
     }
 
     public String getName() {

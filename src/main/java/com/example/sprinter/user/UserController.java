@@ -36,8 +36,7 @@ public class UserController {
         if (user == null){
             return "redirect:/login";
         }
-        List<Project> projectList = projectService.findAll(user.getId());
-        model.addAttribute("projects", projectList);
+        model.addAttribute("projects", user.getProjects());
         return "index";
     }
 

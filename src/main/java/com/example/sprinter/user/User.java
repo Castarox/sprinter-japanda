@@ -1,13 +1,12 @@
 package com.example.sprinter.user;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.example.sprinter.project.Project;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Set;
 
 @Entity
 @Table(name = "app_user")
@@ -15,7 +14,14 @@ public class User {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name="user_id")
     private Long id;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "app_user_project", joinColumns = {
+            @JoinColumn(name="user_id") },
+            inverseJoinColumns = { @JoinColumn(name="project_id")})
+    private Set<Project> projects;
 
     @NotNull
     @Size(min=3, message="Name is too short")
@@ -36,12 +42,21 @@ public class User {
 
     public User(){}
 
-    public User(Long id, String name, String email , String password, String surname){
+    public User(Long id, String name, String email , String password, String surname, Set<Project> projects){
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
         this.surname = surname;
+        this.projects = projects;
+    }
+
+    public Set<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(Set<Project> projects) {
+        this.projects = projects;
     }
 
     public long getId() {
@@ -91,20 +106,22 @@ public class User {
 
         User user = (User) o;
 
-        if (!id.equals(user.id)) return false;
-        if (!name.equals(user.name)) return false;
-        if (!email.equals(user.email)) return false;
-        if (!password.equals(user.password)) return false;
-        return surname.equals(user.surname);
+        if (id != null ? !id.equals(user.id) : user.id != null) return false;
+        if (projects != null ? !projects.equals(user.projects) : user.projects != null) return false;
+        if (name != null ? !name.equals(user.name) : user.name != null) return false;
+        if (surname != null ? !surname.equals(user.surname) : user.surname != null) return false;
+        if (email != null ? !email.equals(user.email) : user.email != null) return false;
+        return password != null ? password.equals(user.password) : user.password == null;
     }
 
     @Override
     public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + name.hashCode();
-        result = 31 * result + email.hashCode();
-        result = 31 * result + password.hashCode();
-        result = 31 * result + surname.hashCode();
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (projects != null ? projects.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (surname != null ? surname.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (password != null ? password.hashCode() : 0);
         return result;
     }
 
@@ -112,6 +129,7 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
+                ", projects=" + projects +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", email='" + email + '\'' +

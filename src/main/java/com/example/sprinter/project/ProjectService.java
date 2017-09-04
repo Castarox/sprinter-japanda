@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class ProjectService {
@@ -23,12 +24,6 @@ public class ProjectService {
         return projectRepository.findOne(id);
     }
 
-    public List<Project> findAll(long ownerId) {
-        List<Project> projects = new ArrayList<>();
-        projectRepository.findAllByOwnerIdOrderByEndDateDesc(ownerId).forEach(projects::add);
-        return projects;
-    }
-
     public void add(Project project) {
         projectRepository.save(project);
     }
@@ -41,15 +36,4 @@ public class ProjectService {
         projectRepository.delete(id);
     }
 
-//    public String parseDate(String stringDate) {
-//        System.out.println(stringDate);
-//        DateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss.SSS");
-//        try {
-//            Date date = format.parse(stringDate);
-//            DateFormat outputFormat = new SimpleDateFormat("dd/mm/yyyy");
-//            return outputFormat.format(date);
-//        } catch (ParseException ex) {
-//            return null;
-//        }
-//    }
 }

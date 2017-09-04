@@ -32,7 +32,7 @@ public class UserService {
             User user = userRepository.findByEmailAndPassword(login, password);
             return user;
         } catch (NullPointerException ex) {
-            System.out.println("Not found");
+            ex.printStackTrace();
         }
         return null;
     }

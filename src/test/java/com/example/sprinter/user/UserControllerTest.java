@@ -12,6 +12,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 
+import java.util.HashSet;
+
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -37,7 +39,7 @@ public class UserControllerTest {
 
     @Before
     public void setUp(){
-        user = new User(1L, "Name", "Email", "Password", "Surname");
+        user = new User(1L, "Name", "Email", "Password", "Surname", new HashSet<>());
         user.setId(1L);
 
         when(userService.getByLogin(anyString(), anyString())).thenReturn(user);
