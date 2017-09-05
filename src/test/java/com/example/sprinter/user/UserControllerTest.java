@@ -87,7 +87,7 @@ public class UserControllerTest {
                 .andExpect(model().attribute("success", "success"))
                 .andExpect(redirectedUrl("/user?success=success"));
 
-        verify(userService, times(1)).saveUser(anyObject());
+        verify(userService, times(1)).add(anyObject());
         verifyNoMoreInteractions(userService);
     }
 

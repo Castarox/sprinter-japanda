@@ -5,15 +5,15 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class UserService {
 
     private UserRepository userRepository;
 
-    public void add(User user) {
-        userRepository.save(user);
+    public User add(User user) {
+
+        return userRepository.save(user);
     }
 
     public List<User> getAll() {

@@ -83,7 +83,7 @@ public class UserController {
         }
         User user = (User) model.get("user");
         user.setPassword(form.getPassword());
-        userService.saveUser(user);
+        model.replace("user",userService.add(user));
         redirectAttributes.addAttribute("success", "success");
         return "redirect:/user";
     }
