@@ -1,6 +1,7 @@
 package com.example.sprinter.project;
 
 import com.example.sprinter.user.User;
+import com.example.sprinter.user_story.UserStory;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -16,6 +17,9 @@ public class Project {
 
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "projects")
     private Set<User> owners;
+
+    @OneToMany(mappedBy = "project")
+    private Set<UserStory> userStories;
 
     @NotNull
     private String name;
