@@ -2,7 +2,7 @@ package com.example.sprinter.task;
 
 
 import com.example.sprinter.user.User;
-import com.example.sprinter.user_story.UserStory;
+//import com.example.sprinter.user_story.UserStory;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,19 +20,19 @@ public class Task {
     private String name;
     private String description;
     private User user;
-    private UserStory userStory;
+//    private UserStory userStory;
     private String status;
     private Integer storyPoint;
 
     public Task() {
     }
 
-    public Task(Long id, String name, String description, User user, UserStory userStory, String status, Integer storyPoint) {
+    public Task(Long id, String name, String description, User user, String status, Integer storyPoint) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.user = user;
-        this.userStory = userStory;
+//        this.userStory = userStory;
         this.status = status;
         this.storyPoint = storyPoint;
     }
@@ -69,13 +69,13 @@ public class Task {
         this.user = user;
     }
 
-    public UserStory getUserStory() {
-        return userStory;
-    }
-
-    public void setUserStory(UserStory userStory) {
-        this.userStory = userStory;
-    }
+//    public UserStory getUserStory() {
+//        return userStory;
+//    }
+//
+//    public void setUserStory(UserStory userStory) {
+//        this.userStory = userStory;
+//    }
 
     public String getStatus() {
         return status;
