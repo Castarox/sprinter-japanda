@@ -32,13 +32,17 @@ public class UserController {
 
     @GetMapping("")
     String getAll(Model model, ModelMap modelMap) {
-        User user = (User)modelMap.get("user");
+        User user = getUser(modelMap);
         if (user == null){
             return "redirect:/login";
         }
         List<Project> projectList = projectService.findAll(user.getId());
         model.addAttribute("projects", projectList);
         return "index";
+    }
+
+    private User getUser(ModelMap modelMap) {
+        return (User)modelMap.get("user");
     }
 
     @GetMapping("/login")
@@ -63,6 +67,18 @@ public class UserController {
         return "login";
     }
 
+    @GetMapping("/logout")
+    String logoutUserFromService(ModelMap model){
+//        if (model.get("user") == null) {
+//            return "login";
+//        } else {
+        model.remove("user");
+//            model.clear();
+//            model.remove("user");
+//        }
+        return "redirect:/";
+    }
+
     @GetMapping("/user")
     String indexUser() {
         return "user-profile";
@@ -82,7 +98,7 @@ public class UserController {
             model.put("error", "Wrong password");
             return "user-edit-profile";
         }
-        User user = (User) model.get("user");
+        User user = getUser(model);
         user.setPassword(form.getPassword());
         userService.saveUser(user);
         redirectAttributes.addAttribute("success", "success");
