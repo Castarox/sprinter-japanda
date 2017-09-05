@@ -1,22 +1,26 @@
 package com.example.sprinter.item;
 
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+@Entity
 public class Item {
 
     private Long id;
     private String name;
     private String description;
     private Long userId;
+
+    private Long projectId;
+
     private String endDate;
     private String type;
     private String status;
 
     public Item() {
-
     }
 
     public Item(Long id, String name, String description, Long userId, String endDate, String type, String status) {
@@ -61,6 +65,14 @@ public class Item {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public Long getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(Long projectId) {
+        this.projectId = projectId;
     }
 
     public String getEndDate() {
