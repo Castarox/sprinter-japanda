@@ -76,22 +76,6 @@ public class UserControllerTest {
     }
 
     @Test
-    public void testEditPasswordWhenPasswordIsCorrect() throws Exception {
-        RequestBuilder requestBuilder = post("/user/password")
-                .sessionAttr("user", user)
-                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                .param("password","password12")
-                .param("confirm", "password12");
-        mockMvc.perform(requestBuilder)
-                .andExpect(status().is(302))
-                .andExpect(model().attribute("success", "success"))
-                .andExpect(redirectedUrl("/user?success=success"));
-
-        verify(userService, times(1)).add(anyObject());
-        verifyNoMoreInteractions(userService);
-    }
-
-    @Test
     public void testResponseLoginPageIfNotLogged() throws Exception {
         RequestBuilder requestBuilder = get(
                 "/login");
