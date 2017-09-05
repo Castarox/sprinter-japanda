@@ -13,8 +13,6 @@ public class TaskService {
         this.taskRepository = taskRepository;
     }
 
-
-
     public void add(Task task) {
         taskRepository.save(task);
     }
