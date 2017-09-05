@@ -2,6 +2,7 @@ package com.example.sprinter.user;
 
 
 import com.example.sprinter.project.Project;
+import com.example.sprinter.task.Task;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -39,16 +40,20 @@ public class User {
     @Size(min=6, message="Password is too short")
     private String password;
 
+    @OneToMany(mappedBy = "user")
+    private Set<Task> tasks;
+
 
     public User(){}
 
-    public User(Long id, String name, String email , String password, String surname, Set<Project> projects){
+    public User(Long id, String name, String email , String password, String surname, Set<Project> projects, Set<Task> tasks){
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
         this.surname = surname;
         this.projects = projects;
+        this.tasks = tasks;
     }
 
     public Set<Project> getProjects() {

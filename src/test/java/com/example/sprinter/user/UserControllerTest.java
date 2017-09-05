@@ -39,7 +39,7 @@ public class UserControllerTest {
 
     @Before
     public void setUp(){
-        user = new User(1L, "Name", "Email", "Password", "Surname", new HashSet<>());
+        user = new User(1L, "Name", "Email", "Password", "Surname", new HashSet<>(), new HashSet<>());
         user.setId(1L);
 
         when(userService.getByLogin(anyString(), anyString())).thenReturn(user);
