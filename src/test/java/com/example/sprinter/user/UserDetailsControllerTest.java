@@ -38,10 +38,10 @@
 //
 //    @Before
 //    public void setUp(){
-//        userDetails = new User(1L, "Name", "Email", "Password", "Surname", new HashSet<>(), new HashSet<>());
+//        userDetails = new User(1L, "Name", "Email", "Password", "Surname", new HashSet<>(), new HashSet<>(), new UserDetail());
 //        userDetails.setId(1L);
 //
-//        when(userService.getByLogin(anyString(), anyString())).thenReturn(userDetails);
+//        when(userService.getByLogin(anyString())).thenReturn(userDetails);
 //    }
 //
 //    @Test
