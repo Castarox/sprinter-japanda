@@ -13,7 +13,7 @@ public class UserStoryService {
         this.userStoryRepository = userStoryRepository;
     }
 
-    UserStory findById(Long id) {
+    public UserStory findById(Long id) {
         return userStoryRepository.findOne(id);
     }
 

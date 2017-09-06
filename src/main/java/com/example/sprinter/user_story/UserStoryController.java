@@ -19,7 +19,7 @@ import java.util.Set;
 
 @Controller
 @SessionAttributes("user")
-@RequestMapping("/projects/user_story")
+@RequestMapping("projects/{project_id}/user_story")
 public class UserStoryController {
     private final UserStoryService userStoryService;
 
@@ -35,26 +35,27 @@ public class UserStoryController {
     }
 
     @GetMapping("/{id}")
-    String getOne(@PathVariable Long id, Model model) {
+    String getOne(@PathVariable Long id, @PathVariable Long project_id, Model model) {
         UserStory userStory = userStoryService.findById(id);
+        Project project = projectService.findById(project_id);
         model.addAttribute("userStory", userStory);
-        return "project";
+        model.addAttribute("tasks", userStory.getTaskSet());
+        model.addAttribute("project", project);
+        return "user-story";
     }
 
     @PostMapping("/new")
     String add(@Valid @ModelAttribute ("form") UserStoryForm userStoryForm, ModelMap model,
-               RedirectAttributes redirectAttributes) {
+               RedirectAttributes redirectAttributes, @PathVariable Long project_id) {
 
         String name = userStoryForm.getUserStoryName();
         String description = userStoryForm.getDescription();
         String priority = userStoryForm.getPriority();
-        Long projectId = Long.parseLong(userStoryForm.getProjectId());
-        System.out.println(projectId);
-        Project project = projectService.findById(projectId);
+        Project project = projectService.findById(project_id);
         Set<Task> tasks = new HashSet<>();
         UserStory userStory = new UserStory(name, description, priority, project);
         userStory.setTaskSet(tasks);
         userStoryService.add(userStory);
-        return "redirect:/projects/" + project.getId();
+        return "redirect:/projects/" + project_id;
     }
 }

@@ -6,7 +6,6 @@ public class TaskForm {
     @NotNull
     public String taskName;
     public String taskDescription;
-    public String userId;
     public String userStoryId;
 
     public String getTaskName() {
@@ -23,14 +22,6 @@ public class TaskForm {
 
     public void setTaskDescription(String taskDescription) {
         this.taskDescription = taskDescription;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
     }
 
     public String getUserStoryId() {
