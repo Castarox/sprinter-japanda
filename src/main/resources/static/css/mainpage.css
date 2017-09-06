@@ -3,11 +3,49 @@
     border-radius: 0;
 }
 
+.content{
+    margin-bottom: 80px;
+}
+
 .row.content {height: 100%;}
+
+.card-block a{
+    color: #000000;
+    text-decoration: none;
+}
+
+.card-block a:hover {
+    text-decoration: none;
+    color: #000000;
+}
+
+.main-block{
+    height: 150px;
+}
+
+.page-header h1{
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+#special-card a{
+    margin-top: 30px;
+}
+
+.card-block h3 {
+    margin: 0;
+    padding: 0;
+}
+
+.priority {
+    text-transform: uppercase;
+}
 
 .card-block {
     border-radius: 10px;
     background-color: #F5F5F5;
+    padding: 10px;
+    margin: 5px;
 }
 
 #welcome-text {
@@ -22,9 +60,10 @@
 .sidenav {
     padding-top: 20px;
     background-color: #f1f1f1;
-    position: absolute;
+    position: fixed;
     height: 100rem;
-    float: left;
+    top:52px;
+    left:0;
     margin-bottom: 0;
 }
 
