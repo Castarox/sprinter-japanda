@@ -27,9 +27,9 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User getByLogin(String name) {
+    public User getByLogin(String email) {
         try {
-            return userRepository.findByName(name);
+            return userRepository.findByEmail(email);
         } catch (NullPointerException ex) {
             ex.printStackTrace();
         }

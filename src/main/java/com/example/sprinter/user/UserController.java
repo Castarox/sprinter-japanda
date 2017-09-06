@@ -22,7 +22,7 @@ import javax.validation.Valid;
 import java.security.Principal;
 
 @Controller
-@SessionAttributes("userDetails")
+@SessionAttributes("user")
 public class UserController {
 
     @Autowired
