@@ -67,9 +67,11 @@ public class UserController {
     }
 
     @GetMapping("/logout")
-    String logout(HttpServletRequest request, HttpServletResponse response){
+    String logout(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if( auth != null) {
+            modelMap.remove("user");
+            modelMap.isEmpty();
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
         return "redirect:/";
