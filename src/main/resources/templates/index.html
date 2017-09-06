@@ -29,9 +29,8 @@
             <div class="row">
                 <div class="col-sm-4">
                     <div class="card">
-                        <div id="special-card">
+                        <div id="special-card" class="card-block main-block">
                             <h3 class="card-title">Create new project</h3>
-                            <hr/>
                             <a href="#" class="btn btn-default" data-toggle="modal" data-target="#addProject"><span class="glyphicon glyphicon-plus"></span></a>
 
                             <!-- Modal -->
@@ -71,10 +70,10 @@
                 </div>
                 <div th:each="project: ${projects}" class="col-sm-4">
                     <div class="card">
-                        <div class="card-block">
+                        <div class="card-block main-block">
                             <h3 class="card-title" th:text="${project.getName()}"></h3>
                             <hr/>
-                            <p class="card-text" th:text="Deadline + ${project.getEndDate()}"></p>
+                            <p class="card-text" th:text="'Deadline '  + ${project.getEndDate()}"></p>
                             <a th:href="@{'/projects/' + ${project.getId()}}" class="btn btn-default">Go</a>
                         </div>
                     </div>
