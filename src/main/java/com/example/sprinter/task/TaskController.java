@@ -13,7 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 
 @Controller
-@SessionAttributes("userDetails")
+@SessionAttributes("user")
 @RequestMapping("/projects/{project_id}/user_story/{user_story_id}/tasks")
 public class TaskController {
     private final TaskService taskService;

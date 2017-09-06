@@ -15,7 +15,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Controller
-@SessionAttributes("userDetails")
+@SessionAttributes("user")
 @RequestMapping("/projects")
 public class ProjectController {
     private final ProjectService projectService;

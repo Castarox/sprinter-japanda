@@ -57,6 +57,12 @@
     border-radius: 10px;
 }
 
+.panda {
+    width: inherit;
+    display: block;
+    margin: 0 auto;
+}
+
 .sidenav {
     padding-top: 20px;
     background-color: #f1f1f1;
