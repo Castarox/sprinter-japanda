@@ -18,55 +18,41 @@
                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                 <strong>Success!</strong><p th:text="${message}"></p>
             </div>
-
             <div class="page-header text-center">
-                <h1><span th:object="${project}" th:text="${project.getName()}"></span></h1>
+                <h1><span th:object="${userStory}" th:text="${userStory.getName()}"></span></h1>
                 <p>
-                <h4>Starts:<span th:object="${project}" th:text="${project.getStartDate()}"></span></h4>
-                <h4>Ends:<span th:object="${project}" th:text="${project.getEndDate()}"></span></h4>
+                <h4>Starts:<span th:object="${userStory}" th:text="${userStory.getDescription()}"></span></h4>
                 </p>
             </div>
         </div>
         <div class="card card-outline-primary mb-3 text-center">
             <div class="card-block">
                 <blockquote class="card-blockquote">
-                    <p>Add new user story!</p>
-                    <a href="#" class="btn btn-default" data-toggle="modal" data-target="#addUserStory"><span class="glyphicon glyphicon-plus"></span></a>
+                    <p>Add new task!</p>
+                    <a href="#" class="btn btn-default" data-toggle="modal" data-target="#addTask"><span class="glyphicon glyphicon-plus"></span></a>
                 </blockquote>
             </div>
         </div>
 
-        <div id="addUserStory" class="modal fade" role="dialog">
+        <div id="addTask" class="modal fade" role="dialog">
             <div class="modal-dialog">
 
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Add new user story</h4>
+                        <h4 class="modal-title">Add new task</h4>
                     </div>
                     <div class="modal-body">
-                        <form method="POST" th:action="@{user_story/new}">
+                        <form method="POST" th:action="@{${userStory.getId()} + '/tasks/new'}">
                             <div class="form-group">
-                                <label for="userStoryName">Name</label>
-                                <input class="form-control" name="userStoryName" id="userStoryName"/>
+                                <label for="taskName">Name</label>
+                                <input class="form-control" name="taskName" id="taskName"/>
+                                <input type="hidden" name="userStoryId" th:value="${userStory.getId()}"/>
                             </div>
                             <div class="form-group">
-                                <label for="description">Description</label>
-                                <input class="form-control" name="description" id="description"/>
-                                <input type="hidden" name="projectId" th:value="${project.getId()}"/>
-                            </div>
-                            <div class="form-group">
-                                    <p>Choose priority for user story:</p>
-                                        <label class="radio-inline">
-                                            <input type="radio" name="priority" value="low" id="priority-low"/>LOW
-                                        </label>
-                                        <label class="radio-inline">
-                                            <input type="radio" name="priority" value="medium" id="priority-medium"/>MEDIUM
-                                        </label>
-                                        <label class="radio-inline">
-                                            <input type="radio" name="priority" value="high" id="priority-high"/>HIGH
-                                        </label>
+                                <label for="taskDescription">Description</label>
+                                <input class="form-control" name="taskDescription" id="taskDescription"/>
                             </div>
                             <button type="submit" class="btn btn-default">Submit</button>
                         </form>
@@ -78,15 +64,15 @@
             </div>
         </div>
 
-        <div class="card card-outline-primary mb-2" th:each="userStory: ${userStories}">
-            <div class="card w-200">
-                <div class="card-block">
-                    <a th:href="@{${project.getId()} +'/user_story/'+ ${userStory.getId()}}"><h3 class="card-title" th:text="${userStory.getName()}"></h3></a>
-                    <p th:text="${userStory.getPriority()}"></p>
-                    <p th:text="${userStory.getDescription()}"></p>
-                </div>
+        <div class="card card-outline-primary mb-2" th:each="task: ${tasks}">
+        <div class="card w-200">
+            <div class="card-block">
+                <h3 class="card-title" th:text="${task.getName()}"></h3>
+                <p th:text="${task.getDescription()}"></p>
+                <p th:text="${task.getStoryPoint()}"></p>
             </div>
         </div>
+    </div>
     </div>
 </div>
 

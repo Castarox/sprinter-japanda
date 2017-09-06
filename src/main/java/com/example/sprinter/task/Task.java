@@ -27,19 +27,18 @@ public class Task {
     @ManyToOne
     @JoinColumn(name = "user_story_id")
     private UserStory userStory;
-    private String status;
+    private State state;
     private Integer storyPoint;
 
     public Task() {
     }
 
-    public Task(Long id, String name, String description, UserDetails userDetails, UserStory userStory, String status, Integer storyPoint) {
-        this.id = id;
+    public Task(String name, String description, UserDetails userDetails, UserStory userStory, State state, Integer storyPoint) {
         this.name = name;
         this.description = description;
         this.userDetails = userDetails;
         this.userStory = userStory;
-        this.status = status;
+        this.state = state;
         this.storyPoint = storyPoint;
     }
 
@@ -83,12 +82,12 @@ public class Task {
         this.userStory = userStory;
     }
 
-    public String getStatus() {
-        return status;
+    public State getState() {
+        return state;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setState(State state) {
+        this.state = state;
     }
 
     public Integer getStoryPoint() {
