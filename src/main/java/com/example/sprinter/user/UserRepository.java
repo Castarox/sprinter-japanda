@@ -1,11 +1,10 @@
 package com.example.sprinter.user;
 
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.security.core.userdetails.User;
 
-public interface UserRepository extends CrudRepository<UserDetails, Long> {
-    UserDetails findByEmailAndPassword(String email, String password);
-    UserDetails findByName(String name);
-    UserDetails findByEmail(String email);
-    UserDetails findByNameAndPassword(String name, String password);
+public interface UserRepository extends CrudRepository<User, Long> {
+    User findByEmailAndPassword(String email, String password);
+    User findByName(String name);
+    User findByEmail(String email);
+    User findByNameAndPassword(String name, String password);
 }

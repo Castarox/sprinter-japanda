@@ -13,7 +13,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -21,7 +20,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.security.Principal;
-import java.util.Objects;
 
 @Controller
 @SessionAttributes("userDetails")
@@ -36,12 +34,12 @@ public class UserController {
 
     @GetMapping("")
     String getAll(Model model, ModelMap modelMap, Principal principal) {
-        UserDetails userDetails = (UserDetails)modelMap.get("userDetails");
-        if (userDetails == null){
-            UserDetails newUser = userService.getByLogin(principal.getName());
-            modelMap.put("userDetails", newUser);
+        User user = (User)modelMap.get("user");
+        if (user == null){
+            User newUser = userService.getByLogin(principal.getName());
+            modelMap.put("user", newUser);
         }
-        model.addAttribute("projects", ((UserDetails) modelMap.get("userDetails")).getProjects());
+        model.addAttribute("projects", ((User) modelMap.get("user")).getProjects());
         return "index";
     }
 
@@ -79,13 +77,13 @@ public class UserController {
                         RedirectAttributes redirectAttributes){
         if (!form.getConfirm().equals(form.getPassword()) || result.hasErrors()){
             model.put("error", "Wrong password");
-            return "userDetails-edit-profile";
+            return "user-edit-profile";
         }
-        UserDetails userDetails = (UserDetails) model.get("userDetails");
-        userDetails.setPassword(form.getPassword());
-        model.replace("userDetails",userService.saveUser(userDetails));
+        User user = (User) model.get("user");
+        user.setPassword(form.getPassword());
+        model.replace("user",userService.saveUser(user));
         redirectAttributes.addAttribute("success", "success");
-        return "redirect:/userDetails";
+        return "redirect:/user";
     }
 
     @GetMapping("/login-error")

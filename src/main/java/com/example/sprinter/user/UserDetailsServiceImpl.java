@@ -2,7 +2,6 @@ package com.example.sprinter.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -15,15 +14,15 @@ import java.util.List;
 public class UserDetailsServiceImpl implements UserDetailsService{
 
     @Autowired
-    private UserRepository userRepository;
+    private UserDetailRepository userDetailRepository;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        com.example.sprinter.user.UserDetails user = userRepository.findByEmail(email);
-        if (user == null){
+        UserDetail userDetail = userDetailRepository.findByName(email);
+        if (userDetail == null){
             throw new UsernameNotFoundException("Invalid username or password");
         }
-        return new User(user.getName(), user.getPassword(), getAuthority());
+        return new org.springframework.security.core.userdetails.User(userDetail.getName(), userDetail.getPassword(), getAuthority());
     }
 
     private List<SimpleGrantedAuthority> getAuthority() {
