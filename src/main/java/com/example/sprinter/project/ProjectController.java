@@ -33,6 +33,7 @@ public class ProjectController {
     String getOne(@PathVariable Long id, Model model) {
         Project project = projectService.findById(id);
         model.addAttribute("project", project);
+        model.addAttribute("userStories", project.getUserStories());
         return "project";
     }
 

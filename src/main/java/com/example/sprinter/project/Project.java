@@ -85,4 +85,12 @@ public class Project {
     public void setCopy(Boolean copy) {
         this.copy = copy;
     }
+
+    public Set<UserStory> getUserStories() {
+        return userStories;
+    }
+
+    public void setUserStories(Set<UserStory> userStories) {
+        this.userStories = userStories;
+    }
 }

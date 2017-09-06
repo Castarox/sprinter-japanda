@@ -1,5 +1,7 @@
 package com.example.sprinter.form;
 
+import com.example.sprinter.project.Project;
+
 import javax.validation.constraints.NotNull;
 
 public class UserStoryForm {
@@ -7,6 +9,7 @@ public class UserStoryForm {
     private String userStoryName;
     private String description;
     private String priority;
+    private String projectId;
 
     public String getUserStoryName() {
         return userStoryName;
@@ -30,5 +33,13 @@ public class UserStoryForm {
 
     public void setPriority(String priority) {
         this.priority = priority;
+    }
+
+    public String getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(String projectId) {
+        this.projectId = projectId;
     }
 }

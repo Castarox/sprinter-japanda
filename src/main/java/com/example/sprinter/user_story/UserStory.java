@@ -22,6 +22,7 @@ public class UserStory {
     private Long Id;
     private String name;
     private String description;
+    private String priority;
     @ManyToOne
     @JoinColumn(name = "project_id")
     private Project project;
@@ -30,9 +31,10 @@ public class UserStory {
 
     UserStory(){}
 
-    UserStory(String name, String description, Project project){
+    UserStory(String name, String description, String priority, Project project){
         this.name = name;
         this.description = description;
+        this.priority = priority;
         this.project = project;
     }
 
@@ -60,11 +62,27 @@ public class UserStory {
         this.description = description;
     }
 
+    public String getPriority() {
+        return priority;
+    }
+
+    public void setPriority(String priority) {
+        this.priority = priority;
+    }
+
     public Project getProject() {
         return project;
     }
 
     public void setProject(Project project) {
         this.project = project;
+    }
+
+    public Set<Task> getTaskSet() {
+        return taskSet;
+    }
+
+    public void setTaskSet(Set<Task> taskSet) {
+        this.taskSet = taskSet;
     }
 }
