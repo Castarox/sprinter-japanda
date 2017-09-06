@@ -11,7 +11,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "app_user")
-public class UserDetails {
+public class User {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -40,13 +40,16 @@ public class UserDetails {
     @Size(min=6, message="Password is too short")
     private String password;
 
-    @OneToMany(mappedBy = "userDetails")
+    @OneToMany(mappedBy = "user")
     private Set<Task> tasks;
 
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
+    private UserDetail userDetail;
 
-    public UserDetails(){}
 
-    public UserDetails(Long id, String name, String email , String password, String surname, Set<Project> projects, Set<Task> tasks){
+    public User(){}
+
+    public User(Long id, String name, String email , String password, String surname, Set<Project> projects, Set<Task> tasks, UserDetail userDetail){
         this.id = id;
         this.name = name;
         this.email = email;
@@ -54,6 +57,7 @@ public class UserDetails {
         this.surname = surname;
         this.projects = projects;
         this.tasks = tasks;
+        this.userDetail = userDetail;
     }
 
     public Set<Project> getProjects() {
@@ -109,36 +113,29 @@ public class UserDetails {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        UserDetails userDetails = (UserDetails) o;
+        User user = (User) o;
 
-        if (id != null ? !id.equals(userDetails.id) : userDetails.id != null) return false;
-        if (projects != null ? !projects.equals(userDetails.projects) : userDetails.projects != null) return false;
-        if (name != null ? !name.equals(userDetails.name) : userDetails.name != null) return false;
-        if (surname != null ? !surname.equals(userDetails.surname) : userDetails.surname != null) return false;
-        if (email != null ? !email.equals(userDetails.email) : userDetails.email != null) return false;
-        return password != null ? password.equals(userDetails.password) : userDetails.password == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (projects != null ? projects.hashCode() : 0);
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (surname != null ? surname.hashCode() : 0);
-        result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (password != null ? password.hashCode() : 0);
-        return result;
+        if (id != null ? !id.equals(user.id) : user.id != null) return false;
+        if (projects != null ? !projects.equals(user.projects) : user.projects != null) return false;
+        if (name != null ? !name.equals(user.name) : user.name != null) return false;
+        if (surname != null ? !surname.equals(user.surname) : user.surname != null) return false;
+        if (email != null ? !email.equals(user.email) : user.email != null) return false;
+        if (password != null ? !password.equals(user.password) : user.password != null) return false;
+        if (tasks != null ? !tasks.equals(user.tasks) : user.tasks != null) return false;
+        return userDetail != null ? userDetail.equals(user.userDetail) : user.userDetail == null;
     }
 
     @Override
     public String toString() {
-        return "UserDetails{" +
+        return "User{" +
                 "id=" + id +
                 ", projects=" + projects +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", tasks=" + tasks +
+                ", userDetail=" + userDetail +
                 '}';
     }
 }

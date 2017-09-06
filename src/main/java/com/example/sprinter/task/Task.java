@@ -1,7 +1,7 @@
 package com.example.sprinter.task;
 
 
-import com.example.sprinter.user.UserDetails;
+import com.example.sprinter.user.User;
 import com.example.sprinter.user_story.UserStory;
 
 import javax.persistence.Entity;
@@ -23,7 +23,7 @@ public class Task {
     private String description;
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private UserDetails userDetails;
+    private User user;
     @ManyToOne
     @JoinColumn(name = "user_story_id")
     private UserStory userStory;
@@ -33,10 +33,10 @@ public class Task {
     public Task() {
     }
 
-    public Task(String name, String description, UserDetails userDetails, UserStory userStory, State state, Integer storyPoint) {
+    public Task(String name, String description, User user, UserStory userStory, State state, Integer storyPoint) {
         this.name = name;
         this.description = description;
-        this.userDetails = userDetails;
+        this.user = user;
         this.userStory = userStory;
         this.state = state;
         this.storyPoint = storyPoint;
@@ -66,12 +66,12 @@ public class Task {
         this.description = description;
     }
 
-    public UserDetails getUserDetails() {
-        return userDetails;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserDetails(UserDetails userDetails) {
-        this.userDetails = userDetails;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public UserStory getUserStory() {

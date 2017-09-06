@@ -1,6 +1,6 @@
 package com.example.sprinter.project;
 
-import com.example.sprinter.user.UserDetails;
+import com.example.sprinter.user.User;
 import com.example.sprinter.user_story.UserStory;
 
 import javax.persistence.*;
@@ -16,7 +16,7 @@ public class Project {
     private Long id;
 
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "projects")
-    private Set<UserDetails> owners;
+    private Set<User> owners;
 
     @OneToMany(mappedBy = "project")
     private Set<UserStory> userStories;
@@ -29,7 +29,7 @@ public class Project {
 
     public Project() {}
 
-    public Project(String name, Set<UserDetails> owners, String startDate, String endDate, Boolean copy) {
+    public Project(String name, Set<User> owners, String startDate, String endDate, Boolean copy) {
         this.name = name;
         this.owners = owners;
         this.startDate = startDate;
@@ -46,11 +46,11 @@ public class Project {
         this.id = id;
     }
 
-    public Set<UserDetails> getOwners() {
+    public Set<User> getOwners() {
         return owners;
     }
 
-    public void setOwners(Set<UserDetails> owners) {
+    public void setOwners(Set<User> owners) {
         this.owners = owners;
     }
 
