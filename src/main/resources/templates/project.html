@@ -46,7 +46,7 @@
                         <h4 class="modal-title">Add new user story</h4>
                     </div>
                     <div class="modal-body">
-                        <form method="POST" th:action="@{user_story/new}">
+                        <form method="POST" th:action="@{${project.getId()}  + '/user_story/new'}">
                             <div class="form-group">
                                 <label for="userStoryName">Name</label>
                                 <input class="form-control" name="userStoryName" id="userStoryName"/>

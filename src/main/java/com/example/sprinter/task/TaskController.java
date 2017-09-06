@@ -1,7 +1,7 @@
 package com.example.sprinter.task;
 
 import com.example.sprinter.form.TaskForm;
-import com.example.sprinter.user.User;
+import com.example.sprinter.user.UserDetails;
 import com.example.sprinter.user.UserService;
 import com.example.sprinter.user_story.UserStory;
 import com.example.sprinter.user_story.UserStoryService;
@@ -14,7 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 
 @Controller
-@SessionAttributes("user")
+@SessionAttributes("userDetails")
 @RequestMapping("/projects/{project_id}/user_story/{user_story_id}/tasks")
 public class TaskController {
     private final TaskService taskService;
@@ -34,7 +34,7 @@ public class TaskController {
         String name = taskForm.getTaskName();
         String description = taskForm.getTaskDescription();
         UserStory userStory = userStoryService.findById(user_story_id);
-        User user = (User) model.get("user");
+        UserDetails user = (UserDetails) model.get("userDetails");
         Task task = new Task(name, description, user, userStory, State.NEW, 0);
         taskService.add(task);
         userStory.getTaskSet().add(task);
