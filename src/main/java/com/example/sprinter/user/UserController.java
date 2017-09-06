@@ -1,7 +1,6 @@
 package com.example.sprinter.user;
 
 import com.example.sprinter.form.EditPasswordForm;
-import com.example.sprinter.project.Project;
 import com.example.sprinter.project.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.util.List;
 import java.util.Objects;
 
 @Controller
@@ -83,7 +81,7 @@ public class UserController {
         }
         User user = (User) model.get("user");
         user.setPassword(form.getPassword());
-        model.replace("user",userService.add(user));
+        model.replace("user",userService.saveUser(user));
         redirectAttributes.addAttribute("success", "success");
         return "redirect:/user";
     }

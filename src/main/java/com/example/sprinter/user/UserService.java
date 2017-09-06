@@ -11,7 +11,7 @@ public class UserService {
 
     private UserRepository userRepository;
 
-    public User add(User user) {
+    public User saveUser(User user) {
 
         return userRepository.save(user);
     }
@@ -35,9 +35,5 @@ public class UserService {
             ex.printStackTrace();
         }
         return null;
-    }
-
-    void saveUser(User user){
-        userRepository.save(user);
     }
 }

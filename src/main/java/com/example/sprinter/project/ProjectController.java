@@ -51,7 +51,7 @@ public class ProjectController {
             projectService.add(project);
             projects.add(project);
             user.setProjects(projects);
-            model.replace("user", userService.add(user));
+            model.replace("user", userService.saveUser(user));
             redirectAttributes.addFlashAttribute("message", "Project created!");
             return "redirect:/projects/" + project.getId();
         }
