@@ -12,23 +12,18 @@
 
 <div class="container-fluid text-center">
     <div class="row content">
-        <div th:replace="fragments/sidenav :: sidenav"></div>
+        <div th:replace="fragments/project-sidenav :: project-sidenav"></div>
         <div id="project-content">
             <div th:if="${message}" class="alert alert-success alert-dismissable">
                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                 <strong>Success!</strong><p th:text="${message}"></p>
             </div>
-            <div class = "page-header">
-                <h1>
-                    <span class="h3" th:object="${project}" th:text="${project.getName()}"></span>
-                </h1>
-                <h2>
-                    <span class="h3" th:object="${project}" th:text="${project.getStartDate()}"></span>
-                    <span class="h3" th:object="${project}" th:text="${project.getEndDate()}"></span>
-                </h2>
-
+            <div class="page-header text-center">
+                <h1><span th:object="${userStory}" th:text="${userStory.getName()}"></span></h1>
+                <p>
+                <h4>Starts:<span th:object="${userStory}" th:text="${userStory.getDescription()}"></span></h4>
+                </p>
             </div>
-
         </div>
         <div class="card card-outline-primary mb-3 text-center">
             <div class="card-block">
