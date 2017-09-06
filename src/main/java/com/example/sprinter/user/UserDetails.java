@@ -11,7 +11,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "app_user")
-public class User {
+public class UserDetails {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -40,13 +40,13 @@ public class User {
     @Size(min=6, message="Password is too short")
     private String password;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "userDetails")
     private Set<Task> tasks;
 
 
-    public User(){}
+    public UserDetails(){}
 
-    public User(Long id, String name, String email , String password, String surname, Set<Project> projects, Set<Task> tasks){
+    public UserDetails(Long id, String name, String email , String password, String surname, Set<Project> projects, Set<Task> tasks){
         this.id = id;
         this.name = name;
         this.email = email;
@@ -109,14 +109,14 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        User user = (User) o;
+        UserDetails userDetails = (UserDetails) o;
 
-        if (id != null ? !id.equals(user.id) : user.id != null) return false;
-        if (projects != null ? !projects.equals(user.projects) : user.projects != null) return false;
-        if (name != null ? !name.equals(user.name) : user.name != null) return false;
-        if (surname != null ? !surname.equals(user.surname) : user.surname != null) return false;
-        if (email != null ? !email.equals(user.email) : user.email != null) return false;
-        return password != null ? password.equals(user.password) : user.password == null;
+        if (id != null ? !id.equals(userDetails.id) : userDetails.id != null) return false;
+        if (projects != null ? !projects.equals(userDetails.projects) : userDetails.projects != null) return false;
+        if (name != null ? !name.equals(userDetails.name) : userDetails.name != null) return false;
+        if (surname != null ? !surname.equals(userDetails.surname) : userDetails.surname != null) return false;
+        if (email != null ? !email.equals(userDetails.email) : userDetails.email != null) return false;
+        return password != null ? password.equals(userDetails.password) : userDetails.password == null;
     }
 
     @Override
@@ -132,7 +132,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "UserDetails{" +
                 "id=" + id +
                 ", projects=" + projects +
                 ", name='" + name + '\'' +

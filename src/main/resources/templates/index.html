@@ -16,7 +16,7 @@
         <div th:replace="fragments/sidenav :: sidenav"></div>
         <div id="site-content" class="col-sm-10">
             <div id="welcome-text">
-                <h1 th:object="${user}" th:text="'Welcome, ' + ${user.getName()} + '!'" ></h1>
+                <h1 th:object="${userDetails}" th:text="'Welcome, ' + ${userDetails.getName()} + '!'" ></h1>
                 <p>Here you can check out your awesome projects and create new even awesomer! Aren't you just <strong>ecsatic</strong>?! A tool for managing your empty, sad life into logic components. <strong>Brilliant</strong> Just brilliant!</p>
                 <p>Remember, you are using free trial, but you can always support further development by donating some money. People gotta eat.</p>
             </div>

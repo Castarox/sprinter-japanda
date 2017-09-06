@@ -1,7 +1,7 @@
 package com.example.sprinter.project;
 
 import com.example.sprinter.form.ProjectForm;
-import com.example.sprinter.user.User;
+import com.example.sprinter.user.UserDetails;
 import com.example.sprinter.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +15,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Controller
-@SessionAttributes("user")
+@SessionAttributes("userDetails")
 @RequestMapping("/projects")
 public class ProjectController {
     private final ProjectService projectService;
@@ -39,19 +39,19 @@ public class ProjectController {
     @PostMapping("/new")
     String add(@Valid @ModelAttribute("form") ProjectForm projectForm, ModelMap model,
                RedirectAttributes redirectAttributes) {
-        User user = (User)model.get("user");
+        UserDetails userDetails = (UserDetails)model.get("userDetails");
         String startDate = projectForm.getStartDate();
         String endDate = projectForm.getEndDate();
         String projectName = projectForm.getProjectName();
-        Set<User> owners = new HashSet<>();
-        owners.add(user);
+        Set<UserDetails> owners = new HashSet<>();
+        owners.add(userDetails);
         if (startDate != null && endDate != null && projectName != null) {
             Project project = new Project(projectName, owners, startDate, endDate, false);
-            Set<Project> projects = user.getProjects();
+            Set<Project> projects = userDetails.getProjects();
             projectService.add(project);
             projects.add(project);
-            user.setProjects(projects);
-            model.replace("user", userService.saveUser(user));
+            userDetails.setProjects(projects);
+            model.replace("userDetails", userService.saveUser(userDetails));
             redirectAttributes.addFlashAttribute("message", "Project created!");
             return "redirect:/projects/" + project.getId();
         }

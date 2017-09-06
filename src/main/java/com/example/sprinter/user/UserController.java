@@ -3,6 +3,9 @@ package com.example.sprinter.user;
 import com.example.sprinter.form.EditPasswordForm;
 import com.example.sprinter.project.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -14,11 +17,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.Objects;
 
 @Controller
-@SessionAttributes("user")
+@SessionAttributes("userDetails")
 public class UserController {
 
     @Autowired
@@ -29,12 +35,13 @@ public class UserController {
 
 
     @GetMapping("")
-    String getAll(Model model, ModelMap modelMap) {
-        User user = (User)modelMap.get("user");
-        if (user == null){
-            return "redirect:/login";
+    String getAll(Model model, ModelMap modelMap, Principal principal) {
+        UserDetails userDetails = (UserDetails)modelMap.get("userDetails");
+        if (userDetails == null){
+            UserDetails newUser = userService.getByLogin(principal.getName());
+            modelMap.put("userDetails", newUser);
         }
-        model.addAttribute("projects", user.getProjects());
+        model.addAttribute("projects", ((UserDetails) modelMap.get("userDetails")).getProjects());
         return "index";
     }
 
@@ -46,18 +53,13 @@ public class UserController {
         return "redirect:/";
     }
 
-    @PostMapping("/login")
-    String setUserSessionAndMoveToIndex(ModelMap model, @RequestParam String login, @RequestParam String password){
-        User user = userService.getByLogin(login, password);
-        String errMsg = "Wrong login or password";
-        if (user != null) {
-            if(Objects.equals(user.getPassword(), password)) {
-                model.put("user", user);
-                return "redirect:/";
-            }
+    @GetMapping("/logout")
+    String logout(HttpServletRequest request, HttpServletResponse response){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if( auth != null) {
+            new SecurityContextLogoutHandler().logout(request, response, auth);
         }
-        model.put("error", errMsg);
-        return "login";
+        return "redirect:/";
     }
 
     @GetMapping("/user")
@@ -77,12 +79,19 @@ public class UserController {
                         RedirectAttributes redirectAttributes){
         if (!form.getConfirm().equals(form.getPassword()) || result.hasErrors()){
             model.put("error", "Wrong password");
-            return "user-edit-profile";
+            return "userDetails-edit-profile";
         }
-        User user = (User) model.get("user");
-        user.setPassword(form.getPassword());
-        model.replace("user",userService.saveUser(user));
+        UserDetails userDetails = (UserDetails) model.get("userDetails");
+        userDetails.setPassword(form.getPassword());
+        model.replace("userDetails",userService.saveUser(userDetails));
         redirectAttributes.addAttribute("success", "success");
-        return "redirect:/user";
+        return "redirect:/userDetails";
+    }
+
+    @GetMapping("/login-error")
+    public String loginError(Model model) {
+        String errMsg = "Wrong login or password";
+        model.addAttribute("error", errMsg);
+        return "login";
     }
 }

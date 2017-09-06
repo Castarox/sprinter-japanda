@@ -23,9 +23,9 @@
                 <li><a href="#">Contact</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a th:href="@{~/user}"><span class="glyphicon glyphicon-user"></span >
-                    <span th:object="${user}" th:text="${user.getName()}"></span></a></li>
-                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                <li><a th:href="@{~/user}"><span class="glyphicon glyphicon-userDetails"></span >
+                    <span th:object="${userDetails}" th:text="${userDetails.getName()}"></span></a></li>
+                <li><a th:href="@{~/logout}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
             </ul>
         </div>
     </div>

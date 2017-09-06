@@ -11,15 +11,15 @@ public class UserService {
 
     private UserRepository userRepository;
 
-    public User saveUser(User user) {
+    public UserDetails saveUser(UserDetails userDetails) {
 
-        return userRepository.save(user);
+        return userRepository.save(userDetails);
     }
 
-    public List<User> getAll() {
-        List<User> users = new ArrayList<>();
-        userRepository.findAll().forEach(users::add);
-        return users;
+    public List<UserDetails> getAll() {
+        List<UserDetails> userDetails = new ArrayList<>();
+        userRepository.findAll().forEach(userDetails::add);
+        return userDetails;
     }
 
     @Autowired
@@ -27,13 +27,14 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User getByLogin(String login, String password) {
+    public UserDetails getByLogin(String name) {
         try {
-            User user = userRepository.findByEmailAndPassword(login, password);
-            return user;
+            return userRepository.findByName(name);
         } catch (NullPointerException ex) {
             ex.printStackTrace();
         }
         return null;
     }
+
+
 }
