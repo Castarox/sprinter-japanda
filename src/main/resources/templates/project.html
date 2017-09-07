@@ -15,7 +15,7 @@
         <div th:replace="fragments/project-sidenav :: project-sidenav"></div>
         <div class="col-sm-offset-2 col-sm-10 content">
             <div id="project-content">
-            <div th:if="${message}" class="alert alert-success alert-dismissable">
+            <div th:if="${message}" class="alert alert-success alert-dismissable alert-margin">
                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                 <strong>Success!</strong><p th:text="${message}"></p>
             </div>
