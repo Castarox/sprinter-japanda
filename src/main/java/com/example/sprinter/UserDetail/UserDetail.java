@@ -23,8 +23,7 @@ public class UserDetail {
     @Size(min=6, message="Password is too short")
     private String password;
 
-	@OneToOne(fetch = FetchType.LAZY)
-	@PrimaryKeyJoinColumn
+	@OneToOne(fetch = FetchType.EAGER, mappedBy = "userDetail")
     private User user;
 
     public UserDetail(){}
