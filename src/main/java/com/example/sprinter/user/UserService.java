@@ -36,5 +36,10 @@ public class UserService {
         return null;
     }
 
+    public User changePassword(User user, String newPassword){
+        user.setPassword(newPassword);
+        return saveUser(user);
+    }
+
 
 }

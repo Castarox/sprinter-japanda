@@ -1,4 +1,4 @@
-package com.example.sprinter.UserDetail.error;
+package com.example.sprinter.error;
 
 import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
