@@ -31,22 +31,6 @@ public class UserController {
     @Autowired
     private ProjectService projectService;
 
-
-    @GetMapping("/404")
-    String notFound(){
-        return "404";
-    }
-
-    @GetMapping("/500")
-    String internalServerError(){
-        return "500";
-    }
-
-    @GetMapping("/400")
-    String badRequest(){
-        return "400";
-    }
-
     @GetMapping("")
     String getAll(Model model, ModelMap modelMap, Principal principal) {
         User user = (User)modelMap.get("user");
