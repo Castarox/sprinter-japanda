@@ -1,6 +1,7 @@
 package com.example.sprinter.user;
 
 
+import com.example.sprinter.UserDetail.UserDetail;
 import com.example.sprinter.project.Project;
 import com.example.sprinter.task.Task;
 
