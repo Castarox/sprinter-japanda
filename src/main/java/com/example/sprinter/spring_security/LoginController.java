@@ -29,7 +29,6 @@ public class LoginController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if( auth != null) {
             modelMap.remove("user");
-            modelMap.isEmpty();
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
         return "redirect:/";
