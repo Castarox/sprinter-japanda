@@ -1,5 +1,6 @@
 package com.example.sprinter.user;
 
+import com.example.sprinter.UserDetail.UserDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +35,14 @@ public class UserService {
             ex.printStackTrace();
         }
         return null;
+    }
+
+    public User changePassword(User user, String newPassword){
+        user.setPassword(newPassword);
+        UserDetail userDetail = user.getUserDetail();
+        userDetail.setPassword(newPassword);
+        user.setUserDetail(userDetail);
+        return saveUser(user);
     }
 
 

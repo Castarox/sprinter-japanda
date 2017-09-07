@@ -1,4 +1,6 @@
-package com.example.sprinter.user;
+package com.example.sprinter.UserDetail;
+
+import com.example.sprinter.user.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -21,8 +23,7 @@ public class UserDetail {
     @Size(min=6, message="Password is too short")
     private String password;
 
-	@OneToOne(fetch = FetchType.LAZY)
-	@PrimaryKeyJoinColumn
+	@OneToOne(fetch = FetchType.EAGER, mappedBy = "userDetail")
     private User user;
 
     public UserDetail(){}

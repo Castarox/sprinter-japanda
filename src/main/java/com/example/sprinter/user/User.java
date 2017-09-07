@@ -1,6 +1,7 @@
 package com.example.sprinter.user;
 
 
+import com.example.sprinter.UserDetail.UserDetail;
 import com.example.sprinter.project.Project;
 import com.example.sprinter.task.Task;
 
@@ -43,7 +44,8 @@ public class User {
     @OneToMany(mappedBy = "user")
     private Set<Task> tasks;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
     private UserDetail userDetail;
 
 
@@ -108,6 +110,14 @@ public class User {
         this.surname = surname;
     }
 
+    public UserDetail getUserDetail() {
+        return userDetail;
+    }
+
+    public void setUserDetail(UserDetail userDetail) {
+        this.userDetail = userDetail;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -123,19 +133,5 @@ public class User {
         if (password != null ? !password.equals(user.password) : user.password != null) return false;
         if (tasks != null ? !tasks.equals(user.tasks) : user.tasks != null) return false;
         return userDetail != null ? userDetail.equals(user.userDetail) : user.userDetail == null;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", projects=" + projects +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", tasks=" + tasks +
-                ", userDetail=" + userDetail +
-                '}';
     }
 }

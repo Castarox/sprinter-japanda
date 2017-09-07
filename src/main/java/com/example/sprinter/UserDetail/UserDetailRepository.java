@@ -1,4 +1,4 @@
-package com.example.sprinter.user;
+package com.example.sprinter.UserDetail;
 
 import org.springframework.data.repository.CrudRepository;
 

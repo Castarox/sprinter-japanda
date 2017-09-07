@@ -3,9 +3,6 @@ package com.example.sprinter.user;
 import com.example.sprinter.form.EditPasswordForm;
 import com.example.sprinter.project.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -16,8 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.security.Principal;
 
@@ -31,22 +26,6 @@ public class UserController {
     @Autowired
     private ProjectService projectService;
 
-
-    @GetMapping("/404")
-    String notFound(){
-        return "404";
-    }
-
-    @GetMapping("/500")
-    String internalServerError(){
-        return "500";
-    }
-
-    @GetMapping("/400")
-    String badRequest(){
-        return "400";
-    }
-
     @GetMapping("")
     String getAll(Model model, ModelMap modelMap, Principal principal) {
         User user = (User)modelMap.get("user");
@@ -56,25 +35,6 @@ public class UserController {
         }
         model.addAttribute("projects", ((User) modelMap.get("user")).getProjects());
         return "index";
-    }
-
-    @GetMapping("/login")
-    String logInToTheSiteViewPage(ModelMap model){
-        if (model.get("user") == null) {
-            return "login";
-        }
-        return "redirect:/";
-    }
-
-    @GetMapping("/logout")
-    String logout(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response){
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if( auth != null) {
-            modelMap.remove("user");
-            modelMap.isEmpty();
-            new SecurityContextLogoutHandler().logout(request, response, auth);
-        }
-        return "redirect:/";
     }
 
     @GetMapping("/user")
@@ -96,9 +56,8 @@ public class UserController {
             model.put("error", "Wrong password");
             return "user-edit-profile";
         }
-        User user = (User) model.get("user");
-        user.setPassword(form.getPassword());
-        model.replace("user",userService.saveUser(user));
+        User user = userService.changePassword((User) model.get("user"), form.getPassword());
+        model.replace("user", user);
         redirectAttributes.addAttribute("success", "success");
         return "redirect:/user";
     }
