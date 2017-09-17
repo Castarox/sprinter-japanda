@@ -3,6 +3,7 @@ package com.example.sprinter.user_story;
 import com.example.sprinter.project.Project;
 import com.example.sprinter.task.Task;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,7 +28,7 @@ public class UserStory {
     @ManyToOne
     @JoinColumn(name = "project_id")
     private Project project;
-    @OneToMany(mappedBy = "userStory")
+    @OneToMany(mappedBy = "userStory", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private Set<Task> taskSet;
 
     UserStory(){}
