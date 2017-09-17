@@ -21,7 +21,6 @@ import java.util.Set;
 @SessionAttributes("user")
 @RequestMapping("projects/{project_id}/user_story")
 public class UserStoryController {
-    private final UserStoryService userStoryService;
 
     @Autowired
     private UserService userService;
@@ -30,9 +29,7 @@ public class UserStoryController {
     private ProjectService projectService;
 
     @Autowired
-    public UserStoryController(UserStoryService userStoryService) {
-        this.userStoryService = userStoryService;
-    }
+    private UserStoryService userStoryService;
 
     @GetMapping("/{id}")
     String getOne(@PathVariable Long id, @PathVariable Long project_id, Model model) {
@@ -45,18 +42,11 @@ public class UserStoryController {
     }
 
     @PostMapping("/new")
-    String add(@Valid @ModelAttribute ("form") UserStoryForm userStoryForm, ModelMap model,
-               RedirectAttributes redirectAttributes, @PathVariable Long project_id) {
-        UserStory userStory = createUserStory(userStoryForm, project_id);
+    String add(@Valid @ModelAttribute ("form") UserStoryForm userStoryForm, @PathVariable Long project_id) {
+        UserStory userStory = userStoryService.createUserStory(userStoryForm, project_id);
         userStoryService.add(userStory);
         return "redirect:/projects/" + project_id;
     }
 
-    private UserStory createUserStory(@Valid @ModelAttribute("form") UserStoryForm userStoryForm, @PathVariable Long project_id) {
-        String name = userStoryForm.getUserStoryName();
-        String description = userStoryForm.getDescription();
-        String priority = userStoryForm.getPriority();
-        Project project = projectService.findById(project_id);
-        return new UserStory(name, description, priority, project);
-    }
+
 }
