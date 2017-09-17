@@ -19,10 +19,11 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf()
+                    .ignoringAntMatchers("/h2/**")
                 .and()
                     .authorizeRequests()
                     .antMatchers("/user/**", "/index", "/").hasRole("USER")
-                    .antMatchers("/css/**", "/js/**").permitAll()
+                    .antMatchers("/css/**", "/js/**", "/h2/**").permitAll()
                 .and()
                     .formLogin()
                     .loginPage("/login")
@@ -32,6 +33,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                     .logout()
                     .logoutUrl("/logout")
                     .permitAll();
+        http.headers().frameOptions().disable();
     }
 
     @Autowired
