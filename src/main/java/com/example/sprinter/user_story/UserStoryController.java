@@ -47,15 +47,16 @@ public class UserStoryController {
     @PostMapping("/new")
     String add(@Valid @ModelAttribute ("form") UserStoryForm userStoryForm, ModelMap model,
                RedirectAttributes redirectAttributes, @PathVariable Long project_id) {
+        UserStory userStory = createUserStory(userStoryForm, project_id);
+        userStoryService.add(userStory);
+        return "redirect:/projects/" + project_id;
+    }
 
+    private UserStory createUserStory(@Valid @ModelAttribute("form") UserStoryForm userStoryForm, @PathVariable Long project_id) {
         String name = userStoryForm.getUserStoryName();
         String description = userStoryForm.getDescription();
         String priority = userStoryForm.getPriority();
         Project project = projectService.findById(project_id);
-        Set<Task> tasks = new HashSet<>();
-        UserStory userStory = new UserStory(name, description, priority, project);
-        userStory.setTaskSet(tasks);
-        userStoryService.add(userStory);
-        return "redirect:/projects/" + project_id;
+        return new UserStory(name, description, priority, project);
     }
 }
