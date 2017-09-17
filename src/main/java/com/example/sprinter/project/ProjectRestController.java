@@ -5,19 +5,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
-
 @RestController
 @SessionAttributes("user")
 @RequestMapping("projects/remove")
 public class ProjectRestController {
 
     private final ProjectService projectService;
-    private final UserService userService;
 
     @Autowired
-    ProjectRestController(ProjectService projectService, UserService userService) {
+    ProjectRestController(ProjectService projectService) {
         this.projectService = projectService;
-        this.userService = userService;
     }
 
     @PostMapping("/{id}")
