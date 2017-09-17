@@ -19,19 +19,20 @@ import java.util.Set;
 @RequestMapping("/projects")
 public class ProjectController {
     private final ProjectService projectService;
+    private final UserService userService;
 
     @Autowired
-    private UserService userService;
-
-    @Autowired
-    public ProjectController(ProjectService projectService) {
+    public ProjectController(ProjectService projectService, UserService userService) {
         this.projectService = projectService;
+        this.userService = userService;
     }
-
 
     @GetMapping("/{id}")
     String getOne(@PathVariable Long id, Model model) {
         Project project = projectService.findById(id);
+        if (project == null) {
+            return "404";
+        }
         model.addAttribute("project", project);
         model.addAttribute("userStories", project.getUserStories());
         return "project";
@@ -41,22 +42,13 @@ public class ProjectController {
     String add(@Valid @ModelAttribute("form") ProjectForm projectForm, ModelMap model,
                RedirectAttributes redirectAttributes) {
         User user = (User)model.get("user");
-        String startDate = projectForm.getStartDate();
-        String endDate = projectForm.getEndDate();
-        String projectName = projectForm.getProjectName();
-        Set<User> owners = new HashSet<>();
-        owners.add(user);
-        if (startDate != null && endDate != null && projectName != null) {
-            Project project = new Project(projectName, owners, startDate, endDate, false);
-            Set<Project> projects = user.getProjects();
-            projectService.add(project);
-            projects.add(project);
-            user.setProjects(projects);
-            model.replace("user", userService.saveUser(user));
-            redirectAttributes.addFlashAttribute("message", "Project created!");
-            return "redirect:/projects/" + project.getId();
-        }
-        redirectAttributes.addFlashAttribute("message", "Fill out all fields");
-        return "redirect:/";
+        Project project = projectService.createProject(projectForm, user);
+        Set<Project> projects = user.getProjects();
+        projectService.save(project);
+        projects.add(project);
+        user.setProjects(projects);
+        model.replace("user", userService.saveUser(user));
+        redirectAttributes.addFlashAttribute("message", "Project created!");
+        return "redirect:/projects/" + project.getId();
     }
 }
