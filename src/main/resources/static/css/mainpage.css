@@ -61,6 +61,15 @@
     border-radius: 10px;
 }
 
+.delete{
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    top: 10px;
+    right: 25px;
+}
+
+
 .panda {
     width: inherit;
     display: block;
@@ -113,5 +122,8 @@ img {
 .btn-default {
     margin-bottom: 10px;
 }
-
+.btn-default.yes{
+    margin-bottom: 0;
+    margin-left: 5px;
+}
 
