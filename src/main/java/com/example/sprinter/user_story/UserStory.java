@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -36,6 +37,7 @@ public class UserStory {
         this.description = description;
         this.priority = priority;
         this.project = project;
+        this.taskSet = new HashSet<>();
     }
 
     public Long getId() {
