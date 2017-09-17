@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -39,16 +40,22 @@ public class ProjectController {
     }
 
     @PostMapping("/new")
-    String add(@Valid @ModelAttribute("form") ProjectForm projectForm, ModelMap model,
+    String add(@Valid @ModelAttribute("form") ProjectForm projectForm,
+               BindingResult binder, ModelMap model,
                RedirectAttributes redirectAttributes) {
-        User user = (User)model.get("user");
-        Project project = projectService.createProject(projectForm, user);
-        Set<Project> projects = user.getProjects();
-        projectService.save(project);
-        projects.add(project);
-        user.setProjects(projects);
-        model.replace("user", userService.saveUser(user));
-        redirectAttributes.addFlashAttribute("message", "Project created!");
-        return "redirect:/projects/" + project.getId();
+        User user = (User) model.get("user");
+        if (!binder.hasErrors()) {
+            Project project = projectService.createProject(projectForm, user);
+            projectService.save(project);
+            Set<Project> projects = user.getProjects();
+            projects.add(project);
+            user.setProjects(projects);
+            model.replace("user", userService.saveUser(user));
+            redirectAttributes.addFlashAttribute("message", "Project created!");
+            return "redirect:/projects/" + project.getId();
+        } else {
+            redirectAttributes.addFlashAttribute("message", "Fill out all fields");
+            return "redirect:/";
+        }
     }
 }
