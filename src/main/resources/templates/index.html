@@ -3,6 +3,8 @@
 <head>
     <title>Sprinter</title>
     <meta charset="utf-8"/>
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link th:href="@{~/webjars/bootstrap/3.3.6/css/bootstrap.min.css}" href="webjars/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
     <link th:href="@{~/css/mainpage.css}" rel="stylesheet" type="text/css"/>
@@ -68,11 +70,11 @@
                         </div>
                     </div>
                 </div>
-                <div th:each="project: ${projects}" class="col-sm-4">
+                <div th:id="${project.getId()}" th:each="project: ${projects}" class="col-sm-4">
                     <div class="card">
                         <div class="card-block main-block">
                             <a href="#" class="delete-button" data-toggle="modal" data-target="#delete-project"><img class="delete" th:src="@{~/img/cross.png}"/></a>
-                            <h3 class="card-title" th:text="${project.getName()}"></h3>
+                            <h3 th:attr="data-id=${project.getId()}" class="card-title projects" th:text="${project.getName()}"></h3>
                             <hr/>
                             <p class="card-text" th:text="'Deadline '  + ${project.getEndDate()}">NONE</p>
                             <a th:href="@{'/projects/' + ${project.getId()}}" class="btn btn-default">Go</a>
@@ -92,10 +94,10 @@
                         <h4 class="modal-title">Are you sure you want to remove this project?</h4>
                     </div>
                     <div class="modal-body">
-                        <p>There will not be a way back. Rethink.</p>
+                        <p>There will be no way back. Rethink.</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default yes" data-dismiss="modal">Yes</button>
+                        <button type="button" class="btn btn-default yes" data-dismiss="modal">Yes, goddammit!</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
                     </div>
                 </div>
@@ -113,5 +115,7 @@
 
 <script th:src="@{~/webjars/jquery/1.9.1/jquery.min.js}" src="webjars/jquery/1.9.1/jquery.min.js"></script>
 <script th:src="@{~/webjars/bootstrap/3.3.6/js/bootstrap.min.js}" src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script th:src="@{~/js/DeleteProject.js}" type="text/javascript"></script>
+
 </body>
 </html>
