@@ -89,4 +89,11 @@ public class Project {
     public void setUserStories(Set<UserStory> userStories) {
         this.userStories = userStories;
     }
+
+    @PreRemove
+    private void removeProjectFromUser() {
+        for (User owner : owners) {
+            owner.getProjects().remove(this);
+        }
+    }
 }
