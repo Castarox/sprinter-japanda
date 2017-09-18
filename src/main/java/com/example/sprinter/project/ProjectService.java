@@ -31,8 +31,17 @@ public class ProjectService {
         return new Project(name, owners, startDate, endDate, false);
     }
 
-    public void save(Project project) {
-        projectRepository.save(project);
+    public Project save(Project project) {
+        return projectRepository.save(project);
+    }
+
+    public Project edit(Long id, ProjectForm projectForm) {
+        Project project = projectRepository.findOne(id);
+        project.setName(projectForm.getProjectName());
+        project.setStartDate(projectForm.getStartDate());
+        project.setEndDate(projectForm.getEndDate());
+        return save(project);
+
     }
 
     public void remove(Long id) {

@@ -1,5 +1,6 @@
 package com.example.sprinter.project;
 
+import com.example.sprinter.form.ProjectForm;
 import com.example.sprinter.user.User;
 import com.example.sprinter.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,8 @@ public class ProjectRestController {
     }
 
     @PostMapping("/edit/{id}")
-    boolean editProject(@PathVariable Long id) {
+    boolean editProject(@PathVariable Long id, @RequestBody ProjectForm projectForm) {
+        projectService.edit(id, projectForm);
         return true;
     }
 }
