@@ -1,6 +1,8 @@
 package com.example.sprinter.registration;
 
 import com.example.sprinter.form.*;
+import com.example.sprinter.user.*;
+import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 import org.springframework.ui.*;
 import org.springframework.validation.*;
@@ -12,6 +14,9 @@ import java.util.*;
 @Controller
 @RequestMapping("/registration")
 public class RegistrationController {
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping
     String showRegistartionForm(RegistrationForm registrationForm) {
@@ -33,6 +38,13 @@ public class RegistrationController {
             return "registration";
         }
         System.out.println("MAM TO");
+        User newUser = new User();
+        newUser.setId(0L);
+        newUser.setName(registrationForm.getName());
+        newUser.setEmail(registrationForm.getEmail());
+        newUser.setPassword(registrationForm.getPassword());
+        newUser.setSurname(registrationForm.getSurname());
+        userService.saveUser(newUser);
         return "registration";
     }
 }
