@@ -65,10 +65,16 @@
     position: absolute;
     width: 25px;
     height: 25px;
-    top: 10px;
-    right: 25px;
+    top: 15px;
+    right: 30px;
 }
-
+.edit {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    top: 15px;
+    right: 75px;
+}
 
 .panda {
     width: inherit;
@@ -125,5 +131,9 @@ img {
 .btn-default.yes{
     margin-bottom: 0;
     margin-left: 5px;
+}
+
+.messageError {
+    color: #ff0c36;
 }
 
