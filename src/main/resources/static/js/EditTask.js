@@ -41,5 +41,12 @@ $(document).ready(function () {
         clear(form);
         validate(form, false);
     });
+
+    $(".edit-button").click(function () {
+        var form = $(".editTask");
+        clear(form);
+        validate(form, true);
+    });
+
 });
 
