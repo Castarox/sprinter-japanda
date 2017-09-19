@@ -23,10 +23,11 @@ public class EmailController {
     public String sendActivateEmail(@PathVariable String email) {
         Context context = new Context();
         context.setVariable("header", "Registration to Sprinter");
-        context.setVariable("title", "#8 Spring Boot – email - szablon i wysyłanie");
+        context.setVariable("title", "Activation link for your account");
         context.setVariable("description", "Tutaj jakis opis...");
         String body = templateEngine.process("template", context);
-        emailSender.sendEmail(email, "CodeCouple Newsletter", body);
-        return "login";
+        email = "sigowww@gmail.com";
+        emailSender.sendEmail(email, "Sprinter - registration", body);
+        return "redirect:/login";
     }
 }
