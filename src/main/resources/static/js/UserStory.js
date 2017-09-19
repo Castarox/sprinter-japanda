@@ -95,7 +95,7 @@ $(document).ready(function () {
 
     });
 
-    $(".toValid").click(function (e) {
+    $("#edit-user-story-form .toValid").click(function (e) {
         e.preventDefault();
 
         var header = $("meta[name='_csrf_header']").attr("content");

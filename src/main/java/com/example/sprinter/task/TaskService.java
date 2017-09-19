@@ -1,5 +1,7 @@
 package com.example.sprinter.task;
 
+import com.example.sprinter.form.TaskForm;
+import com.example.sprinter.user_story.UserStory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +19,8 @@ public class TaskService {
         return taskRepository.findOne(id);
     }
 
-    public void add(Task task) {
-        taskRepository.save(task);
+    public Task add(Task task) {
+        return taskRepository.save(task);
     }
 
     public void update(Task task) {
@@ -27,5 +29,12 @@ public class TaskService {
 
     public void remove(Long id) {
         taskRepository.delete(id);
+    }
+
+    public Task createTask(TaskForm taskForm, UserStory userStory) {
+        String name = taskForm.getTaskName();
+        String description = taskForm.getTaskDescription();
+
+        return add(new Task(name, description, userStory, State.NEW, 0));
     }
 }
