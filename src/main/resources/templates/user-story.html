@@ -4,6 +4,8 @@
     <title>Sprinter</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
     <link th:href="@{~/webjars/bootstrap/3.3.6/css/bootstrap.min.css}"
           href="webjars/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
     <link th:href="@{~/css/mainpage.css}" rel="stylesheet" type="text/css"/>
@@ -46,10 +48,10 @@
                         <a href="#" class="edit-button" data-toggle="modal" data-target="#editTask">
                             <img class="edit" th:src="@{~/img/pencil.png}"/>
                             </a>
-                        <a href="#" class="delete-button" data-toggle="modal" data-target="#delete">
+                        <a href="#" class="delete-button" data-toggle="modal" data-target="#deleteTask">
                             <img class="delete" th:src="@{~/img/cross.png}"/>
                         </a>
-                        <h3 class="card-title" th:text="${task.getName()}"></h3>
+                        <h3 class="card-title tasks" th:attr="data-id=${task.getId()}" th:text="${task.getName()}"></h3>
                         <hr/>
                         <p th:text="${task.getDescription()}"></p>
                     </div>
@@ -116,7 +118,7 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="delete" role="dialog">
+        <div class="modal fade" id="deleteTask" role="dialog">
             <div class="modal-dialog">
 
                 <!-- Modal content-->
@@ -143,6 +145,7 @@
 
 <script th:src="@{~/webjars/jquery/1.9.1/jquery.min.js}" src="webjars/jquery/1.9.1/jquery.min.js"></script>
 <script th:src="@{~/js/EditTask.js}" type="text/javascript"></script>
+<script th:src="@{~/js/DeleteTask.js}" type="text/javascript"></script>
 <script th:src="@{~/webjars/bootstrap/3.3.6/js/bootstrap.min.js}"
         src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </body>
