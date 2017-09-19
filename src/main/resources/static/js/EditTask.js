@@ -5,7 +5,7 @@ $(document).ready(function () {
         var isNameCorrect = nameCorrect;
 
 
-        $(form).find("input[name='taskName']").change(function () {
+        $(form).change(function () {
 
             var input = $(form).find("input[name='taskName']");
             var name = input.val();
@@ -31,6 +31,7 @@ $(document).ready(function () {
 
     function clear(form) {
         $(form).find("input[name='taskName']").val("").css("border", "1px solid #ccc");
+        $(form).find("input[name='taskDescription']").val("").css("border", "1px solid #ccc");
         $(form).find(".taskNameError").text("");
         $(form).find(".valid").prop("disabled", true);
 
@@ -46,12 +47,6 @@ $(document).ready(function () {
         var form = $(".editTask");
         clear(form);
         validate(form, true);
-    });
-
-    $(".edit-button").click(function () {
-        var form = $(".editTask");
-        clear(form);
-        validate(form, true, true);
         var name = $(this).parent().find("h3").text();
         var description = $(this).parent().find("p").text();
         id = $(this).parents(".col-sm-9").attr("id");

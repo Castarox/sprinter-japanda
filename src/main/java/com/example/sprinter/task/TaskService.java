@@ -24,12 +24,10 @@ public class TaskService {
     }
 
     public Task edit(Long id, TaskForm taskForm) {
-       Task task = taskRepository.findOne(id);
-       System.out.println(taskForm.getTaskName());
-       System.out.println(taskForm.getTaskDescription());
-       task.setName(taskForm.getTaskName());
-       task.setDescription(taskForm.getTaskDescription());
-       return save(task);
+        Task task = taskRepository.findOne(id);
+        task.setName(taskForm.getTaskName());
+        task.setDescription(taskForm.getTaskDescription());
+        return save(task);
     }
 
     public void remove(Long id) {
