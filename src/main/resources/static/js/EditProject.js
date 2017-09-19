@@ -89,7 +89,6 @@ $(document).ready(function () {
             contentType : "application/json",
             dataType : "json",
             success: function (response) {
-                console.log("Hurra");
                 $("#"+ id).find("h3").text(name);
                 $("#"+ id).find("p").data("project-start", start);
                 $("#"+ id).find("p").data("project-end", end);
