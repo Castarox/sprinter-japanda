@@ -19,12 +19,6 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public List<User> getAll() {
-        List<User> userDetails = new ArrayList<>();
-        userRepository.findAll().forEach(userDetails::add);
-        return userDetails;
-    }
-
     @Autowired
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;

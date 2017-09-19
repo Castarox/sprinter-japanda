@@ -37,11 +37,9 @@ public class UserStoryController {
     }
 
     @PostMapping("/new")
-    String add(@Valid @ModelAttribute ("form") UserStoryForm userStoryForm, @PathVariable Long project_id) {
+    String add(@Valid @ModelAttribute("form") UserStoryForm userStoryForm, @PathVariable Long project_id) {
         UserStory userStory = userStoryService.createUserStory(userStoryForm, project_id);
-        userStoryService.add(userStory);
+        userStoryService.save(userStory);
         return "redirect:/projects/" + project_id;
     }
-
-
 }

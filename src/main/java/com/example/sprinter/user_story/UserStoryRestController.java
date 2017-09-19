@@ -21,14 +21,14 @@ public class UserStoryRestController {
     }
 
     @PostMapping("/{id}")
-    Boolean removeUserStory(@PathVariable Long id){
+    Boolean removeUserStory(@PathVariable Long id) {
         userStoryService.remove(id);
         return true;
 
     }
 
     @PostMapping("/edit/{id}")
-    Boolean editUserStory(@PathVariable Long id, @RequestBody UserStoryForm userStoryForm){
+    Boolean editUserStory(@PathVariable Long id, @RequestBody UserStoryForm userStoryForm) {
         userStoryService.edit(id, userStoryForm);
         return true;
     }

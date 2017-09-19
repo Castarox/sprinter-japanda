@@ -9,17 +9,17 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 public class ErrorController {
 
     @GetMapping("/404")
-    String notFound(){
+    String notFound() {
         return "404";
     }
 
     @GetMapping("/500")
-    String internalServerError(){
+    String internalServerError() {
         return "500";
     }
 
     @GetMapping("/400")
-    String badRequest(){
+    String badRequest() {
         return "400";
     }
 }
