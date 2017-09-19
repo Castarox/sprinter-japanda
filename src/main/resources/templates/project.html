@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="_csrf" th:content="${_csrf.token}"/>
     <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
-    <link th:href="@{~/webjars/bootstrap/3.3.6/css/bootstrap.min.css}" href="webjars/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+    <link th:href="@{~/webjars/bootstrap/3.3.6/css/bootstrap.min.css}"
+          href="webjars/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
     <link th:href="@{~/css/mainpage.css}" rel="stylesheet" type="text/css"/>
 </head>
 <body>
@@ -17,18 +18,20 @@
         <div th:replace="fragments/project-sidenav :: project-sidenav"></div>
         <div class="col-sm-offset-2 col-sm-10 content">
             <div id="project-content">
-            <div th:if="${message}" class="alert alert-success alert-dismissable alert-margin">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <strong>Success!</strong><p th:text="${message}"></p>
+                <div th:if="${message}" class="alert alert-success alert-dismissable alert-margin">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Success!</strong>
+                    <p th:text="${message}"></p>
+                </div>
+
+                <div class="page-header text-center  col-sm-offset-1 col-sm-9">
+                    <h1><span th:object="${project}" th:text="${project.getName()}"></span></h1>
+                    <p>
+                    <h4>Deadline: <span th:object="${project}" th:text="${project.getEndDate()}"></span></h4>
+                    </p>
+                </div>
             </div>
 
-            <div class="page-header text-center  col-sm-offset-1 col-sm-9">
-                <h1><span th:object="${project}" th:text="${project.getName()}"></span></h1>
-                <p>
-                <h4>Deadline: <span th:object="${project}" th:text="${project.getEndDate()}"></span></h4>
-                </p>
-            </div>
-        </div>
             <div class="card card-outline-primary mb-3 text-center  col-sm-offset-1 col-sm-9">
             <div class="card-block" id="special-card">
                 <p>Add new user story!</p>
@@ -46,9 +49,9 @@
                     <p class="priority" th:text="${userStory.getPriority()}"></p>
                     <p class="description" th:text="${userStory.getDescription()}"></p>
 
+                    </div>
                 </div>
             </div>
-        </div>
         </div>
         <div id="addUserStory" class="modal fade" role="dialog">
             <div class="modal-dialog">

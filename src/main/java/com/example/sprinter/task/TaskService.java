@@ -19,12 +19,15 @@ public class TaskService {
         return taskRepository.findOne(id);
     }
 
-    public Task add(Task task) {
+    public Task save(Task task) {
         return taskRepository.save(task);
     }
 
-    public void update(Task task) {
-        taskRepository.save(task);
+    public Task edit(Long id, TaskForm taskForm) {
+        Task task = taskRepository.findOne(id);
+        task.setName(taskForm.getTaskName());
+        task.setDescription(taskForm.getTaskDescription());
+        return save(task);
     }
 
     public void remove(Long id) {
@@ -35,6 +38,6 @@ public class TaskService {
         String name = taskForm.getTaskName();
         String description = taskForm.getTaskDescription();
 
-        return add(new Task(name, description, userStory, State.NEW, 0));
+        return save(new Task(name, description, userStory, State.NEW, 0));
     }
 }
