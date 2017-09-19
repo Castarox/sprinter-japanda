@@ -17,13 +17,13 @@ public class TaskRestController {
     }
 
     @PostMapping("/remove/{id}")
-    Boolean removeTask(@PathVariable Long id){
+    Boolean removeTask(@PathVariable Long id) {
         taskService.remove(id);
         return true;
     }
 
     @PostMapping("/edit/{id}")
-    Boolean editTask(@PathVariable Long id, @RequestBody TaskForm taskForm){
+    Boolean editTask(@PathVariable Long id, @RequestBody TaskForm taskForm) {
         taskService.edit(id, taskForm);
         return true;
     }

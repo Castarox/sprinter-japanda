@@ -31,9 +31,10 @@ public class UserStory {
     @OneToMany(mappedBy = "userStory", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private Set<Task> taskSet;
 
-    UserStory(){}
+    UserStory() {
+    }
 
-    UserStory(String name, String description, String priority, Project project){
+    UserStory(String name, String description, String priority, Project project) {
         this.name = name;
         this.description = description;
         this.priority = priority;

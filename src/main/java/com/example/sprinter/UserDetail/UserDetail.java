@@ -10,25 +10,26 @@ import javax.validation.constraints.*;
 public class UserDetail {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Long id;
 
     @NotNull
-    @Size(min=3, message="Name is too short")
-    @Column(name="email")
+    @Size(min = 3, message = "Name is too short")
+    @Column(name = "email")
     private String name;
 
     @NotNull
-    @Size(min=6, message="Password is too short")
+    @Size(min = 6, message = "Password is too short")
     private String password;
 
-	@OneToOne(fetch = FetchType.EAGER, mappedBy = "userDetail")
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "userDetail")
     private User user;
 
-    public UserDetail(){}
+    public UserDetail() {
+    }
 
-    public UserDetail(User user, String name, String password){
+    public UserDetail(User user, String name, String password) {
         this.user = user;
         this.name = name;
         this.password = password;

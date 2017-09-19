@@ -12,7 +12,7 @@ public class Project {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="project_id")
+    @Column(name = "project_id")
     private Long id;
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "projects")
     private Set<User> owners;
@@ -23,7 +23,8 @@ public class Project {
     private String endDate;
     private Boolean copy;
 
-    Project() {}
+    Project() {
+    }
 
     Project(String name, Set<User> owners, String startDate, String endDate, Boolean copy) {
         this.name = name;
@@ -32,7 +33,6 @@ public class Project {
         this.endDate = endDate;
         this.copy = copy;
     }
-
 
     public Long getId() {
         return id;

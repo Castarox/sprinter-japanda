@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginController {
 
     @GetMapping("/login")
-    String logInToTheSiteViewPage(ModelMap model){
+    String logInToTheSiteViewPage(ModelMap model) {
         if (model.get("user") == null) {
             return "login";
         }
@@ -25,9 +25,9 @@ public class LoginController {
     }
 
     @GetMapping("/logout")
-    String logout(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response){
+    String logout(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if( auth != null) {
+        if (auth != null) {
             modelMap.remove("user");
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }

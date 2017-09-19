@@ -15,30 +15,30 @@ import java.util.Set;
 public class User {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name="user_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "user_id")
     private Long id;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "app_user_project", joinColumns = {
-            @JoinColumn(name="user_id") },
-            inverseJoinColumns = { @JoinColumn(name="project_id")})
+            @JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "project_id")})
     private Set<Project> projects;
 
     @NotNull
-    @Size(min=3, message="Name is too short")
+    @Size(min = 3, message = "Name is too short")
     private String name;
 
     @NotNull
-    @Size(min=3, message="Surname is too short")
+    @Size(min = 3, message = "Surname is too short")
     private String surname;
 
     @NotNull
-    @Size(min=3, message="Email is too short")
+    @Size(min = 3, message = "Email is too short")
     private String email;
 
     @NotNull
-    @Size(min=6, message="Password is too short")
+    @Size(min = 6, message = "Password is too short")
     private String password;
 
     @OneToMany(mappedBy = "user")
@@ -49,9 +49,10 @@ public class User {
     private UserDetail userDetail;
 
 
-    public User(){}
+    public User() {
+    }
 
-    public User(Long id, String name, String email , String password, String surname, Set<Project> projects, Set<Task> tasks, UserDetail userDetail){
+    public User(Long id, String name, String email, String password, String surname, Set<Project> projects, Set<Task> tasks, UserDetail userDetail) {
         this.id = id;
         this.name = name;
         this.email = email;

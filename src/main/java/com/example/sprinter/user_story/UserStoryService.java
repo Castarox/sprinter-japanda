@@ -24,12 +24,8 @@ public class UserStoryService {
         return userStoryRepository.findOne(id);
     }
 
-    public void add(UserStory userStory) {
-        userStoryRepository.save(userStory);
-    }
-
-    public void update(UserStory userStory) {
-        userStoryRepository.save(userStory);
+    public UserStory save(UserStory userStory) {
+        return userStoryRepository.save(userStory);
     }
 
     public void remove(Long id) {
@@ -41,15 +37,14 @@ public class UserStoryService {
         String description = userStoryForm.getDescription();
         String priority = userStoryForm.getPriority();
         Project project = projectService.findById(project_id);
-        return new UserStory(name, description, priority, project);
+        return save(new UserStory(name, description, priority, project));
     }
-
 
     public void edit(Long id, UserStoryForm userStoryForm) {
         UserStory userStory = userStoryRepository.findOne(id);
         userStory.setName(userStoryForm.getUserStoryName());
         userStory.setDescription(userStoryForm.getDescription());
         userStory.setPriority(userStoryForm.getPriority());
-        add(userStory);
+        save(userStory);
     }
 }
