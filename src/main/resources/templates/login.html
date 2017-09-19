@@ -42,22 +42,17 @@
 
               <div class="modal-body">
 
-
+                    <!--Email-->
                     <div class="form-group">
                         <label class="col-md-4 control-label">Email:</label>
                         <div class="col-md-4">
                             <input th:id="email" name="email" class="form-control" type="email" value="" th:required="required"/>
                         </div>
-                        <!--<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="col-md-4 text-uppercase text-left text-danger">Email Error</div>-->
                     </div>
-
-
                 <p class="text-danger"></p>
               </div>
               <div class="modal-footer">
-                                      <!--<div class="col-md-4">-->
-                <input name="save" type="submit" class="btn btn-primary submit" value="Submit" />
-                    <!--</div>-->
+                <input th:id="submit-email" name="save" type="submit" class="btn btn-primary submit" value="Submit" th:disabled="true"/>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               </div>
                 </form>
