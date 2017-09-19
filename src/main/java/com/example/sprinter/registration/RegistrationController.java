@@ -18,6 +18,28 @@ public class RegistrationController {
     @Autowired
     private UserService userService;
 
+    @PostMapping(value = "/email", produces = "application/json")
+    @ResponseBody
+    Map checkEmailInDb(@RequestBody Map body) {
+        Map map = new HashMap();
+        System.out.println((String) body.get("email"));
+        User user = userService.getByLogin((String) body.get("email"));
+        if (user == null) {
+            map.put("isEmail", false);
+        } else {
+            map.put("isEmail", true);
+        }
+        return map;
+    }
+
+    @GetMapping(value = "/link", produces = "application/json")
+    @ResponseBody
+    Map generateActivateLinkForEmail() {
+        Map map = new HashMap();
+        map.put("isEmail", "Such a user already exists");
+        return map;
+    }
+
     @GetMapping
     String showRegistartionForm(RegistrationForm registrationForm) {
         return "registration";
