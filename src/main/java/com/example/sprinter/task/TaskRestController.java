@@ -1,5 +1,6 @@
 package com.example.sprinter.task;
 
+import com.example.sprinter.form.TaskForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,8 +18,13 @@ public class TaskRestController {
 
     @PostMapping("/remove/{id}")
     Boolean removeTask(@PathVariable Long id){
-        System.out.println("dupa");
         taskService.remove(id);
+        return true;
+    }
+
+    @PostMapping("/edit/{id}")
+    Boolean editTask(@PathVariable Long id, @RequestBody TaskForm taskForm){
+        taskService.edit(id, taskForm);
         return true;
     }
 }

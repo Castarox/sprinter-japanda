@@ -48,5 +48,48 @@ $(document).ready(function () {
         validate(form, true);
     });
 
+    $(".edit-button").click(function () {
+        var form = $(".editTask");
+        clear(form);
+        validate(form, true, true);
+        var name = $(this).parent().find("h3").text();
+        var description = $(this).parent().find("p").text();
+        id = $(this).parents(".col-sm-9").attr("id");
+
+        $(form).find("input[name='taskName']").val(name);
+        $(form).find("input[name='taskDescription']").val(description);
+
+    });
+
+
+    $(".editTask .valid").click(function (e) {
+        e.preventDefault();
+        var form = $(".editTask");
+        var name = $(form).find("input[name='taskName']").val();
+        var description = $(form).find("input[name='taskDescription']").val();
+        var us_id = $(form).find("input[name='userStoryId']").val();
+        var token = $("meta[name='_csrf']").attr("content");
+        var header = $("meta[name='_csrf_header']").attr("content");
+        var data = {taskName: name, taskDescription: description, userStoryId : us_id};
+        var url = "tasks/edit/" + id;
+        $.ajax({
+            type: "POST",
+            beforeSend: function (request) {
+                request.setRequestHeader(header, token);
+            },
+            url: url,
+            data: JSON.stringify(data),
+            contentType: "application/json",
+            dataType: "json",
+            success: function (response) {
+                $("#" + id).find("h3").text(name);
+                $("#" + id).find("p").text(description);
+                $(".modal-footer").find(".exit").trigger("click");
+            }
+        })
+
+
+    });
 });
 
+1
