@@ -29,6 +29,9 @@ public class UserStoryController {
     String getOne(@PathVariable Long id, @PathVariable Long project_id, Model model) {
         UserStory userStory = userStoryService.findById(id);
         Project project = projectService.findById(project_id);
+        if (userStory == null || project == null) {
+            return "404";
+        }
         model.addAttribute("userStory", userStory);
         model.addAttribute("tasks", userStory.getTaskSet());
         model.addAttribute("project", project);
