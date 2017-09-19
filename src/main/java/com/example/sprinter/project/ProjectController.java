@@ -7,11 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.util.HashSet;
 import java.util.Set;
 
 @Controller
@@ -19,44 +19,42 @@ import java.util.Set;
 @RequestMapping("/projects")
 public class ProjectController {
     private final ProjectService projectService;
+    private final UserService userService;
 
     @Autowired
-    private UserService userService;
-
-    @Autowired
-    public ProjectController(ProjectService projectService) {
+    public ProjectController(ProjectService projectService, UserService userService) {
         this.projectService = projectService;
+        this.userService = userService;
     }
-
 
     @GetMapping("/{id}")
     String getOne(@PathVariable Long id, Model model) {
         Project project = projectService.findById(id);
+        if (project == null) {
+            return "404";
+        }
         model.addAttribute("project", project);
         model.addAttribute("userStories", project.getUserStories());
         return "project";
     }
 
     @PostMapping("/new")
-    String add(@Valid @ModelAttribute("form") ProjectForm projectForm, ModelMap model,
+    String add(@Valid @ModelAttribute("form") ProjectForm projectForm,
+               BindingResult binder, ModelMap model,
                RedirectAttributes redirectAttributes) {
-        User user = (User)model.get("user");
-        String startDate = projectForm.getStartDate();
-        String endDate = projectForm.getEndDate();
-        String projectName = projectForm.getProjectName();
-        Set<User> owners = new HashSet<>();
-        owners.add(user);
-        if (startDate != null && endDate != null && projectName != null) {
-            Project project = new Project(projectName, owners, startDate, endDate, false);
+        User user = (User) model.get("user");
+        if (!binder.hasErrors()) {
+            Project project = projectService.createProject(projectForm, user);
+            projectService.save(project);
             Set<Project> projects = user.getProjects();
-            projectService.add(project);
             projects.add(project);
             user.setProjects(projects);
             model.replace("user", userService.saveUser(user));
             redirectAttributes.addFlashAttribute("message", "Project created!");
             return "redirect:/projects/" + project.getId();
+        } else {
+            redirectAttributes.addFlashAttribute("message", "Fill out all fields");
+            return "redirect:/";
         }
-        redirectAttributes.addFlashAttribute("message", "Fill out all fields");
-        return "redirect:/";
     }
 }
