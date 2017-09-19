@@ -22,7 +22,6 @@ public class RegistrationController {
     @ResponseBody
     Map checkEmailInDb(@RequestBody Map body) {
         Map map = new HashMap();
-        System.out.println((String) body.get("email"));
         User user = userService.getByLogin((String) body.get("email"));
         if (user == null) {
             map.put("isEmail", false);
