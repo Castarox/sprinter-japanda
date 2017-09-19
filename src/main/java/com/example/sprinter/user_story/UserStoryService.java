@@ -45,4 +45,11 @@ public class UserStoryService {
     }
 
 
+    public void edit(Long id, UserStoryForm userStoryForm) {
+        UserStory userStory = userStoryRepository.findOne(id);
+        userStory.setName(userStoryForm.getUserStoryName());
+        userStory.setDescription(userStoryForm.getDescription());
+        userStory.setPriority(userStoryForm.getPriority());
+        add(userStory);
+    }
 }
