@@ -33,4 +33,11 @@ public class TaskService {
     public void remove(Long id) {
         taskRepository.delete(id);
     }
+
+    public Task createTask(TaskForm taskForm, UserStory userStory) {
+        String name = taskForm.getTaskName();
+        String description = taskForm.getTaskDescription();
+
+        return save(new Task(name, description, userStory, State.NEW, 0));
+    }
 }

@@ -68,7 +68,6 @@ $(document).ready(function () {
 
     });
     
-    
     $(".editProject .toValid").click(function (e) {
         e.preventDefault();
         var form = $(".editProject");

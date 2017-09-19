@@ -29,13 +29,8 @@ public class TaskController {
     @PostMapping("/new")
     String add(@Valid @ModelAttribute("form") TaskForm taskForm, @PathVariable Long user_story_id, @PathVariable Long project_id, ModelMap model,
                RedirectAttributes redirectAttributes) {
-
-        String name = taskForm.getTaskName();
-        String description = taskForm.getTaskDescription();
         UserStory userStory = userStoryService.findById(user_story_id);
-        User user = (User) model.get("userDetails");
-        Task task = new Task(name, description, user, userStory, State.NEW, 0);
-        taskService.save(task);
+        Task task = taskService.createTask(taskForm, userStory);
         userStory.getTaskSet().add(task);
         return "redirect:/projects/" + project_id + "/user_story/" + user_story_id;
     }
