@@ -1,7 +1,11 @@
 package com.example.sprinter.form;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class ProjectForm {
+    @NotEmpty
     private String projectName;
+    @NotEmpty
     private String startDate;
     private String endDate;
 
