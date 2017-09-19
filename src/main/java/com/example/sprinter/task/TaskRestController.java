@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@SessionAttributes("user")
 @RequestMapping("projects/{id}/user_story/tasks")
 public class TaskRestController {
 

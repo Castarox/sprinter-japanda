@@ -14,7 +14,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 
 @Controller
-@SessionAttributes("user")
 @RequestMapping("/projects")
 public class ProjectController {
     private final ProjectService projectService;

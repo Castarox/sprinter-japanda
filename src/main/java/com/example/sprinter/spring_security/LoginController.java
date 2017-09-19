@@ -10,15 +10,16 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.security.Principal;
 
 
 @Controller
-@SessionAttributes("user")
 public class LoginController {
 
     @GetMapping("/login")
-    String logInToTheSiteViewPage(ModelMap model) {
-        if (model.get("user") == null) {
+    String logInToTheSiteViewPage(ModelMap model, Principal principal) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (principal == null) {
             return "login";
         }
         return "redirect:/";

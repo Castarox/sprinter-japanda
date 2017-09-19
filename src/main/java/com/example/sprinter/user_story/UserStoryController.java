@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @Controller
-@SessionAttributes("user")
 @RequestMapping("projects/{project_id}/user_story")
 public class UserStoryController {
 

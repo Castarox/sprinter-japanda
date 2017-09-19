@@ -8,7 +8,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@SessionAttributes("user")
 @RequestMapping("projects")
 public class ProjectRestController {
 
