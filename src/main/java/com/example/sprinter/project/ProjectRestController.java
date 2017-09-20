@@ -11,16 +11,14 @@ import org.springframework.web.bind.annotation.*;
 public class ProjectRestController {
 
     private final ProjectService projectService;
-    private final UserService userService;
 
     @Autowired
-    ProjectRestController(ProjectService projectService, UserService userService) {
+    ProjectRestController(ProjectService projectService) {
         this.projectService = projectService;
-        this.userService = userService;
     }
 
     @PostMapping("/remove/{id}")
-    Boolean removeProject(@PathVariable Long id, ModelMap model) {
+    boolean removeProject(@PathVariable Long id) {
         projectService.remove(id);
         return true;
     }
