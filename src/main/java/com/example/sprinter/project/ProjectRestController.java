@@ -23,8 +23,6 @@ public class ProjectRestController {
     @PostMapping("/remove/{id}")
     Boolean removeProject(@PathVariable Long id, ModelMap model) {
         projectService.remove(id);
-        User user = (User) model.get("user");
-        model.replace("user", userService.getUpdatedUser(user));
         return true;
     }
 
