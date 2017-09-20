@@ -29,9 +29,8 @@ public class LoginController {
     String logout(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null) {
-            modelMap.remove("user");
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
-        return "redirect:/";
+        return "redirect:/login";
     }
 }
