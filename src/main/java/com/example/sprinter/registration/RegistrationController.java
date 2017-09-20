@@ -1,13 +1,17 @@
 package com.example.sprinter.registration;
 
+import com.example.sprinter.UserDetail.*;
 import com.example.sprinter.form.*;
+import com.example.sprinter.new_user.*;
 import com.example.sprinter.user.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 import org.springframework.ui.*;
 import org.springframework.validation.*;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.*;
 
+import javax.servlet.http.*;
 import javax.validation.*;
 import java.util.*;
 
@@ -15,8 +19,16 @@ import java.util.*;
 @RequestMapping("/registration")
 public class RegistrationController {
 
-    @Autowired
     private UserService userService;
+    private NewUserService newUserService;
+    private UserDetailsServiceImpl userDetailsService;
+
+    @Autowired
+    public RegistrationController(UserService userService, NewUserService newUserService, UserDetailsServiceImpl userDetailsService) {
+        this.userService = userService;
+        this.newUserService = newUserService;
+        this.userDetailsService = userDetailsService;
+    }
 
     @PostMapping(value = "/email", produces = "application/json")
     @ResponseBody
@@ -31,24 +43,24 @@ public class RegistrationController {
         return map;
     }
 
-    @GetMapping(value = "/link", produces = "application/json")
-    @ResponseBody
-    Map generateActivateLinkForEmail() {
-        Map map = new HashMap();
-        map.put("isEmail", "Such a user already exists");
-        return map;
+    @GetMapping("/{linkId}")
+    String showRegistartionForm(RegistrationForm registrationForm, HttpServletRequest request) {
+        NewUser newUser = newUserService.findByLink(request);
+        registrationForm.setEmail(newUser.getEmail());
+        return "registration";
     }
 
-    @GetMapping
-    String showRegistartionForm(RegistrationForm registrationForm) {
-        return "registration";
+    @GetMapping("/activated")
+    String accountActivated() {
+        return "account_activated";
     }
 
     @PostMapping
     String checkForm(
             @Valid RegistrationForm registrationForm,
             BindingResult bindingResult,
-            Model model) {
+            Model model,
+            RedirectAttributes redirectAttributes) {
         if (!Objects.equals(registrationForm.getConfirm(), registrationForm.getPassword())) {
             String errMsg = "Both passwords must be the same";
             model.addAttribute("correct", errMsg);
@@ -58,14 +70,11 @@ public class RegistrationController {
                 ) {
             return "registration";
         }
-        System.out.println("MAM TO");
-        User newUser = new User();
-        newUser.setId(0L);
-        newUser.setName(registrationForm.getName());
-        newUser.setEmail(registrationForm.getEmail());
-        newUser.setPassword(registrationForm.getPassword());
-        newUser.setSurname(registrationForm.getSurname());
-        userService.saveUser(newUser);
-        return "registration";
+        User user = userService.saveNewUser(registrationForm);
+        userDetailsService.createAndSaveUserDetailForUser(user);
+        NewUser newUser = newUserService.findByEmail(user.getEmail());
+        newUserService.delete(newUser);
+        redirectAttributes.addAttribute("activate", "true");
+        return "redirect:/login";
     }
 }
