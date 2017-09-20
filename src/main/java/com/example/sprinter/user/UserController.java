@@ -1,7 +1,6 @@
 package com.example.sprinter.user;
 
 import com.example.sprinter.form.EditPasswordForm;
-import com.example.sprinter.project.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,15 +12,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.security.Principal;
 
 @Controller
 public class UserController {
+    private final UserService userService;
+
     @Autowired
-    private UserService userService;
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping("")
-    String getAll(Model model, ModelMap modelMap, Principal principal) {
+    String getAll(Model model, ModelMap modelMap) {
         User user = (User)modelMap.get("user");
         model.addAttribute("projects", user.getProjects());
         return "index";
@@ -46,7 +48,7 @@ public class UserController {
             model.put("error", "Wrong password");
             return "user-edit-profile";
         }
-        User user = userService.changePassword((User) model.get("user"), form.getPassword());
+        userService.changePassword((User) model.get("user"), form.getPassword());
         redirectAttributes.addAttribute("success", "success");
         return "redirect:/user";
     }
