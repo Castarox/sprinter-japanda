@@ -48,10 +48,4 @@ public class UserService {
         return saveUser(user);
 
     }
-
-    public User getUpdatedUser(User user) {
-        return this.getByLogin(user.getEmail());
-    }
-
-
 }
