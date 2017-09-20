@@ -5,6 +5,7 @@
 
 .content{
     margin-bottom: 80px;
+    width: 88%;
 }
 
 .row.content {height: 100%;}
@@ -12,6 +13,11 @@
 .card-block a{
     color: #000000;
     text-decoration: none;
+}
+
+.add {
+    width: 50px;
+    padding-top: 10px;
 }
 
 .card-block a:hover {
@@ -38,8 +44,10 @@
 
 .card-block h3 {
     margin: 0;
-    padding: 0;
+    padding-top: 10px;
 }
+
+
 
 .priority {
     text-transform: uppercase;
@@ -90,6 +98,7 @@
     top:52px;
     left:0;
     margin-bottom: 0;
+    width: 150px;
 }
 
 .card-title {
@@ -99,6 +108,7 @@
 #site-content {
     float: right;
     margin-top: 52px;
+    width: 88%;
 }
 
 footer {
@@ -122,7 +132,7 @@ footer {
 }
 
 img {
-    width: 100px;
+    width: 80px;
 }
 
 .btn-default {

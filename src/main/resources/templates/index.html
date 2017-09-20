@@ -38,8 +38,8 @@
                     <div class="card">
                         <div id="special-card" class="card-block main-block">
                             <h3 class="card-title">Create new project</h3>
-                            <a href="#" class="btn btn-default add-button" data-toggle="modal" data-target="#addProject"><span
-                                    class="glyphicon glyphicon-plus"></span></a>
+                            <a href="#" class="add-button" data-toggle="modal" data-target="#addProject">
+                                <img class="add" th:src="@{~/img/add.png}"/> </a>
 
                             <!-- Modal -->
                             <div id="addProject" class="modal fade" role="dialog">
@@ -132,16 +132,14 @@
                                     class="delete" th:src="@{~/img/cross.png}"/></a>
                             <a href="#" class="edit-button" data-toggle="modal" data-target="#editProject"><img
                                     class="edit" th:src="@{~/img/pencil.png}"/></a>
+                            <a th:href="@{'/projects/' + ${project.getId()}}">
                             <h3 th:attr="data-id=${project.getId()}" class="card-title projects"
-                                th:text="${project.getName()}"></h3>
+                                th:text="${project.getName()}"></h3></a>
                             <hr/>
-
                             <p th:attr="data-project-end=${project.getEndDate()}, data-project-start=${project.getStartDate()}" class="card-text" th:text="'Deadline '  + ${project.getEndDate()}">NONE</p>
-                            <a th:href="@{'/projects/' + ${project.getId()}}" class="btn btn-default">Go</a>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
         <div class="modal fade" id="delete-project" role="dialog">
