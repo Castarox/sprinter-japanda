@@ -5,25 +5,16 @@
     <title>Title</title>
 </head>
 <body>
-<nav class="navbar navbar-inverse navbar-fixed-top" th:fragment="navbar">
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header" th:fragment="navbar">
-        <header class="mdl-layout__header">
-            <div class="mdl-layout__header-row">
-                <!-- Title -->
-                <span class="mdl-layout-title"><a class="mdl-navigation__link" th:href="@{/}">Sprinter</a></span>
-                <!-- Add spacer, to align navigation to the right -->
-                <div class="mdl-layout-spacer"></div>
-                <!-- Navigation. We hide it in small screens. -->
-                <nav class="mdl-navigation mdl-layout--large-screen-only">
-                    <a class="mdl-navigation__link" href="">
-                        <i class="material-icons">person</i>
-                        <span th:text="${user.getName()}"></span>
-                    </a>
-                    <a class="mdl-navigation__link" th:href="@{~/logout}"><i class="material-icons">exit_to_app</i> Logout</a>
-                </nav>
-            </div>
-        </header>
-    </div>
-</nav>
+<div class="navbar-fixed" th:fragment="navbar">
+    <nav class="teal darken-4">
+        <div class="nav-wrapper">
+            <a th:href="@{/}" class="brand-logo">Sprinter</a>
+            <ul class="right hide-on-med-and-down">
+                <li><a th:href="@{~/user}"><i class="material-icons left">person</i><span th:text="${user.getName()}"></span></a></li>
+                <li><a th:href="@{~/logout}"><i class="material-icons left">exit_to_app</i>Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
 </body>
 </html>

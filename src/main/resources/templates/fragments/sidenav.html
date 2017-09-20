@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <title>Title</title>
 </head>
 <body>
-<div class="mdl-layout__drawer sidenav" th:fragment="sidenav">
-    <nav class="mdl-navigation">
-        <a class="mdl-navigation__link" href="">Link</a>
-        <a class="mdl-navigation__link" href="">Link</a>
-        <a class="mdl-navigation__link" href="">Link</a>
-        <a class="mdl-navigation__link" href="">Link</a>
-    </nav>
-</div>
+    <ul id="slide-out" class="side-nav fixed grey lighten-5" th:fragment="sidenav">
+        <li><a href="#!"><i class="material-icons">view_list</i>Projects</a></li>
+        <li><a href="#!"><i class="material-icons">people</i>Teams</a></li>
+        <li><a href="#!"><i class="material-icons">equalizer</i>Statistics</a></li>
+    </ul>
+<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
 </body>
 </html>

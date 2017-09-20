@@ -1,134 +1,52 @@
-.navbar {
-    margin-bottom: 0;
-    border-radius: 0;
+.brand-logo {
+    margin-left: 15px;
 }
-
-.content{
-    margin-bottom: 80px;
-}
-
-.sidenav {
+.side-nav {
     margin-top: 64px;
-    position: fixed;
+    width: 240px;
 }
 
-.row.content {height: 100%;}
-
-.card-block a{
-    color: #000000;
-    text-decoration: none;
+#slide-out li {
+    margin-top: 10px;
 }
-
-.card-block a:hover {
-    text-decoration: none;
-    color: #000000;
-}
-
-.main-block{
-    height: 150px;
-}
-
-.alert-margin {
-    margin-top: 52px;
-}
-
-.page-header h1{
-    font-weight: 900;
-    text-transform: uppercase;
-}
-
-#special-card a{
-    margin-top: 30px;
-}
-
-.card-block h3 {
-    margin: 0;
-    padding: 0;
-}
-
-.priority {
-    text-transform: uppercase;
-}
-
-.card-block {
-    border-radius: 10px;
-    background-color: #F5F5F5;
-    padding: 10px;
-    margin: 5px;
-}
-
-#welcome-text {
-    text-align: justify;
-}
-
-#special-card {
-    background-color: #9BD2D2;
-    border-radius: 10px;
-}
-
-.delete{
-    position: absolute;
-    width: 25px;
-    height: 25px;
-    top: 15px;
-    right: 30px;
-}
-.edit {
-    position: absolute;
-    width: 25px;
-    height: 25px;
-    top: 15px;
-    right: 75px;
-}
-
-.panda {
-    width: inherit;
-    display: block;
-    margin: 0 auto;
-}
-
-.card-title {
-    padding-top: 10px;
-}
-
-#site-content {
-    float: right;
-    margin-top: 52px;
-}
-
-footer {
-    background-color: #555;
-    color: white;
-    position: fixed;
-    height: 4rem;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    padding: 1rem;
+.center {
     text-align: center;
 }
-
-@media screen and (max-width: 767px) {
-    .sidenav {
-        height: auto;
-        padding: 15px;
-    }
-    .row.content {height:100%;}
+.card-image h4{
+    padding: 20px 20px 35px 20px;
+}
+.card .btn-floating {
+    float: right;
+    position: relative;
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
 }
 
-img {
-    width: 100px;
+.card i {
+    position: relative;
+    bottom: 13px;
+    line-height: 19px;
+}
+.edit {
+    display: none;
 }
 
-.btn-default {
-    margin-bottom: 10px;
-}
-.btn-default.yes{
-    margin-bottom: 0;
-    margin-left: 5px;
+.modal form {
+    padding: 80px;
 }
 
 .messageError {
-    color: #ff0c36;
+    color: #f00;
 }
+/*.card.small {*/
+    /*height: 200px;*/
+/*}*/
 
+/*.card.small .card-content{*/
+    /*height: 80%;*/
+/*}*/
+
+/*.card.small span{*/
+    /*height: 60%;*/
+/*}*/
