@@ -67,6 +67,10 @@
         <div id="logo">
             <img th:src="@{~/img/japanda.png}"/>
         </div>
+        <div th:if="${param.activate}" class="alert alert-info alert-dismissable">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Success!</strong> Your account has been activated!
+        </div>
     </div>
 
     <footer th:replace="fragments/footer :: footer"></footer>
