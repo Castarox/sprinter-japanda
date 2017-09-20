@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class TaskService {
-
     private final TaskRepository taskRepository;
 
     @Autowired
@@ -15,11 +14,7 @@ public class TaskService {
         this.taskRepository = taskRepository;
     }
 
-    public Task findById(Long id) {
-        return taskRepository.findOne(id);
-    }
-
-    public Task save(Task task) {
+    private Task save(Task task) {
         return taskRepository.save(task);
     }
 
@@ -34,7 +29,7 @@ public class TaskService {
         taskRepository.delete(id);
     }
 
-    public Task createTask(TaskForm taskForm, UserStory userStory) {
+    Task createTask(TaskForm taskForm, UserStory userStory) {
         String name = taskForm.getTaskName();
         String description = taskForm.getTaskDescription();
 
