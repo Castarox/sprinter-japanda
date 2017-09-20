@@ -1,5 +1,6 @@
 package com.example.sprinter.UserDetail;
 
+import com.example.sprinter.user.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -27,5 +28,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     private List<SimpleGrantedAuthority> getAuthority() {
         return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
+    }
+
+    public UserDetail createAndSaveUserDetailForUser(User user) {
+        UserDetail userDetail = new UserDetail();
+        userDetail.setId(user.getId());
+        userDetail.setName(user.getEmail());
+        userDetail.setPassword(user.getPassword());
+        return userDetailRepository.save(userDetail);
     }
 }
