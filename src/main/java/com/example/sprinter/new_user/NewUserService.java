@@ -1,7 +1,5 @@
 package com.example.sprinter.new_user;
 
-import com.example.sprinter.user.*;
-import org.h2.util.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 
@@ -35,8 +33,12 @@ public class NewUserService {
     }
 
     public NewUser save(NewUser newUser) {
-//        NewUser newUser = new NewUser(email, link);
         return newUserRepository.save(newUser);
+    }
+
+    public NewUser findByLink(HttpServletRequest request) {
+        String link = makeUrl(request);
+        return newUserRepository.findByLink(link);
     }
 
     private String makeUrl(HttpServletRequest request) {
@@ -48,5 +50,9 @@ public class NewUserService {
         String toBeReplaced = "mailing";
         String pageUrl = actualUrl.replace(toBeReplaced, "");
         return pageUrl + "registration/";
+    }
+
+    public void delete(NewUser newUser) {
+        newUserRepository.delete(newUser);
     }
 }
