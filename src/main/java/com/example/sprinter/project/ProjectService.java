@@ -4,7 +4,6 @@ import com.example.sprinter.form.ProjectForm;
 import com.example.sprinter.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.ModelMap;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -22,7 +21,7 @@ public class ProjectService {
         return projectRepository.findOne(id);
     }
 
-    public Project createProject(ProjectForm projectForm, User user) {
+    Project createProject(ProjectForm projectForm, User user) {
         String startDate = projectForm.getStartDate();
         String endDate = projectForm.getEndDate();
         String name = projectForm.getProjectName();
@@ -31,7 +30,7 @@ public class ProjectService {
         return save(new Project(name, owners, startDate, endDate, false));
     }
 
-    public Project save(Project project) {
+    private Project save(Project project) {
         return projectRepository.save(project);
     }
 
