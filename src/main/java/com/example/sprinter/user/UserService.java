@@ -12,9 +12,8 @@ public class UserService {
 
     private UserRepository userRepository;
 
-    public User saveUser(User user) {
-
-        return userRepository.save(user);
+    public void saveUser(User user) {
+        userRepository.save(user);
     }
 
     @Autowired
@@ -31,19 +30,19 @@ public class UserService {
         return null;
     }
 
-    public User changePassword(User user, String newPassword) {
+    void changePassword(User user, String newPassword) {
         user.setPassword(newPassword);
         UserDetail userDetail = user.getUserDetail();
         userDetail.setPassword(newPassword);
         user.setUserDetail(userDetail);
-        return saveUser(user);
+        saveUser(user);
     }
 
-    public User updateUserProjects(User user, Project project) {
+    public void updateUserProjects(User user, Project project) {
         Set<Project> projects = user.getProjects();
         projects.add(project);
         user.setProjects(projects);
-        return saveUser(user);
+        saveUser(user);
 
     }
 
