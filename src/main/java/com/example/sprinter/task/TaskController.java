@@ -13,7 +13,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 
 @Controller
-@SessionAttributes("user")
 @RequestMapping("/projects/{project_id}/user_story/{user_story_id}/tasks")
 public class TaskController {
     private final TaskService taskService;
@@ -27,8 +26,7 @@ public class TaskController {
     }
 
     @PostMapping("/new")
-    String add(@Valid @ModelAttribute("form") TaskForm taskForm, @PathVariable Long user_story_id, @PathVariable Long project_id, ModelMap model,
-               RedirectAttributes redirectAttributes) {
+    String add(@Valid @ModelAttribute("form") TaskForm taskForm, @PathVariable Long user_story_id, @PathVariable Long project_id) {
         UserStory userStory = userStoryService.findById(user_story_id);
         Task task = taskService.createTask(taskForm, userStory);
         userStory.getTaskSet().add(task);

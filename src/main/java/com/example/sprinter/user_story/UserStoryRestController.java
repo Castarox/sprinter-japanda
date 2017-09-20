@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 @RestController
-@SessionAttributes("user")
 @RequestMapping("projects/user_story")
 public class UserStoryRestController {
     private final UserStoryService userStoryService;

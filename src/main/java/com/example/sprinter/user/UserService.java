@@ -14,14 +14,13 @@ public class UserService {
 
     private UserRepository userRepository;
 
-    public User saveUser(User user) {
-
-        return userRepository.save(user);
-    }
-
     @Autowired
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
+    }
+
+    public User saveUser(User user) {
+        return userRepository.save(user);
     }
 
     public User getByLogin(String email) {
@@ -48,10 +47,4 @@ public class UserService {
         return saveUser(user);
 
     }
-
-    public User getUpdatedUser(User user) {
-        return this.getByLogin(user.getEmail());
-    }
-
-
 }
