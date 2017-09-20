@@ -5,8 +5,6 @@ import com.example.sprinter.project.Project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 @Service
@@ -33,7 +31,7 @@ public class UserService {
         return null;
     }
 
-    public User changePassword(User user, String newPassword){
+    public User changePassword(User user, String newPassword) {
         user.setPassword(newPassword);
         UserDetail userDetail = user.getUserDetail();
         userDetail.setPassword(newPassword);
@@ -41,11 +39,13 @@ public class UserService {
         return saveUser(user);
     }
 
-    public User updateUserProjects(User user, Project project){
+    public User updateUserProjects(User user, Project project) {
         Set<Project> projects = user.getProjects();
         projects.add(project);
         user.setProjects(projects);
         return saveUser(user);
 
     }
+
+
 }
