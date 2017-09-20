@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.util.Set;
 
 @Controller
 @SessionAttributes("user")
@@ -45,11 +44,8 @@ public class ProjectController {
         User user = (User) model.get("user");
         if (!binder.hasErrors()) {
             Project project = projectService.createProject(projectForm, user);
-            projectService.save(project);
-            Set<Project> projects = user.getProjects();
-            projects.add(project);
-            user.setProjects(projects);
-            model.replace("user", userService.saveUser(user));
+            user = userService.updateUserProjects((User) model.get("user"), project);
+            model.replace("user", user);
             redirectAttributes.addFlashAttribute("message", "Project created!");
             return "redirect:/projects/" + project.getId();
         } else {

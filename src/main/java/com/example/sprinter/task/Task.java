@@ -33,10 +33,9 @@ public class Task {
     public Task() {
     }
 
-    public Task(String name, String description, User user, UserStory userStory, State state, Integer storyPoint) {
+    public Task(String name, String description, UserStory userStory, State state, Integer storyPoint) {
         this.name = name;
         this.description = description;
-        this.user = user;
         this.userStory = userStory;
         this.state = state;
         this.storyPoint = storyPoint;

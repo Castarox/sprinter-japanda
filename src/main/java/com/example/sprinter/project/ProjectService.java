@@ -28,7 +28,7 @@ public class ProjectService {
         String name = projectForm.getProjectName();
         Set<User> owners = new HashSet<>();
         owners.add(user);
-        return new Project(name, owners, startDate, endDate, false);
+        return save(new Project(name, owners, startDate, endDate, false));
     }
 
     public Project save(Project project) {

@@ -1,14 +1,14 @@
 $(document).ready(function () {
 
     var currentId;
-   $(".delete-button").click(function () {
-       var text = $(this).parent().find(".card-title").html();
-       currentId = $(this).parent().find("h3").data("id");
-       $("#delete").find("p").html(text);
-   });
+    $(".delete-button").click(function () {
+        var text = $(this).parent().find(".tasks").html();
+        currentId = $(this).parent().find("h3").data("id");
+        $("#deleteTask").find("p").html(text);
+    });
 
     $(".yes").click(function () {
-        var url = "user_story/" + currentId;
+        var url = "tasks/remove/" + currentId;
         var token = $("meta[name='_csrf']").attr("content");
         var header = $("meta[name='_csrf_header']").attr("content");
         $.ajax({

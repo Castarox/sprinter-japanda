@@ -28,8 +28,8 @@ public class UserController {
 
     @GetMapping("")
     String getAll(Model model, ModelMap modelMap, Principal principal) {
-        User user = (User)modelMap.get("user");
-        if (user == null){
+        User user = (User) modelMap.get("user");
+        if (user == null) {
             User newUser = userService.getByLogin(principal.getName());
             modelMap.put("user", newUser);
         }
@@ -43,7 +43,7 @@ public class UserController {
     }
 
     @GetMapping("/user/password")
-    String indexEdit(){
+    String indexEdit() {
         return "user-edit-profile";
     }
 
@@ -51,8 +51,8 @@ public class UserController {
     String editPassword(ModelMap model,
                         @ModelAttribute("form") @Valid EditPasswordForm form,
                         BindingResult result,
-                        RedirectAttributes redirectAttributes){
-        if (!form.getConfirm().equals(form.getPassword()) || result.hasErrors()){
+                        RedirectAttributes redirectAttributes) {
+        if (!form.getConfirm().equals(form.getPassword()) || result.hasErrors()) {
             model.put("error", "Wrong password");
             return "user-edit-profile";
         }

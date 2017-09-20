@@ -1,11 +1,13 @@
 package com.example.sprinter.user;
 
 import com.example.sprinter.UserDetail.UserDetail;
+import com.example.sprinter.project.Project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class UserService {
@@ -15,12 +17,6 @@ public class UserService {
     public User saveUser(User user) {
 
         return userRepository.save(user);
-    }
-
-    public List<User> getAll() {
-        List<User> userDetails = new ArrayList<>();
-        userRepository.findAll().forEach(userDetails::add);
-        return userDetails;
     }
 
     @Autowired
@@ -43,6 +39,14 @@ public class UserService {
         userDetail.setPassword(newPassword);
         user.setUserDetail(userDetail);
         return saveUser(user);
+    }
+
+    public User updateUserProjects(User user, Project project){
+        Set<Project> projects = user.getProjects();
+        projects.add(project);
+        user.setProjects(projects);
+        return saveUser(user);
+
     }
 
     public User getUpdatedUser(User user) {

@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Component
-public class UserDetailsServiceImpl implements UserDetailsService{
+public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
     private UserDetailRepository userDetailRepository;
@@ -19,7 +19,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         UserDetail userDetail = userDetailRepository.findByName(email);
-        if (userDetail == null){
+        if (userDetail == null) {
             throw new UsernameNotFoundException("Invalid username or password");
         }
         return new org.springframework.security.core.userdetails.User(userDetail.getName(), userDetail.getPassword(), getAuthority());
