@@ -12,7 +12,7 @@ public class UserService {
 
     private UserRepository userRepository;
 
-    public void saveUser(User user) {
+    public void save(User user) {
         userRepository.save(user);
     }
 
@@ -35,14 +35,14 @@ public class UserService {
         UserDetail userDetail = user.getUserDetail();
         userDetail.setPassword(newPassword);
         user.setUserDetail(userDetail);
-        saveUser(user);
+        save(user);
     }
 
     public void updateUserProjects(User user, Project project) {
         Set<Project> projects = user.getProjects();
         projects.add(project);
         user.setProjects(projects);
-        saveUser(user);
+        save(user);
 
     }
 
