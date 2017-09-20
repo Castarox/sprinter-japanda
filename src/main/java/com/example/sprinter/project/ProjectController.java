@@ -43,8 +43,7 @@ public class ProjectController {
         User user = (User) model.get("user");
         if (!binder.hasErrors()) {
             Project project = projectService.createProject(projectForm, user);
-            user = userService.updateUserProjects((User) model.get("user"), project);
-            model.replace("user", user);
+            userService.updateUserProjects(user, project);
             redirectAttributes.addFlashAttribute("message", "Project created!");
             return "redirect:/projects/" + project.getId();
         } else {
