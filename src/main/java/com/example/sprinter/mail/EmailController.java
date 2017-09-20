@@ -32,6 +32,7 @@ public class EmailController {
         context.setVariable("title", "Activation link for your account");
 
         String email = (String) newMap.get("email");
+        NewUser newUser = newUserService.findByEmail(email);
         String link = newUserService.generateLink(request);
 
         context.setVariable("link", link);
@@ -39,7 +40,11 @@ public class EmailController {
         String body = templateEngine.process("activate_email", context);
 
         emailSender.sendEmail(email, "Sprinter - registration", body);
-        NewUser newUser = new NewUser(email,link);
+        if (newUser == null) {
+            newUser = new NewUser(email,link);
+        } else {
+            newUser.setLink(link);
+        }
         newUserService.save(newUser);
         Map<String, String> map = new HashMap<>();
         map.put("success", "Activation link sent");
