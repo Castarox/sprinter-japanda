@@ -6,6 +6,8 @@ import com.example.sprinter.project.Project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -13,14 +15,13 @@ public class UserService {
 
     private UserRepository userRepository;
 
-    public User saveUser(User user) {
-
-        return userRepository.save(user);
-    }
-
     @Autowired
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
+    }
+
+    public User saveUser(User user) {
+        return userRepository.save(user);
     }
 
     public User getByLogin(String email) {
