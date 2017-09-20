@@ -15,17 +15,13 @@ import java.security.Principal;
 @ControllerAdvice
 public class ControllerAdviceImpl {
 
-    private User user;
     @Autowired
     private UserService userService;
 
     @ModelAttribute("user")
     public User getUser(Principal principal){
         if (principal != null) {
-            if (user == null) {
-                user = userService.getByLogin(principal.getName());
-            }
-            return user;
+            return userService.getByLogin(principal.getName());
         }
         return new User();
     }
