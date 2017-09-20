@@ -1,14 +1,11 @@
 package com.example.sprinter.task;
 
 import com.example.sprinter.form.TaskForm;
-import com.example.sprinter.user.User;
 import com.example.sprinter.user_story.UserStory;
 import com.example.sprinter.user_story.UserStoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
@@ -17,12 +14,12 @@ import javax.validation.Valid;
 public class TaskController {
     private final TaskService taskService;
 
-    @Autowired
-    private UserStoryService userStoryService;
+    private final UserStoryService userStoryService;
 
     @Autowired
-    TaskController(TaskService taskService) {
+    TaskController(TaskService taskService, UserStoryService userStoryService) {
         this.taskService = taskService;
+        this.userStoryService = userStoryService;
     }
 
     @PostMapping("/new")
