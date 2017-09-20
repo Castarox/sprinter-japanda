@@ -6,28 +6,23 @@
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top" th:fragment="navbar">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" th:href="@{/}">Sprinter</a>
-        </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav">
-                <li><a th:href="@{/}">Home</a></li>
-                <li><a href="#">About us</a></li>
-                <li><a href="#">Project</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a th:href="@{~/user}"><span class="glyphicon glyphicon-user"></span >
-                    <span th:object="${user}" th:text="${user.getName()}"></span></a></li>
-                <li><a th:href="@{~/logout}"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
-            </ul>
-        </div>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header" th:fragment="navbar">
+        <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row">
+                <!-- Title -->
+                <span class="mdl-layout-title"><a class="mdl-navigation__link" th:href="@{/}">Sprinter</a></span>
+                <!-- Add spacer, to align navigation to the right -->
+                <div class="mdl-layout-spacer"></div>
+                <!-- Navigation. We hide it in small screens. -->
+                <nav class="mdl-navigation mdl-layout--large-screen-only">
+                    <a class="mdl-navigation__link" href="">
+                        <i class="material-icons">person</i>
+                        <span th:text="${user.getName()}"></span>
+                    </a>
+                    <a class="mdl-navigation__link" th:href="@{~/logout}"><i class="material-icons">exit_to_app</i> Logout</a>
+                </nav>
+            </div>
+        </header>
     </div>
 </nav>
 </body>

@@ -26,7 +26,7 @@ public class UserController {
     String getAll(Model model, ModelMap modelMap) {
         User user = (User)modelMap.get("user");
         model.addAttribute("projects", user.getProjects());
-        return "index";
+        return "index2";
     }
 
     @GetMapping("/user")

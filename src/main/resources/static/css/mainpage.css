@@ -7,6 +7,11 @@
     margin-bottom: 80px;
 }
 
+.sidenav {
+    margin-top: 64px;
+    position: fixed;
+}
+
 .row.content {height: 100%;}
 
 .card-block a{
@@ -80,16 +85,6 @@
     width: inherit;
     display: block;
     margin: 0 auto;
-}
-
-.sidenav {
-    padding-top: 20px;
-    background-color: #f1f1f1;
-    position: fixed;
-    height: 100rem;
-    top:52px;
-    left:0;
-    margin-bottom: 0;
 }
 
 .card-title {
