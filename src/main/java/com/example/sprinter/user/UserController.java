@@ -47,7 +47,6 @@ public class UserController {
             return "user-edit-profile";
         }
         User user = userService.changePassword((User) model.get("user"), form.getPassword());
-        model.replace("user", user);
         redirectAttributes.addAttribute("success", "success");
         return "redirect:/user";
     }
