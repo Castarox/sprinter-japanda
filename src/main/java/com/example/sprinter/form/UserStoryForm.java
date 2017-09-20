@@ -1,6 +1,5 @@
 package com.example.sprinter.form;
 
-import com.example.sprinter.project.Project;
 
 import javax.validation.constraints.NotNull;
 
