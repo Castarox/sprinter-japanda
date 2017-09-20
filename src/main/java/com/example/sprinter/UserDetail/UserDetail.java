@@ -10,7 +10,6 @@ import javax.validation.constraints.*;
 public class UserDetail {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
 
