@@ -12,13 +12,13 @@ public class UserService {
 
     private UserRepository userRepository;
 
-    public void save(User user) {
-        userRepository.save(user);
-    }
-
     @Autowired
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
+    }
+
+    public void save(User user) {
+        userRepository.save(user);
     }
 
     public User getByLogin(String email) {
