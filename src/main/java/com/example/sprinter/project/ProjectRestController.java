@@ -1,7 +1,6 @@
 package com.example.sprinter.project;
 
 import com.example.sprinter.form.ProjectForm;
-import com.example.sprinter.user.User;
 import com.example.sprinter.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
