@@ -18,7 +18,7 @@ public class NewUserService {
     }
 
     public String generateLink(HttpServletRequest request) {
-        String userLink = makeRegistartionPage(request);
+        String userLink = makeRegistrationPage(request);
         Random random = new Random();
         Integer randomNumber;
         NewUser checkingUser;
@@ -43,7 +43,7 @@ public class NewUserService {
         return request.getRequestURL().toString();
     }
 
-    private String makeRegistartionPage(HttpServletRequest request) {
+    private String makeRegistrationPage(HttpServletRequest request) {
         String actualUrl = makeUrl(request);
         String toBeReplaced = "mailing";
         String pageUrl = actualUrl.replace(toBeReplaced, "");
