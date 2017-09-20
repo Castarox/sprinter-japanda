@@ -8,15 +8,18 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.security.Principal;
 
 @ControllerAdvice
 public class ControllerAdviceImpl {
 
+    private final UserService userService;
+
     @Autowired
-    private UserService userService;
+    public ControllerAdviceImpl(UserService userService) {
+        this.userService = userService;
+    }
 
     @ModelAttribute("user")
     public User getUser(Principal principal){
@@ -27,7 +30,7 @@ public class ControllerAdviceImpl {
     }
 
     @ExceptionHandler(value = {MethodArgumentTypeMismatchException.class})
-    protected String handle(final HttpServletRequest request, final HttpServletResponse response){
+    protected String handle(final HttpServletResponse response){
         response.setStatus(404);
         return "forward:404";
     }
