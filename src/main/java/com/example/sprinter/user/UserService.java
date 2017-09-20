@@ -1,12 +1,11 @@
 package com.example.sprinter.user;
 
 import com.example.sprinter.UserDetail.UserDetail;
+import com.example.sprinter.form.*;
 import com.example.sprinter.project.Project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 @Service
@@ -54,4 +53,14 @@ public class UserService {
     }
 
 
+    public User saveNewUser(RegistrationForm registrationForm) {
+        User newUser = new User();
+        newUser.setId(0L);
+        newUser.setName(registrationForm.getName());
+        newUser.setEmail(registrationForm.getEmail());
+        newUser.setPassword(registrationForm.getPassword());
+        newUser.setSurname(registrationForm.getSurname());
+        newUser = saveUser(newUser);
+        return newUser;
+    }
 }
