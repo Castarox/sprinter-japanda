@@ -29,7 +29,7 @@ $(document).ready(function () {
 
         $(form).find("input[name='userStoryName']").keyup(function () {
             if ($(this).val().length < 3){
-                $(".storyNameError").text("User story name to short");
+                $(".storyNameError").text("User story name too short");
                 $(this).css("border", "1px solid red");
                 isNameCorrect = false;
             } else {
@@ -42,7 +42,7 @@ $(document).ready(function () {
         $(form).change(function () {
             var input =$(this).find("input[name='priority']");
             if (!input.is(':checked')){
-                $(".priorityError").text("User story name to short");
+                $(".priorityError").text("Priority is required");
                 input.css("border", "1px solid red");
                 isPriorityCorrect = false;
             } else {
@@ -62,6 +62,8 @@ $(document).ready(function () {
     function clear(form) {
         $(form).find("input[name='userStoryName']").val("").css("border", "1px solid #ccc");
         $(form).find(".storyNameError").text("");
+
+        $(form).find("input[name='description']").val("");
 
         $(form).find("input[name='priority']").prop('checked', false);
         $(form).find(".priorityError").text("");
