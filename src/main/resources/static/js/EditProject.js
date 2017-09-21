@@ -79,7 +79,7 @@ $(document).ready(function () {
         $(form).find("input[name='endDate']").val(endDate);
         $(form).find("label[for='projectNameEdit']").addClass("active");
         $(form).find("label[for='startDateEdit']").addClass("active");
-        $(form).find("label[for='editDateEdit']").addClass("active")
+        $(form).find("label[for='endDateEdit']").addClass("active")
     });
     
     $(".editProject .toValid").click(function (e) {
