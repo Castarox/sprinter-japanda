@@ -1,6 +1,7 @@
 package com.example.sprinter.user;
 
 import com.example.sprinter.UserDetail.UserDetail;
+import com.example.sprinter.form.*;
 import com.example.sprinter.project.Project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,8 +18,8 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public void save(User user) {
-        userRepository.save(user);
+    public User save(User user) {
+        return userRepository.save(user);
     }
 
     public User getByLogin(String email) {
@@ -46,5 +47,19 @@ public class UserService {
 
     }
 
+    public User getUpdatedUser(User user) {
+        return this.getByLogin(user.getEmail());
+    }
 
+
+    public User saveNewUser(RegistrationForm registrationForm) {
+        User newUser = new User();
+        newUser.setId(0L);
+        newUser.setName(registrationForm.getName());
+        newUser.setEmail(registrationForm.getEmail());
+        newUser.setPassword(registrationForm.getPassword());
+        newUser.setSurname(registrationForm.getSurname());
+        newUser = save(newUser);
+        return newUser;
+    }
 }
