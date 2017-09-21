@@ -31,11 +31,26 @@
 .edit {
     display: none;
 }
+.card .userStoryCard {
+    padding: 0;
+}
+.usGO {
+    margin-left: 101px;
+}
+.radio-inputs{
+    display: block;
+    margin-bottom: 50px !important;
+}
+.radio-inputs label{
+    margin-right: 60px;
+}
 
 .modal form {
     padding: 80px;
 }
-
+.toValid {
+    margin-top:20px;
+}
 .messageError {
     color: #f00;
 }
