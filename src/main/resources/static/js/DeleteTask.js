@@ -2,8 +2,8 @@ $(document).ready(function () {
 
     var currentId;
     $(".delete-button").click(function () {
-        var text = $(this).parent().find(".tasks").html();
-        currentId = $(this).parent().find("h3").data("id");
+        var text = $(this).parents('.card').find("h3").text();
+        currentId = $(this).parents(".m12").attr("id");
         $("#deleteTask").find("p").html(text);
     });
 
@@ -18,7 +18,8 @@ $(document).ready(function () {
             },
             url: url,
             success: function(msg) {
-                $('#'+ currentId).remove()
+                $('#'+ currentId).remove();
+                $('.modal').modal('close');
             }
         })
     })

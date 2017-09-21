@@ -47,13 +47,13 @@
     <form class="center addUserStory" method="POST" th:action="@{${project.getId()}  + '/user_story/new'}">
         <div class="row">
             <div class="input-field col s6 m10 offset-m1">
-                <label for="userStoryName">Project Name</label>
+                <label for="userStoryName">User Story Name</label>
                 <input name="userStoryName" id="userStoryName" type="text" />
                 <span class="storyNameError messageError"></span>
             </div>
             <div class="input-field col s6 m10 offset-m1">
-                <label class="active" for="description">Start Date</label>
-                <input name="description" id="description" class="datepicker" type="date" />
+                <label class="active" for="description">Description</label>
+                <input name="description" id="description" type="text" />
                 <span class="startDateError messageError"></span>
             </div>
             <p>
@@ -79,14 +79,14 @@
     <form class="center editUserStory" method="POST" th:action="@{${project.getId()}  + '/user_story/new'}">
         <div class="row">
             <div class="input-field col s6 m10 offset-m1">
-                <label for="userStoryName">Project Name</label>
+                <label for="userStoryName">User Story Name</label>
                 <input name="userStoryName" id="userStoryNameEdit" type="text" />
                 <input type="hidden" name="projectId" th:value="${project.getId()}"/>
                 <span class="storyNameError messageError"></span>
             </div>
             <div class="input-field col s6 m10 offset-m1">
-                <label class="active" for="description">Start Date</label>
-                <input name="description" id="descriptionEdit" class="datepicker" type="date" />
+                <label class="active" for="description">Description</label>
+                <input name="description" id="descriptionEdit" type="text" />
                 <span class="startDateError messageError"></span>
             </div>
             <p>
