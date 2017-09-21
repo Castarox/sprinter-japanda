@@ -1,5 +1,7 @@
 $(document).ready(function () {
 
+    $(".modal").modal();
+
     $("#email").on("keyup", function () {
         var email = $(this).val();
         if (!isEmail(email)) {
@@ -64,7 +66,7 @@ $(document).ready(function () {
             success: function (response) {
                 console.log(response["success"]);
                 $("#submit-email").hide(1000);
-                $("#email").parents(".form-group").hide(1000);
+                $("#email").parents(".input-field").hide(1000);
                 $("#email").parents("form").find("p").toggleClass("text-danger");
                 $("#email").parents("form").find("p").text("An activation link has been sent to your email");
             }

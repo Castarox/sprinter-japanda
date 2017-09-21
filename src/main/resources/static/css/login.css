@@ -18,7 +18,10 @@ img {
   width: 500px;
 }
 
-h1 {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: bold;
+.modal {
+  width: 32%;
 }
+/*h1 {*/
+  /*font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+  /*font-weight: bold;*/
+/*}*/
