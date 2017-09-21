@@ -20,7 +20,7 @@
     <div class="col s12 m10">
         <div class="row">
             <div class="col s12 m4" th:id="${project.getId()}" th:each="project: ${projects}" >
-                <div class="card grey lighten-5 z-depth-5">
+                <div class="card grey lighten-5 z-depth-2">
                     <div class="card-content">
                         <h3 th:attr="data-id=${project.getId()}" th:text="${project.getName()}" class="card-title flow-text">Add new project</h3>
                         <p th:attr="data-project-end=${project.getEndDate()}, data-project-start=${project.getStartDate()}" th:text="'Deadline '  + ${project.getEndDate()}">Deadline: 20-02-2017</p>
