@@ -13,7 +13,7 @@
 </head>
 <body>
     <header>
-        <div class="navbar-fixed" th:fragment="navbar">
+        <div class="navbar-fixed">
         <nav class="teal darken-4">
             <div class="nav-wrapper">
                 <a th:href="@{/}" class="brand-logo">Sprinter</a>
@@ -42,7 +42,7 @@
     </header>
 
     <div class="row">
-        <div class="row center-align">
+        <div class="center-align">
             <div th:if="${error != null}" th:text="${error}" class="alert alert-danger">ERROR</div>
             <h1>Sprinter - Codecool Management App</h1>
             <div id="logo">
