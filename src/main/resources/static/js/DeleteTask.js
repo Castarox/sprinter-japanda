@@ -2,9 +2,9 @@ $(document).ready(function () {
 
     var currentId;
     $(".delete-button").click(function () {
-        var text = $(this).parents('.card').find("h3").text();
-        currentId = $(this).parents(".m12").attr("id");
-        $("#deleteTask").find("p").html(text);
+        var text = $(this).parents('li').find(".title").text();
+        currentId = $(this).parents("li").attr("id");
+        $("#delete").find("p").html(text);
     });
 
     $(".yes").click(function () {
