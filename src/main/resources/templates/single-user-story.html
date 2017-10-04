@@ -23,11 +23,12 @@
                 <div class="input-field col s12">
                     <input id="title_user_story" type="text" class="validate" data-length="90"
                            th:value="${userStory.getName()}"/>
-                    <!--</input>-->
                     <label for="title_user_story">User Story</label>
                 </div>
             </div>
-
+            <!--<a th:href="@{'~/projects/user_story/' + ${userStory.getId()}}">DELETE</a>-->
+            <a class="delete-button modal-trigger" href="#delete-user-story">DELETE</a>
+            <!--projects/user_story/{id}-->
 
             <div class="row">
                 <div class="input-field col s12">
@@ -129,6 +130,18 @@
         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">No</a>
     </div>
 </div>
+
+<div id="delete-user-story" class="modal">
+    <div class="modal-content">
+        <h4>Are you sure you want remove this User Story?</h4>
+        <p th:text="${userStory.getName()}">A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+        <a th:id="${userStory.getId()}" href="#!" class="modal-action waves-effect waves-green btn-flat yes yes-story">Yes</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">No</a>
+    </div>
+</div>
+
 <script th:src="@{~/webjars/jquery/1.9.1/jquery.min.js}" src="webjars/jquery/1.9.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 <script th:src="@{~/js/EditTask.js}" type="text/javascript"></script>

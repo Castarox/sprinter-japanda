@@ -1,10 +1,14 @@
 $(document).ready(function () {
 
     var currentId;
+    $(".delete-user-story").click(function () {
+        var text = $(this).parents('li').find(".title").text();
+        currentId = $(this).parents("li").attr("id");
+        $("#delete").find("p").html(text);
+    });
 
-    $(".yes").click(function () {
-        currentId = $(this).attr('id');
-        var url = "";
+    $(".yes-story").click(function () {
+        var url = "tasks/remove/" + currentId;
         var token = $("meta[name='_csrf']").attr("content");
         var header = $("meta[name='_csrf_header']").attr("content");
         $.ajax({
@@ -16,7 +20,6 @@ $(document).ready(function () {
             success: function(msg) {
                 $('#'+ currentId).remove();
                 $('.modal').modal('close');
-                window.location.replace('/');
             }
         })
     })
