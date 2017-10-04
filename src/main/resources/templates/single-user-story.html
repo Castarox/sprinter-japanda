@@ -43,10 +43,7 @@
                 </h3>
                 <div class="col m10 offset-m1">
                     <ul class="collection">
-                        <a th:href="@{'dupa' + '/user_story/'+ 'dupa2'}"
-                           th:each="task: ${tasks}">
-
-                            <li th:id="${task.getId()}" class="collection-item avatar">
+                            <li th:each="task: ${tasks}" th:id="${task.getId()}" class="collection-item avatar">
                                 <div th:switch="${task.getState()}">
                                     <img th:case="${T(com.example.sprinter.task.State).NEW}" th:src="@{~/img/L.png}"
                                          alt="" class="circle"/>
@@ -61,12 +58,12 @@
                                     <i class="material-icons">
                                         clear</i>
                                 </a>
-                                <!--<a href="#" class="secondary-content">dupsko</a>-->
-                                <p th:text="${task.getDescription()}">Description</p>
+                                <a class="secondary-content btn-floating btn-large waves-effect waves-light red lighten-1 modal-trigger edit-button"
+                                   href="#edit-task-form"><i class="material-icons">mode_edit</i></a>
+
+                                <p th:text="${task.getDescription()}" class="description">Description</p>
                                 <p th:text="${task.getUser()}">User</p>
                             </li>
-                        </a>
-
                     </ul>
                 </div>
             </div>
