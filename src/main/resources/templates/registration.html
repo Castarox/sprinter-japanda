@@ -6,33 +6,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link th:href="@{~/webjars/bootstrap/3.3.6/css/bootstrap.min.css}" href="webjars/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
     <link th:href="@{~/css/mainpage.css}" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" />
+
 </head>
 <body>
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" th:href="@{/}">Sprinter</a>
-        </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav">
-                <li class="active"><a th:href="@{/}">Home</a></li>
-                <li><a href="#">About us</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </div>
+    <header>
+        <div class="navbar-fixed">
+        <nav class="teal darken-4">
+            <div class="nav-wrapper">
+                <a th:href="@{/}" class="brand-logo">Sprinter</a>
+
+
+                <form th:action="@{~/login}" method="POST" class="navbar-form navbar-right">
+
+                    <ul class="right hide-on-med-and-down">
+                        <div class="row">
+                            <li>
+                                    <div class="input-field col s6">
+                                        <input th:type="text" class="validate" id="username" name="username" th:placeholder="Login" th:required="required" th:autofocus="login"/>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input th:type="password" class="validate" id="password" name="password" th:placeholder="Password" th:required="required"/>
+                                    </div>
+                            </li>
+                            <li><button type="submit" class="waves-effect waves-light btn">Login</button></li>
+                            <li><button href="#modal1" type="button" id="signin" class="waves-effect waves-light btn modal-trigger signin">Sign in</button></li>
+                        </div>
+                    </ul>
+                </form>
+            </div>
+        </nav>
     </div>
-</nav>
+    </header>
+
+
+<!--<nav class="navbar navbar-inverse navbar-fixed-top">-->
+    <!--<div class="container-fluid">-->
+        <!--<div class="navbar-header">-->
+            <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+            <!--</button>-->
+            <!--<a class="navbar-brand" th:href="@{/}">Sprinter</a>-->
+        <!--</div>-->
+        <!--<div class="collapse navbar-collapse" id="myNavbar">-->
+            <!--<ul class="nav navbar-nav">-->
+                <!--<li class="active"><a th:href="@{/}">Home</a></li>-->
+                <!--<li><a href="#">About us</a></li>-->
+                <!--<li><a href="#">Contact</a></li>-->
+            <!--</ul>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</nav>-->
 
 <div class="container-fluid text-center">
     <div class="row content">
         <div id="site-content" class="col-sm-12">
-    <h1>Registration</h1>
     <hr/>
         <h1 th:text="${error}">test</h1>
         <div class="col-md-12 personal-info">
