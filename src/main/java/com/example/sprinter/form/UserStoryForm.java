@@ -1,13 +1,15 @@
 package com.example.sprinter.form;
 
 
+import com.example.sprinter.user_story.PriorityEnum;
+
 import javax.validation.constraints.NotNull;
 
 public class UserStoryForm {
     @NotNull
     private String userStoryName;
     private String description;
-    private String priority;
+    private PriorityEnum priority;
     private String projectId;
 
     public String getUserStoryName() {
@@ -26,11 +28,11 @@ public class UserStoryForm {
         this.description = description;
     }
 
-    public String getPriority() {
+    public PriorityEnum getPriority() {
         return priority;
     }
 
-    public void setPriority(String priority) {
+    public void setPriority(PriorityEnum priority) {
         this.priority = priority;
     }
 
