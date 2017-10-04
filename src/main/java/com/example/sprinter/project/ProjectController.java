@@ -33,7 +33,7 @@ public class ProjectController {
         }
         model.addAttribute("project", project);
         model.addAttribute("userStories", project.getUserStories());
-        return "project";
+        return "single-project";
     }
 
     @PostMapping("/new")

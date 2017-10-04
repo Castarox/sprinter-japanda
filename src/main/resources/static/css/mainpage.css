@@ -54,14 +54,17 @@
 .messageError {
     color: #f00;
 }
-/*.card.small {*/
-    /*height: 200px;*/
-/*}*/
+.collection a {
+    color: #000;
+    text-decoration: none;
+}
 
-/*.card.small .card-content{*/
-    /*height: 80%;*/
-/*}*/
+.collection p {
+    font-size: 14px;
+    font-weight: 400;
+    color: #3E3E3E;
+}
 
-/*.card.small span{*/
-    /*height: 60%;*/
-/*}*/
+.collection a li {
+    border-bottom: 1px solid #e0e0e0 !important;
+}
