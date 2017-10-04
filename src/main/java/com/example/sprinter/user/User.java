@@ -43,6 +43,7 @@ public class User {
     private String password;
 
     @OneToMany(mappedBy = "user")
+    @OrderBy("name ASC")
     private Set<Task> tasks;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
