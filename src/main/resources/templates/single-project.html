@@ -26,9 +26,9 @@
                        th:each="userStory: ${userStories}">
                         <li class="collection-item avatar">
                             <div th:switch="${userStory.getPriority()}">
-                                <img th:case="${'low'}" th:src="@{~/img/L.png}" alt="" class="circle"/>
-                                <img th:case="${'medium'}" th:src="@{~/img/M.png}" alt="" class="circle"/>
-                                <img th:case="${'high'}" th:src="@{~/img/H.png}" alt="" class="circle"/>
+                                <img th:case="${T(com.example.sprinter.user_story.PriorityEnum).LOW}" th:src="@{~/img/L.png}" alt="" class="circle"/>
+                                <img th:case="${T(com.example.sprinter.user_story.PriorityEnum).MEDIUM}" th:src="@{~/img/M.png}" alt="" class="circle"/>
+                                <img th:case="${T(com.example.sprinter.user_story.PriorityEnum).HIGH}" th:src="@{~/img/H.png}" alt="" class="circle"/>
                             </div>
                             <span class="title" th:text="${userStory.getName()}">Title</span>
                             <p th:text="${userStory.getDescription()}">Description</p>
@@ -61,15 +61,15 @@
             </div>
             <div class="col s6 m10 offset-m1">
                 <p class="col m3 offset-m1">
-                    <input class="" name="priority" type="radio" id="priority-low" value="low"/>
+                    <input class="" name="priority" type="radio" id="priority-low" value="LOW"/>
                     <label for="priority-low">Low</label>
                 </p>
                 <p class="col m3">
-                    <input class="" name="priority" type="radio" id="priority-medium" value="medium"/>
+                    <input class="" name="priority" type="radio" id="priority-medium" value="MEDIUM"/>
                     <label for="priority-medium">Medium</label>
                 </p>
                 <p class="col m3 ">
-                    <input class="" name="priority" type="radio" id="priority-high" value="high"/>
+                    <input class="" name="priority" type="radio" id="priority-high" value="HIGH"/>
                     <label for="priority-high">High</label>
                 </p>
                 <span class="priorityError messageError"></span>
