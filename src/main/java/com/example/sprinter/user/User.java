@@ -43,7 +43,7 @@ public class User {
     private String password;
 
     @OneToMany(mappedBy = "user")
-    @OrderBy("name ASC")
+    @OrderBy("LOWER(name) ASC")
     private Set<Task> tasks;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

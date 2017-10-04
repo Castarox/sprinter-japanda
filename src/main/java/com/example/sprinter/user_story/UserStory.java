@@ -21,7 +21,7 @@ public class UserStory {
     @JoinColumn(name = "project_id")
     private Project project;
     @OneToMany(mappedBy = "userStory", cascade = CascadeType.REMOVE, orphanRemoval = true)
-    @OrderBy("name ASC")
+    @OrderBy("LOWER(name) ASC")
     private Set<Task> taskSet;
 
     UserStory() {
