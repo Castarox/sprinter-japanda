@@ -7,7 +7,7 @@ $(document).ready(function () {
         var isNameCorrect = nameCorrect;
 
         console.log(form);
-        $(form).change(function () {
+        $(form).on('input', function () {
 
             var input = $(form).find("input[name='taskName']");
             var name = input.val();
@@ -49,9 +49,9 @@ $(document).ready(function () {
         var form = $(".editTask");
         clear(form);
         validate(form, true);
-        var name = $(this).parents('.card').find("h3").text();
-        var description = $(this).parents('.card').find("p").text();
-        id = $(this).parents(".m12").attr("id");
+        var name = $(this).parents('li').find(".title").text();
+        var description = $(this).parents('li').find(".description").text();
+        id = $(this).parents("li").attr("id");
         console.log(id);
         $(form).find("label[for='taskNameEdit']").addClass("active");
         $(form).find("label[for='taskDescriptionEdit']").addClass("active");
