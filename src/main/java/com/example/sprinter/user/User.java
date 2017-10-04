@@ -20,6 +20,7 @@ public class User {
     private Long id;
 
     @ManyToMany(fetch = FetchType.EAGER)
+    @OrderBy("name ASC")
     @JoinTable(name = "app_user_project", joinColumns = {
             @JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "project_id")})
@@ -42,6 +43,7 @@ public class User {
     private String password;
 
     @OneToMany(mappedBy = "user")
+    @OrderBy("name ASC")
     private Set<Task> tasks;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
