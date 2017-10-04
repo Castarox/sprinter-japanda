@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <title>Title</title>
 </head>
 <body>
-    <div class="col-sm-2 sidenav" th:fragment="project-sidenav" th:object="${project}">
-        <p><a th:href="@{'/projects/' + ${project.getId()}}"><img th:src="@{~/img/main-project.png}"/></a><h4> Project</h4></p>
-        <p><a href="#"><img th:src="@{~/img/tasks.png}"/></a><h4> Tasks</h4></p>
-        <p><a href="#"><img th:src="@{~/img/done.png}"/></a><h4> Completed</h4></p>
-    </div>
+<ul id="slide-out" class="side-nav fixed grey lighten-5" th:fragment="project-sidenav">
+    <li><a th:href="@{'/projects/' + ${project.getId()}}"><i class="material-icons">view_list</i>Projects</a></li>
+    <li><a href="#!"><i class="material-icons">people</i>Teams</a></li>
+    <li><a href="#!"><i class="material-icons">equalizer</i>Statistics</a></li>
+</ul>
+<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
 </body>
 </html>
