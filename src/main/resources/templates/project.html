@@ -14,11 +14,12 @@
 <header th:replace="fragments/navbar :: navbar"></header>
 <div class="row">
     <div class="col s0 m2 grey lighten-5">
-        <div th:replace="fragments/sidenav :: sidenav"></div>
+        <div th:replace="fragments/project-sidenav :: project-sidenav"></div>
     </div>
     <div class="col s12 m10">
         <div class="row">
             <div class="col s12 m12 center" th:id="${userStory.getId()}" th:each="userStory: ${userStories}" >
+                <h1 th:text="${project.getName()}">Projekt</h1>
                 <div class="card grey lighten-5 z-depth-2">
                     <div class="card-content userStoryCard">
                         <h3 th:text="${userStory.getName()}" class="card-title flow-text">Add new project</h3>
@@ -116,7 +117,7 @@
 </div>
 <div id="delete" class="modal">
     <div class="modal-content">
-        <h4>Are you sure you want remove this project?</h4>
+        <h4>Are you sure you want remove this user story?</h4>
         <p>A bunch of text</p>
     </div>
     <div class="modal-footer">
