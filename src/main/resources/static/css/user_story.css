@@ -12,3 +12,13 @@ li a.secondary-content.lighten-1.modal-trigger.edit-button {
     right: 66px;
     top: 6px;
 }
+
+.priority img{
+    width: 56px;
+    height: 56px;
+    float: right;
+    margin-right: 15px;
+    /*position: absolute;*/
+    /*top:50px;*/
+    /*right: 25px;*/
+}
