@@ -9,7 +9,7 @@ $(document).ready(function () {
         var currentId = $('#title_user_story').data('id');
         var url = "/projects/user_story/edit/" + currentId;
         var name = $('#title_user_story').val();
-        var description = $('#description_user_story').text();
+        var description = $('#description_user_story').val();
         var projectId = $('#delete-user-story').find('.yes-story').data('project');
         var data = {userStoryName:name,
             description: description,
