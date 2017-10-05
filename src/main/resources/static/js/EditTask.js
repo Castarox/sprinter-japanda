@@ -90,4 +90,40 @@ $(document).ready(function () {
 
 
     });
+    
+    $('.state-img').click(function (e) {
+        e.preventDefault();
+        var id = $(this).parents("li").attr("id");
+        var state = $(this).find('img').data('id');
+        var token = $("meta[name='_csrf']").attr("content");
+        var header = $("meta[name='_csrf_header']").attr("content");
+        var data = {taskId : id, state:state};
+        var url = "tasks/edit/" + id + "/state";
+
+        $.ajax({
+            type: "POST",
+            beforeSend: function (request) {
+                request.setRequestHeader(header, token);
+            },
+            url: url,
+            data: JSON.stringify(data),
+            contentType: "application/json",
+            dataType: "json",
+            success: function (response) {
+                console.log("hura");
+                switch (state){
+                    case 'new':
+                        $('#'+ id).find('.state-img').html($('.inProgress-h').clone());
+                        break;
+                    case 'inProgress':
+                        $('#'+ id).find('.state-img').html($('.done-h').clone());
+                        break;
+                    case 'done':
+                        $('#'+ id).find('.state-img').html($('.inProgress-h').clone());
+                        break;
+                }
+            }
+        })
+
+    })
 });
