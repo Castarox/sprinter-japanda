@@ -12,6 +12,9 @@
     <link th:href="@{~/css/user_story.css}" rel="stylesheet" type="text/css"/>
 </head>
 <body>
+<img th:src="@{~/img/L.png}" alt="" data-id="new" class="circle new-h" hidden="hidden"/>
+<img th:src="@{~/img/M.png}" alt="" data-id="inProgress" class="circle inProgress-h" hidden="hidden"/>
+<img th:src="@{~/img/H.png}" alt="" data-id="done" class="circle done-h" hidden="hidden"/>
 <header th:replace="fragments/navbar :: navbar"></header>
 <div class="row">
     <div class="col s0 m2 grey lighten-5">
@@ -20,7 +23,7 @@
     <div class="col s12 m10">
         <div class="row">
             <div class="row user_story_title">
-                <div class="input-field col s9">
+                <div class="input-field col s9 offset-s1">
                     <input id="title_user_story" th:attr="data-id=${userStory.getId()}" type="text" class="validate" data-length="90"
                            th:value="${userStory.getName()}"/>
                     <label for="title_user_story">User Story</label>
@@ -42,7 +45,7 @@
 
 
             <div class="row">
-                <div class="input-field col s9">
+                <div class="input-field col s9 offset-s1">
                     <textarea id="description_user_story" class="materialize-textarea"
                               th:text="${userStory.getDescription()}" data-length="120"></textarea>
                     <label for="description_user_story">Description</label>
@@ -62,12 +65,14 @@
                     <ul class="collection">
                             <li th:each="task: ${tasks}" th:id="${task.getId()}" class="collection-item avatar">
                                 <div th:switch="${task.getState()}">
-                                    <img th:case="${T(com.example.sprinter.task.State).NEW}" th:src="@{~/img/L.png}"
+                                    <a href="#" class="state-img">
+                                    <img th:case="${T(com.example.sprinter.task.State).NEW}" data-id="new" th:src="@{~/img/L.png}"
                                          alt="" class="circle"/>
-                                    <img th:case="${T(com.example.sprinter.task.State).IN_PROGRESS}"
+                                    <img th:case="${T(com.example.sprinter.task.State).IN_PROGRESS}" data-id="inProgress"
                                          th:src="@{~/img/M.png}" alt="" class="circle"/>
                                     <img th:case="${T(com.example.sprinter.task.State).DONE}" th:src="@{~/img/H.png}"
-                                         alt="" class="circle"/>
+                                         data-id="done" alt="" class="circle"/>
+                                    </a>
                                 </div>
                                 <span class="title" th:text="${task.getName()}">Title</span>
                                 <a class="secondary-content btn-floating btn-large waves-effect waves-light red lighten-1 modal-trigger delete-task delete-button"
