@@ -12,7 +12,13 @@ li a.secondary-content.lighten-1.modal-trigger.edit-button {
     right: 66px;
     top: 6px;
 }
-
+a.delete-button {
+    margin-right: 5px;
+}
+a.save{
+    float: left;
+    margin-right: 10px;
+}
 .priority img{
     width: 56px;
     height: 56px;
