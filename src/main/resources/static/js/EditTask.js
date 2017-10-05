@@ -82,8 +82,8 @@ $(document).ready(function () {
             contentType: "application/json",
             dataType: "json",
             success: function (response) {
-                $("#" + id).find("h3").text(name);
-                $("#" + id).find("p").text(description);
+                $("#" + id).find(".title").text(name);
+                $("#" + id).find(".description").text(description);
                 $(".modal").modal('close');
             }
         })
