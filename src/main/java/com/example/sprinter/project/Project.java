@@ -17,7 +17,7 @@ public class Project {
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "projects")
     private Set<User> owners;
     @OneToMany(mappedBy = "project", cascade = CascadeType.REMOVE, orphanRemoval = true)
-    @OrderBy("name ASC")
+    @OrderBy("priority asc")
     private Set<UserStory> userStories;
     private String name;
     private String startDate;

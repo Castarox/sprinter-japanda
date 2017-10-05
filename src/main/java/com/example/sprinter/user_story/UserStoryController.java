@@ -35,7 +35,7 @@ public class UserStoryController {
         model.addAttribute("userStory", userStory);
         model.addAttribute("tasks", userStory.getTaskSet());
         model.addAttribute("project", project);
-        return "user-story2";
+        return "single-user-story";
     }
 
     @PostMapping("/new")

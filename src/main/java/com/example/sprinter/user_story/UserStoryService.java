@@ -35,7 +35,7 @@ public class UserStoryService {
     public UserStory createUserStory(UserStoryForm userStoryForm, @PathVariable Long project_id) {
         String name = userStoryForm.getUserStoryName();
         String description = userStoryForm.getDescription();
-        String priority = userStoryForm.getPriority();
+        PriorityEnum priority = userStoryForm.getPriority();
         Project project = projectService.findById(project_id);
         return save(new UserStory(name, description, priority, project));
     }

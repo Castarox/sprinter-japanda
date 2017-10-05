@@ -7,7 +7,7 @@ $(document).ready(function () {
         var isNameCorrect = nameCorrect;
 
         console.log(form);
-        $(form).change(function () {
+        $(form).on('input', function () {
 
             var input = $(form).find("input[name='taskName']");
             var name = input.val();
@@ -49,9 +49,9 @@ $(document).ready(function () {
         var form = $(".editTask");
         clear(form);
         validate(form, true);
-        var name = $(this).parents('.card').find("h3").text();
-        var description = $(this).parents('.card').find("p").text();
-        id = $(this).parents(".m12").attr("id");
+        var name = $(this).parents('li').find(".title").text();
+        var description = $(this).parents('li').find(".description").text();
+        id = $(this).parents("li").attr("id");
         console.log(id);
         $(form).find("label[for='taskNameEdit']").addClass("active");
         $(form).find("label[for='taskDescriptionEdit']").addClass("active");
@@ -82,12 +82,48 @@ $(document).ready(function () {
             contentType: "application/json",
             dataType: "json",
             success: function (response) {
-                $("#" + id).find("h3").text(name);
-                $("#" + id).find("p").text(description);
+                $("#" + id).find(".title").text(name);
+                $("#" + id).find(".description").text(description);
                 $(".modal").modal('close');
             }
         })
 
 
     });
+    
+    $('.state-img').click(function (e) {
+        e.preventDefault();
+        var id = $(this).parents("li").attr("id");
+        var state = $(this).find('img').data('id');
+        var token = $("meta[name='_csrf']").attr("content");
+        var header = $("meta[name='_csrf_header']").attr("content");
+        var data = {taskId : id, state:state};
+        var url = "tasks/edit/" + id + "/state";
+
+        $.ajax({
+            type: "POST",
+            beforeSend: function (request) {
+                request.setRequestHeader(header, token);
+            },
+            url: url,
+            data: JSON.stringify(data),
+            contentType: "application/json",
+            dataType: "json",
+            success: function (response) {
+                console.log("hura");
+                switch (state){
+                    case 'new':
+                        $('#'+ id).find('.state-img').html($('.inProgress-h').clone());
+                        break;
+                    case 'inProgress':
+                        $('#'+ id).find('.state-img').html($('.done-h').clone());
+                        break;
+                    case 'done':
+                        $('#'+ id).find('.state-img').html($('.inProgress-h').clone());
+                        break;
+                }
+            }
+        })
+
+    })
 });
