@@ -1,14 +1,19 @@
 $(document).ready(function () {
 
     var currentId;
-    $(".delete-user-story").click(function () {
-        var text = $(this).parents('li').find(".title").text();
-        currentId = $(this).parents("li").attr("id");
-        $("#delete").find("p").html(text);
-    });
+    // $(".delete-user-story").click(function () {
+    //     var text = $(this).parents('li').find(".title").text();
+    //     currentId = $(this).parents("li").attr("id");
+    //     $("#delete").find("p").html(text);
+    // });
 
     $(".yes-story").click(function () {
-        var url = "tasks/remove/" + currentId;
+        currentId = $(this).attr('id');
+        var projectId = $(this).data('project');
+        console.log(projectId);
+        console.log(currentId);
+        var url = "/projects/user_story/" + currentId;
+        var replaceUrl = "/projects/" + projectId;
         var token = $("meta[name='_csrf']").attr("content");
         var header = $("meta[name='_csrf_header']").attr("content");
         $.ajax({
@@ -18,8 +23,8 @@ $(document).ready(function () {
             },
             url: url,
             success: function(msg) {
-                $('#'+ currentId).remove();
                 $('.modal').modal('close');
+                window.location.replace(replaceUrl)
             }
         })
     })
