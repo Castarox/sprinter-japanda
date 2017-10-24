@@ -3,14 +3,8 @@ package com.example.sprinter.user_story;
 import com.example.sprinter.project.Project;
 import com.example.sprinter.task.Task;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -22,20 +16,23 @@ public class UserStory {
     private Long Id;
     private String name;
     private String description;
-    private String priority;
+    private PriorityEnum priority;
     @ManyToOne
     @JoinColumn(name = "project_id")
     private Project project;
-    @OneToMany(mappedBy = "userStory")
+    @OneToMany(mappedBy = "userStory", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OrderBy("LOWER(name) ASC")
     private Set<Task> taskSet;
 
-    UserStory(){}
+    UserStory() {
+    }
 
-    UserStory(String name, String description, String priority, Project project){
+    UserStory(String name, String description, PriorityEnum priority, Project project) {
         this.name = name;
         this.description = description;
         this.priority = priority;
         this.project = project;
+        this.taskSet = new HashSet<>();
     }
 
     public Long getId() {
@@ -62,11 +59,11 @@ public class UserStory {
         this.description = description;
     }
 
-    public String getPriority() {
+    public PriorityEnum getPriority() {
         return priority;
     }
 
-    public void setPriority(String priority) {
+    public void setPriority(PriorityEnum priority) {
         this.priority = priority;
     }
 

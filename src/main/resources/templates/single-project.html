@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Sprinter</title>
+    <meta charset="utf-8"/>
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css"/>
+    <link th:href="@{~/css/mainpage.css}" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<header th:replace="fragments/navbar :: navbar"></header>
+<div class="row">
+    <div class="col s0 m2 grey lighten-5">
+        <div th:replace="fragments/project-sidenav :: project-sidenav"></div>
+    </div>
+    <div class="col s12 m10">
+        <h4 class="center" th:text="${project.getName()}">Project name</h4>
+        <h6 class="center" th:text="'Deadline:' + ${project.getEndDate()}">Deadline: 20-02-2017</h6>
+        <div class="row">
+            <div class="col m10 offset-m1">
+                <ul class="collection">
+                    <a th:href="@{${project.getId()} +'/user_story/'+ ${userStory.getId()}}"
+                       th:each="userStory: ${userStories}">
+                        <li class="collection-item avatar">
+                            <div th:switch="${userStory.getPriority()}">
+                                <img th:case="${T(com.example.sprinter.user_story.PriorityEnum).LOW}" th:src="@{~/img/L.png}" alt="" class="circle"/>
+                                <img th:case="${T(com.example.sprinter.user_story.PriorityEnum).MEDIUM}" th:src="@{~/img/M.png}" alt="" class="circle"/>
+                                <img th:case="${T(com.example.sprinter.user_story.PriorityEnum).HIGH}" th:src="@{~/img/H.png}" alt="" class="circle"/>
+                            </div>
+                            <span class="title" th:text="${userStory.getName()}">Title</span>
+                            <p th:text="${userStory.getDescription()}">Description</p>
+                        </li>
+                    </a>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="fixed-action-btn">
+    <a class="btn-floating btn-large red lighten-1 add-button btn modal-trigger pulse add-story-button"
+       href="#add-user-story-form">
+        <i class="large material-icons">add</i>
+    </a>
+</div>
+<div id="add-user-story-form" class="modal">
+    <form class="center addUserStory" method="POST" th:action="@{${project.getId()}  + '/user_story/new'}">
+        <div class="row">
+            <div class="input-field col s6 m10 offset-m1">
+                <label for="userStoryName">User Story Name</label>
+                <input name="userStoryName" id="userStoryName" type="text" />
+                <span class="storyNameError messageError"></span>
+            </div>
+            <div class="input-field col s6 m10 offset-m1">
+                <label class="active" for="description">Description</label>
+                <input name="description" id="description" type="text" />
+                <span class="startDateError messageError"></span>
+            </div>
+            <div class="col s6 m10 offset-m1">
+                <p class="col m3 offset-m1">
+                    <input class="" name="priority" type="radio" id="priority-low" value="LOW"/>
+                    <label for="priority-low">Low</label>
+                </p>
+                <p class="col m3">
+                    <input class="" name="priority" type="radio" id="priority-medium" value="MEDIUM"/>
+                    <label for="priority-medium">Medium</label>
+                </p>
+                <p class="col m3 ">
+                    <input class="" name="priority" type="radio" id="priority-high" value="HIGH"/>
+                    <label for="priority-high">High</label>
+                </p>
+                <span class="priorityError messageError"></span>
+            </div>
+            <button class="btn waves-effect waves-light toValid" type="submit" name="action" disabled="disabled">Submit
+                <i class="material-icons right">send</i>
+            </button>
+        </div>
+    </form>
+</div>
+<script th:src="@{~/webjars/jquery/1.9.1/jquery.min.js}" src="webjars/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+<script th:src="@{~/js/UserStory.js}" type="text/javascript"></script>
+</body>
+</html>

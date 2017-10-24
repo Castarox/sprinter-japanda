@@ -12,31 +12,28 @@ public class Project {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="project_id")
+    @Column(name = "project_id")
     private Long id;
-
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "projects")
     private Set<User> owners;
-
-    @OneToMany(mappedBy = "project")
+    @OneToMany(mappedBy = "project", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OrderBy("priority asc")
     private Set<UserStory> userStories;
-
-    @NotNull
     private String name;
     private String startDate;
     private String endDate;
     private Boolean copy;
 
-    public Project() {}
+    Project() {
+    }
 
-    public Project(String name, Set<User> owners, String startDate, String endDate, Boolean copy) {
+    Project(String name, Set<User> owners, String startDate, String endDate, Boolean copy) {
         this.name = name;
         this.owners = owners;
         this.startDate = startDate;
         this.endDate = endDate;
         this.copy = copy;
     }
-
 
     public Long getId() {
         return id;
@@ -92,5 +89,12 @@ public class Project {
 
     public void setUserStories(Set<UserStory> userStories) {
         this.userStories = userStories;
+    }
+
+    @PreRemove
+    private void removeProjectFromUser() {
+        for (User owner : owners) {
+            owner.getProjects().remove(this);
+        }
     }
 }

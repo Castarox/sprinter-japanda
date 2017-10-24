@@ -1,117 +1,70 @@
-.navbar {
-    margin-bottom: 0;
-    border-radius: 0;
+.brand-logo {
+    margin-left: 15px;
+}
+.side-nav {
+    margin-top: 64px;
+    width: 240px;
 }
 
-.content{
-    margin-bottom: 80px;
+#slide-out li {
+    margin-top: 10px;
 }
-
-.row.content {height: 100%;}
-
-.card-block a{
-    color: #000000;
-    text-decoration: none;
-}
-
-.card-block a:hover {
-    text-decoration: none;
-    color: #000000;
-}
-
-.main-block{
-    height: 150px;
-}
-
-.alert-margin {
-    margin-top: 52px;
-}
-
-.page-header h1{
-    font-weight: 900;
-    text-transform: uppercase;
-}
-
-#special-card a{
-    margin-top: 30px;
-}
-
-.card-block h3 {
-    margin: 0;
-    padding: 0;
-}
-
-.priority {
-    text-transform: uppercase;
-}
-
-.card-block {
-    border-radius: 10px;
-    background-color: #F5F5F5;
-    padding: 10px;
-    margin: 5px;
-}
-
-#welcome-text {
-    text-align: justify;
-}
-
-#special-card {
-    background-color: #9BD2D2;
-    border-radius: 10px;
-}
-
-.panda {
-    width: inherit;
-    display: block;
-    margin: 0 auto;
-}
-
-.sidenav {
-    padding-top: 20px;
-    background-color: #f1f1f1;
-    position: fixed;
-    height: 100rem;
-    top:52px;
-    left:0;
-    margin-bottom: 0;
-}
-
-.card-title {
-    padding-top: 10px;
-}
-
-#site-content {
-    float: right;
-    margin-top: 52px;
-}
-
-footer {
-    background-color: #555;
-    color: white;
-    position: fixed;
-    height: 4rem;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    padding: 1rem;
+.center {
     text-align: center;
 }
-
-@media screen and (max-width: 767px) {
-    .sidenav {
-        height: auto;
-        padding: 15px;
-    }
-    .row.content {height:100%;}
+.card-image h4{
+    padding: 20px 20px 35px 20px;
+}
+.card .btn-floating {
+    float: right;
+    position: relative;
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
 }
 
-img {
-    width: 100px;
+.card i {
+    position: relative;
+    bottom: 13px;
+    line-height: 19px;
+}
+.edit {
+    display: none;
+}
+.card .userStoryCard {
+    padding: 0;
+}
+.usGO {
+    margin-left: 101px;
+}
+.radio-inputs{
+    display: block;
+    margin-bottom: 50px !important;
+}
+.radio-inputs label{
+    margin-right: 60px;
 }
 
-.btn-default {
-    margin-bottom: 10px;
+.modal form {
+    padding: 80px;
+}
+.toValid {
+    margin-top:20px;
+}
+.messageError {
+    color: #f00;
+}
+.collection a {
+    color: #000;
+    text-decoration: none;
 }
 
+.collection p {
+    font-size: 14px;
+    font-weight: 400;
+    color: #3E3E3E;
+}
 
+.collection a li {
+    border-bottom: 1px solid #e0e0e0 !important;
+}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Sprinter</title>
+    <meta charset="utf-8"/>
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" />
+    <link th:href="@{~/css/mainpage.css}" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<header th:replace="fragments/navbar :: navbar"></header>
+<div class="row">
+    <div class="col s0 m2 grey lighten-5">
+        <div th:replace="fragments/project-sidenav :: project-sidenav"></div>
+    </div>
+    <div class="col s12 m10">
+        <div class="row center">
+            <h1 th:text="${userStory.getName()}">User Story</h1>
+            <div class="col s12 m12 center" th:id="${task.getId()}" th:each="task: ${tasks}" >
+                <div class="card grey lighten-5 z-depth-2">
+                    <div class="card-content userStoryCard">
+                        <h3 th:text="${task.getName()}" class="card-title flow-text">Add new project</h3>
+                        <p class="description" th:text="${task.getDescription()}">Deadline: 20-02-2017</p>
+                    </div>
+                    <div class="card-action">
+                        <a class="btn-floating btn-large waves-effect waves-light red lighten-1 modal-trigger delete-button" href="#delete">
+                            <i class="material-icons">
+                                clear</i></a>
+                        <a class="btn-floating btn-large waves-effect waves-light red lighten-1 modal-trigger edit-button" href="#edit-task-form"><i class="material-icons">mode_edit</i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="fixed-action-btn">
+        <a class="btn-floating btn-large red lighten-1 add-button btn modal-trigger pulse add-button" href="#add-task-form">
+            <i class="large material-icons">add</i>
+        </a>
+    </div>
+
+</div>
+<div id="add-task-form" class="modal">
+    <form class="center addTask" method="POST" th:action="@{${userStory.getId()} + '/tasks/new'}">
+        <div class="row">
+            <div class="input-field col s6 m10 offset-m1">
+                <label for="taskName">Task Name</label>
+                <input name="taskName" id="taskName" type="text" />
+                <span class="taskNameError messageError"></span>
+                <input type="hidden" name="userStoryId" th:value="${userStory.getId()}"/>
+            </div>
+            <div class="input-field col s6 m10 offset-m1">
+                <label class="active" for="description">Description</label>
+                <input name="taskDescription" id="description" type="text" />
+                <span class="startDateError messageError"></span>
+            </div>
+            <span class="priorityError"></span>
+            <button class="btn waves-effect waves-light valid" type="submit" name="action" disabled="disabled">Submit
+                <i class="material-icons right">send</i>
+            </button>
+        </div>
+    </form>
+</div>
+<div id="edit-task-form" class="modal">
+    <form class="center editTask" method="POST" th:action="@{${project.getId()}  + '/user_story/new'}">
+        <div class="row">
+            <div class="input-field col s6 m10 offset-m1">
+                <label for="taskNameEdit">Task Name</label>
+                <input name="taskName" id="taskNameEdit" type="text" />
+                <input type="hidden" name="userStoryId" th:value="${userStory.getId()}"/>
+                <span class="taskNameError messageError"></span>
+            </div>
+            <div class="input-field col s6 m10 offset-m1">
+                <label class="active" for="taskDescriptionEdit">Description</label>
+                <input name="taskDescription" id="taskDescriptionEdit" type="text" />
+            </div>
+            <span class="priorityError"></span>
+            <button class="btn waves-effect waves-light valid" type="submit" name="action" disabled="disabled">Submit
+                <i class="material-icons right">send</i>
+            </button>
+        </div>
+    </form>
+</div>
+<div id="delete" class="modal">
+    <div class="modal-content">
+        <h4>Are you sure you want remove this task?</h4>
+        <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action waves-effect waves-green btn-flat yes">Yes</a>
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">No</a>
+    </div>
+</div>
+<script th:src="@{~/webjars/jquery/1.9.1/jquery.min.js}" src="webjars/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+<script th:src="@{~/js/EditTask.js}" type="text/javascript"></script>
+<script th:src="@{~/js/DeleteTask.js}" type="text/javascript"></script>
+</body>
+</html>

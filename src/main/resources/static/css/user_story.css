@@ -1,0 +1,31 @@
+#title_user_story {
+    font-size: 230%;
+    font-weight: bold;
+}
+
+.user_story_title {
+    margin-top: 50px;
+}
+
+li a.secondary-content.lighten-1.modal-trigger.edit-button {
+    position: relative;
+    right: 66px;
+    top: 6px;
+}
+
+a.delete-button {
+    margin-right: 5px;
+}
+a.save{
+    float: left;
+    margin-right: 10px;
+}
+.priority img{
+    width: 56px;
+    height: 56px;
+    margin-top: 30px;
+    margin-right: 15px;
+    /*position: absolute;*/
+    /*top:50px;*/
+    /*right: 25px;*/
+}

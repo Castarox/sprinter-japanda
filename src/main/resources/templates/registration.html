@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Sprinter</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link th:href="@{~/webjars/bootstrap/3.3.6/css/bootstrap.min.css}" href="webjars/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+    <link th:href="@{~/css/mainpage.css}" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" />
+
+</head>
+<body>
+
+    <header>
+        <div class="navbar-fixed">
+        <nav class="teal darken-4">
+            <div class="nav-wrapper">
+                <a th:href="@{/}" class="brand-logo">Sprinter</a>
+
+
+                <form th:action="@{~/login}" method="POST" class="navbar-form navbar-right">
+
+                    <ul class="right hide-on-med-and-down">
+                        <div class="row">
+                            <li>
+                                    <div class="input-field col s6">
+                                        <input th:type="text" class="validate" id="username" name="username" th:placeholder="Login" th:required="required" th:autofocus="login"/>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input th:type="password" class="validate" id="password" name="password" th:placeholder="Password" th:required="required"/>
+                                    </div>
+                            </li>
+                            <li><button type="submit" class="waves-effect waves-light btn">Login</button></li>
+                            <li><button href="#modal1" type="button" id="signin" class="waves-effect waves-light btn modal-trigger signin">Sign in</button></li>
+                        </div>
+                    </ul>
+                </form>
+            </div>
+        </nav>
+    </div>
+    </header>
+
+
+<!--<nav class="navbar navbar-inverse navbar-fixed-top">-->
+    <!--<div class="container-fluid">-->
+        <!--<div class="navbar-header">-->
+            <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+                <!--<span class="icon-bar"></span>-->
+            <!--</button>-->
+            <!--<a class="navbar-brand" th:href="@{/}">Sprinter</a>-->
+        <!--</div>-->
+        <!--<div class="collapse navbar-collapse" id="myNavbar">-->
+            <!--<ul class="nav navbar-nav">-->
+                <!--<li class="active"><a th:href="@{/}">Home</a></li>-->
+                <!--<li><a href="#">About us</a></li>-->
+                <!--<li><a href="#">Contact</a></li>-->
+            <!--</ul>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</nav>-->
+
+<div class="container-fluid text-center">
+    <div class="row content">
+        <div id="site-content" class="col-sm-12">
+    <hr/>
+        <h1 th:text="${error}">test</h1>
+        <div class="col-md-12 personal-info">
+
+            <h3>New User</h3>
+
+            <form class="form-horizontal" th:object="${registrationForm}" role="form" th:action="@{~/registration}" method="post">
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Name:</label>
+                    <div class="col-md-4">
+                        <input th:id="name" th:field="*{name}" class="form-control" type="text" th:required="required" th:autofocus="name"/>
+                    </div>
+                    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="col-md-4 text-uppercase text-left text-danger">Name Error</div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Surname:</label>
+                    <div class="col-md-4">
+                        <input th:id="surname" th:field="*{surname}" name="surname" class="form-control" type="text" value="" th:required="required" />
+                    </div>
+                    <div th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}" class="col-md-4 text-uppercase text-left text-danger">Surname Error</div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Email:</label>
+                    <div class="col-md-4">
+                        <input th:id="email" th:field="*{email}" name="email" class="form-control" type="email" value="" th:required="required" th:readonly="readonly"/>
+                    </div>
+                    <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="col-md-4 text-uppercase text-left text-danger">Email Error</div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Password:</label>
+                    <div class="col-md-4">
+                        <input th:id="password" th:field="*{password}" name="password" class="form-control" type="password" value="" th:required="required"/>
+                    </div>
+                    <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="col-md-4 text-uppercase text-left text-danger">Password Error</div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Confirm password:</label>
+                    <div class="col-md-4">
+                        <input th:id="confirm" th:field="*{confirm}" name="confirm" class="form-control" type="password" value="" th:required="required"/>
+                    </div>
+                    <div th:if="${correct != null}" th:text="${correct}" class="col-md-4 text-uppercase text-left text-danger">Confirm Error</div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label"></label>
+                    <div class="col-md-4">
+                        <input name="save" type="submit" class="btn btn-primary submit" value="Submit" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<footer th:replace="fragments/footer :: footer"></footer>
+
+
+<script th:src="@{~/webjars/jquery/1.9.1/jquery.min.js}" src="webjars/jquery/1.9.1/jquery.min.js"></script>
+<script th:src="@{~/webjars/bootstrap/3.3.6/js/bootstrap.min.js}" src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script th:src="@{~/js/registration.js}" type="text/javascript"></script>
+</body>
+</html>
