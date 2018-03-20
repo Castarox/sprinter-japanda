@@ -97,7 +97,7 @@
         <dependency>
             <groupId>com.synerise</groupId>
             <artifactId>synerise</artifactId>
-            <version>2.0.1</version>
+            <version>0.0.1</version>
         </dependency>
     </dependencies>
 
