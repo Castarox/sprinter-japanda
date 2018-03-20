@@ -1,6 +1,8 @@
 package com.example.sprinter.user;
 
 import com.example.sprinter.form.EditPasswordForm;
+import com.synerise.SyneriseTracker;
+import com.synerise.producers.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +28,13 @@ public class UserController {
     String getAll(Model model, ModelMap modelMap) {
         User user = (User)modelMap.get("user");
         model.addAttribute("projects", user.getProjects());
+        Client client = new Client();
+        client.setCustomIdentify(String.valueOf(user.getId()));
+        client.setAge(30);
+        client.setEmail(user.getEmail());
+        client.setFirstname(user.getName());
+        client.setSecondname(user.getName());
+        SyneriseTracker.getInstance().track(client);
         return "index";
     }
 
