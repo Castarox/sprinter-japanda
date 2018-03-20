@@ -94,7 +94,15 @@
 			<artifactId>junit-jupiter-api</artifactId>
 			<version>RELEASE</version>
 		</dependency>
+        <dependency>
+            <groupId>com.synerise</groupId>
+            <artifactId>com.synerise</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/java-sdk/synerise-java-sdk-0.0.1.jar</systemPath>
+        </dependency>
 	</dependencies>
+
 
 	<build>
 		<plugins>
@@ -102,7 +110,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-		</plugins>
+        </plugins>
 	</build>
 
 
